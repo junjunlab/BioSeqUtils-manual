@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 7 Splice junction visualization | BioSeqUtils Reference</title>
+<title>Chapter 8 Splice junction visualization | BioSeqUtils Reference</title>
 <meta name="author" content="Jun Zhang">
 <meta name="description" content="There have been some visualization tools for RNA different types of splice and junction events. The most popular tool is called sashimiplot with embeded into multiple splice-analysis tools. It is...">
 <meta name="generator" content="bookdown 0.33 with bs4_book()">
-<meta property="og:title" content="Chapter 7 Splice junction visualization | BioSeqUtils Reference">
+<meta property="og:title" content="Chapter 8 Splice junction visualization | BioSeqUtils Reference">
 <meta property="og:type" content="book">
 <meta property="og:description" content="There have been some visualization tools for RNA different types of splice and junction events. The most popular tool is called sashimiplot with embeded into multiple splice-analysis tools. It is...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Chapter 7 Splice junction visualization | BioSeqUtils Reference">
+<meta name="twitter:title" content="Chapter 8 Splice junction visualization | BioSeqUtils Reference">
 <meta name="twitter:description" content="There have been some visualization tools for RNA different types of splice and junction events. The most popular tool is called sashimiplot with embeded into multiple splice-analysis tools. It is...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -44,13 +44,14 @@
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html"><span class="header-section-number">1</span> About</a></li>
 <li><a class="" href="extract-sequence.html"><span class="header-section-number">2</span> Extract sequence</a></li>
-<li><a class="" href="track-data-input.html"><span class="header-section-number">3</span> Track data input</a></li>
-<li><a class="" href="basic-visualization.html"><span class="header-section-number">4</span> Basic visualization</a></li>
-<li><a class="" href="loops-visualization.html"><span class="header-section-number">5</span> Loops visualization</a></li>
-<li><a class="" href="hic-heatmap-visualization.html"><span class="header-section-number">6</span> Hic heatmap visualization</a></li>
-<li><a class="active" href="splice-junction-visualization.html"><span class="header-section-number">7</span> Splice junction visualization</a></li>
-<li><a class="" href="other-funs.html"><span class="header-section-number">8</span> Other funs</a></li>
-<li><a class="" href="frequntlly-asked-questions.html"><span class="header-section-number">9</span> Frequntlly asked questions</a></li>
+<li><a class="" href="draw-chromosome-ideograms.html"><span class="header-section-number">3</span> Draw chromosome ideograms</a></li>
+<li><a class="" href="track-data-input.html"><span class="header-section-number">4</span> Track data input</a></li>
+<li><a class="" href="basic-visualization.html"><span class="header-section-number">5</span> Basic visualization</a></li>
+<li><a class="" href="loops-visualization.html"><span class="header-section-number">6</span> Loops visualization</a></li>
+<li><a class="" href="hic-heatmap-visualization.html"><span class="header-section-number">7</span> Hic heatmap visualization</a></li>
+<li><a class="active" href="splice-junction-visualization.html"><span class="header-section-number">8</span> Splice junction visualization</a></li>
+<li><a class="" href="other-funs.html"><span class="header-section-number">9</span> Other funs</a></li>
+<li><a class="" href="frequntlly-asked-questions.html"><span class="header-section-number">10</span> Frequntlly asked questions</a></li>
 </ul>
 
         <div class="book-extra">
@@ -58,9 +59,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="splice-junction-visualization" class="section level1" number="7">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="splice-junction-visualization" class="section level1" number="8">
 <h1>
-<span class="header-section-number">7</span> Splice junction visualization<a class="anchor" aria-label="anchor" href="#splice-junction-visualization"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8</span> Splice junction visualization<a class="anchor" aria-label="anchor" href="#splice-junction-visualization"><i class="fas fa-link"></i></a>
 </h1>
 <p>There have been some visualization tools for RNA different types of splice and junction events.
 The most popular tool is called <strong>sashimiplot</strong> with embeded into multiple splice-analysis
@@ -68,13 +69,13 @@ tools. It is still not convenient to visualize the splice data with your own big
 data with significant differential splice sites information which produced from other softwares.
 The <strong>trackVisProMax</strong> also allows you plot the RNA splice and junctions data with your own
 data.</p>
-<div id="data-pareparation" class="section level2" number="7.1">
+<div id="data-pareparation" class="section level2" number="8.1">
 <h2>
-<span class="header-section-number">7.1</span> Data pareparation<a class="anchor" aria-label="anchor" href="#data-pareparation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1</span> Data pareparation<a class="anchor" aria-label="anchor" href="#data-pareparation"><i class="fas fa-link"></i></a>
 </h2>
 <p>Here we use RNA-seq as example data, first we extract all junctions from <strong>bam</strong>
 files:</p>
-<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bam_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"F:/junc-test/"</span>,</span>
 <span>                       pattern <span class="op">=</span> <span class="st">".bam$"</span>,full.names <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="va">bam_file</span></span>
@@ -91,7 +92,7 @@ files:</p>
 <span><span class="co"># 2        1 3207318 3213608     1       C1</span></span>
 <span><span class="co"># 3        1 4492669 4493099     8       C1</span></span></code></pre></div>
 <p>Load bigwig files:</p>
-<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># gtf</span></span>
 <span><span class="va">gtf</span> <span class="op">&lt;-</span> <span class="fu">rtracklayer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtracklayer/man/GFFFile-class.html">import.gff</a></span><span class="op">(</span><span class="st">"Mus_musculus.GRCm38.102.gtf"</span>,format <span class="op">=</span> <span class="st">"gtf"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span> </span>
@@ -105,28 +106,28 @@ files:</p>
 <span><span class="va">bw</span> <span class="op">&lt;-</span> <span class="fu">loadBigWig</span><span class="op">(</span>bw_file <span class="op">=</span> <span class="va">bw_file</span>,file_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C1"</span>,<span class="st">"WT"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">bw2</span> <span class="op">&lt;-</span> <span class="fu">loadBigWig</span><span class="op">(</span>bw_file <span class="op">=</span> <span class="va">bw_file</span>,file_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C1_BW"</span>,<span class="st">"WT_BW"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="visualization" class="section level2" number="7.2">
+<div id="visualization" class="section level2" number="8.2">
 <h2>
-<span class="header-section-number">7.2</span> Visualization<a class="anchor" aria-label="anchor" href="#visualization"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2</span> Visualization<a class="anchor" aria-label="anchor" href="#visualization"><i class="fas fa-link"></i></a>
 </h2>
 <p>Single gene test:</p>
-<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw2</span>,</span>
 <span>               Input_junction <span class="op">=</span> <span class="va">junc_df</span>,</span>
 <span>               fixed_column_range <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="section" class="section level2" number="7.3">
+<div id="section" class="section level2" number="8.3">
 <h2>
-<span class="header-section-number">7.3</span> <img src="local_images/t81.png" style="width:100.0%"><a class="anchor" aria-label="anchor" href="#section"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.3</span> <img src="local_images/t81.png" style="width:100.0%"><a class="anchor" aria-label="anchor" href="#section"><i class="fas fa-link"></i></a>
 </h2>
 <blockquote>
 <p><strong>Note:</strong> The junction curve will be drawn together with siganal track if your
 junction <strong>fileName’s</strong> are same as bigwig files and <strong>junc_layer_combined</strong>
 should be setted to <strong>TRUE</strong>.</p>
 </blockquote>
-<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               junc_layer_combined <span class="op">=</span> <span class="cn">T</span>,</span>
@@ -135,7 +136,7 @@ should be setted to <strong>TRUE</strong>.</p>
 <p><img src="local_images/t82.png" style="width:100.0%"><strong>signal_layer_junction_params</strong> and <strong>signal_layer_junction_label_params</strong> control
 the curve graphics and text label graphics. Here we change the linewidth and
 label size:</p>
-<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               junc_layer_combined <span class="op">=</span> <span class="cn">T</span>,</span>
@@ -147,7 +148,7 @@ label size:</p>
 <p>Drawing the junctions track separately and we can turn the curve style into
 band-curve style with <strong>add_band_line=TRUE</strong>. The width of line is relatted
 with the junction counts which means using the <strong>score</strong> column:</p>
-<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw2</span>,</span>
 <span>               Input_junction <span class="op">=</span> <span class="va">junc_df</span>,</span>
@@ -158,7 +159,7 @@ with the junction counts which means using the <strong>score</strong> column:</p
 <span>               sample_order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C1_BW"</span>,<span class="st">"C1"</span>,<span class="st">"WT_BW"</span>,<span class="st">"WT"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t84.png" style="width:100.0%"></div>
 <p>Reversing the junction tracks. <strong>band_width</strong> controls the curve witdth:</p>
-<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw2</span>,</span>
 <span>               Input_junction <span class="op">=</span> <span class="va">junc_df</span>,</span>
@@ -171,7 +172,7 @@ with the junction counts which means using the <strong>score</strong> column:</p
 <span>               reverse_y_vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C1"</span>,<span class="st">"WT"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t85.png" style="width:100.0%"></div>
 <p>Combining the signal tracks and junction tracks:</p>
-<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               junc_layer_combined <span class="op">=</span> <span class="cn">T</span>,</span>
@@ -184,15 +185,15 @@ with the junction counts which means using the <strong>score</strong> column:</p
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="hic-heatmap-visualization.html"><span class="header-section-number">6</span> Hic heatmap visualization</a></div>
-<div class="next"><a href="other-funs.html"><span class="header-section-number">8</span> Other funs</a></div>
+<div class="prev"><a href="hic-heatmap-visualization.html"><span class="header-section-number">7</span> Hic heatmap visualization</a></div>
+<div class="next"><a href="other-funs.html"><span class="header-section-number">9</span> Other funs</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#splice-junction-visualization"><span class="header-section-number">7</span> Splice junction visualization</a></li>
-<li><a class="nav-link" href="#data-pareparation"><span class="header-section-number">7.1</span> Data pareparation</a></li>
-<li><a class="nav-link" href="#visualization"><span class="header-section-number">7.2</span> Visualization</a></li>
-<li><a class="nav-link" href="#section"><span class="header-section-number">7.3</span></a></li>
+<li><a class="nav-link" href="#splice-junction-visualization"><span class="header-section-number">8</span> Splice junction visualization</a></li>
+<li><a class="nav-link" href="#data-pareparation"><span class="header-section-number">8.1</span> Data pareparation</a></li>
+<li><a class="nav-link" href="#visualization"><span class="header-section-number">8.2</span> Visualization</a></li>
+<li><a class="nav-link" href="#section"><span class="header-section-number">8.3</span></a></li>
 </ul>
 
       <div class="book-extra">
@@ -209,7 +210,7 @@ with the junction counts which means using the <strong>score</strong> column:</p
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>BioSeqUtils Reference</strong>" was written by Jun Zhang. It was last built on 2023-04-15.</p>
+    <p>"<strong>BioSeqUtils Reference</strong>" was written by Jun Zhang. It was last built on 2023-04-18.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

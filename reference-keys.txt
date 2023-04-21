@@ -7,6 +7,10 @@ extract-sequnence
 get-inrton-information
 extract-promoters
 extract-non-redundant-transcript-length
+draw-chromosome-ideograms
+downloading-related-data
+making-plot
+drawing-gene-density-manually
 track-data-input
 load-signal-data
 load-peaks-data
@@ -42,4 +46,5 @@ visualization
 section
 other-funs
 transcript-coordinate-transformation
+track-overlap
 frequntlly-asked-questions
