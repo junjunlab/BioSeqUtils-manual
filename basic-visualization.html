@@ -903,6 +903,45 @@ peaks data which output from <strong>loadBed</strong> function. We first load th
 <span>               draw_chromosome <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>               draw_chromosome_params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>ideogram_obj <span class="op">=</span> <span class="va">mm10_obj</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t54.png" style="width:100.0%"></div>
+</div>
+<div id="extending-bases-upstream-and-downstream" class="section level2" number="5.12">
+<h2>
+<span class="header-section-number">5.12</span> Extending bases upstream and downstream<a class="anchor" aria-label="anchor" href="#extending-bases-upstream-and-downstream"><i class="fas fa-link"></i></a>
+</h2>
+<p>Drawing specific genes and observe the signals sometimes are not enough. Finding the
+transcription factor binding signals for gene upstream is what we want. It is
+not simple to supply exact genomic coordinates to draw. <strong>upstream_extend</strong> and
+<strong>downstream_extend</strong> allow you to extend bases upstream or downstream for your genes,
+here we show some examples:</p>
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
+<span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
+<span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Utp3"</span>,<span class="st">"Chpf2"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="local_images/ud_1.png" style="width:100.0%"></div>
+<p>Extending upstream:</p>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
+<span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
+<span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Utp3"</span>,<span class="st">"Chpf2"</span><span class="op">)</span>,</span>
+<span>               upstream_extend <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="local_images/ud_2.png" style="width:100.0%"></div>
+<p>Extending upstream and downstream:</p>
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
+<span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
+<span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Utp3"</span>,<span class="st">"Chpf2"</span><span class="op">)</span>,</span>
+<span>               upstream_extend <span class="op">=</span> <span class="fl">2000</span>,</span>
+<span>               downstream_extend <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="local_images/ud_3.png" style="width:100.0%"></div>
+<p>You can extend for multiple genes with different values:</p>
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
+<span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
+<span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Utp3"</span>,<span class="st">"Chpf2"</span><span class="op">)</span>,</span>
+<span>               upstream_extend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2000</span>,<span class="fl">1000</span><span class="op">)</span>,</span>
+<span>               downstream_extend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1000</span>,<span class="fl">2000</span><span class="op">)</span></span>
+<span>               <span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="local_images/ud_4.png" style="width:100.0%"></div>
 
 </div>
 </div>
@@ -924,6 +963,7 @@ peaks data which output from <strong>loadBed</strong> function. We first load th
 <li><a class="nav-link" href="#draw-chromosome-annotation"><span class="header-section-number">5.9</span> Draw chromosome annotation</a></li>
 <li><a class="nav-link" href="#plot-with-specified-genomic-region"><span class="header-section-number">5.10</span> Plot with specified genomic region</a></li>
 <li><a class="nav-link" href="#adding-peaks-track"><span class="header-section-number">5.11</span> Adding peaks track</a></li>
+<li><a class="nav-link" href="#extending-bases-upstream-and-downstream"><span class="header-section-number">5.12</span> Extending bases upstream and downstream</a></li>
 </ul>
 
       <div class="book-extra">
@@ -940,7 +980,7 @@ peaks data which output from <strong>loadBed</strong> function. We first load th
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>BioSeqUtils Reference</strong>" was written by Jun Zhang. It was last built on 2023-04-23.</p>
+    <p>"<strong>BioSeqUtils Reference</strong>" was written by Jun Zhang. It was last built on 2023-04-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
