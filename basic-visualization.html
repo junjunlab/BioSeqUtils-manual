@@ -241,6 +241,18 @@ parameter, here we show an example:</p>
 <span>                                             <span class="st">"1cell-RNA-2"</span> <span class="op">=</span> <span class="fl">500</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Utp3"</span>,<span class="st">"Chpf2"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t11_2.png" style="width:100.0%"></div>
+<p>The genomic coordinate region id has been your gene mark to change the range for
+each panel:</p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
+<span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
+<span>               query_region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query_chr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5"</span>,<span class="st">"15"</span><span class="op">)</span>,</span>
+<span>                                   query_start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">65438603</span>,<span class="fl">9263295</span><span class="op">)</span>,</span>
+<span>                                   query_end <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">65834288</span>,<span class="fl">9785835</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>               signal_range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"chr5:65438603-65834288"</span> <span class="op">=</span> </span>
+<span>                                     <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1cell-m6A-1"</span> <span class="op">=</span> <span class="fl">4000</span>,<span class="st">"1cell-m6A-2"</span> <span class="op">=</span> <span class="fl">3000</span>,</span>
+<span>                                       <span class="st">"1cell-RNA-1"</span> <span class="op">=</span> <span class="fl">2000</span>,<span class="st">"1cell-RNA-2"</span> <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="local_images/t11_3.png" style="width:100.0%"></div>
 </div>
 <div id="transcript-track-settings" class="section level2" number="5.3">
 <h2>
@@ -250,14 +262,14 @@ parameter, here we show an example:</p>
 used to control how many transcripts for a gene to be drawn in the track. The default
 is to show top 2 longest transcripts according to their transcipt exon length. You
 can change it with other values:</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Dnaaf5"</span>,<span class="st">"Zfp68"</span>,<span class="st">"Pabpc1"</span><span class="op">)</span>,</span>
 <span>               trans_topN <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t12.png" style="width:100.0%"></div>
 <p>Showing top 5 transcripts:</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Dnaaf5"</span>,<span class="st">"Zfp68"</span>,<span class="st">"Pabpc1"</span><span class="op">)</span>,</span>
@@ -265,7 +277,7 @@ can change it with other values:</p>
 <div class="inline-figure"><img src="local_images/t13.png" style="width:100.0%"></div>
 <p><strong>collapse_trans</strong> parameter allows you to collapse all transcripts you have
 shown in the <strong><em>trans</em></strong> track:</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Dnaaf5"</span>,<span class="st">"Zfp68"</span>,<span class="st">"Pabpc1"</span><span class="op">)</span>,</span>
@@ -273,14 +285,14 @@ shown in the <strong><em>trans</em></strong> track:</p>
 <span>               collapse_trans <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t14.png" style="width:100.0%"></div>
 <p>Setting <strong>trans_topN = “all”</strong> which can show all transcripts for a gene:</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Dnaaf5"</span>,<span class="st">"Zfp68"</span>,<span class="st">"Pabpc1"</span><span class="op">)</span>,</span>
 <span>               trans_topN <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t15.png" style="width:100.0%"></div>
 <p>You can also collapse the transcripts:</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Dnaaf5"</span>,<span class="st">"Zfp68"</span>,<span class="st">"Pabpc1"</span><span class="op">)</span>,</span>
@@ -290,14 +302,14 @@ shown in the <strong><em>trans</em></strong> track:</p>
 <p><strong>rel_len</strong> control the arrow densities on transcript, you can check <strong>createSegment</strong>
 function for details. <strong>arrow_rel_len_params_list</strong> accepts a list parameters to
 control how the arrows be generated. <strong>rel_len</strong> smaller, the more arrows be generated:</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span><span class="op">)</span>,</span>
 <span>               arrow_rel_len_params_list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>rel_len <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t17.png" style="width:100.0%"></div>
 <p>More controls for arrows:</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span><span class="op">)</span>,</span>
@@ -306,7 +318,7 @@ control how the arrows be generated. <strong>rel_len</strong> smaller, the more 
 <span>                                              linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t18.png" style="width:100.0%"></div>
 <p>Changing arrow styles:</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span><span class="op">)</span>,</span>
@@ -315,14 +327,14 @@ control how the arrows be generated. <strong>rel_len</strong> smaller, the more 
 <span>                                                            length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">3</span>,<span class="st">"mm"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t19.png" style="width:100.0%"></div>
 <p>Changing arrow colors:</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span><span class="op">)</span>,</span>
 <span>               trans_exon_col_params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"black"</span>,color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t20.png" style="width:100.0%"></div>
 <p><strong>add_gene_label_layer</strong> allows you to mark gene symbols beside the transcript:</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span><span class="op">)</span>,</span>
@@ -331,7 +343,7 @@ control how the arrows be generated. <strong>rel_len</strong> smaller, the more 
 <span>               gene_label_shift_y <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t21.png" style="width:100.0%"></div>
 <p><strong>exon_width</strong> allows you to change exon width:</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span><span class="op">)</span>,</span>
@@ -339,7 +351,7 @@ control how the arrows be generated. <strong>rel_len</strong> smaller, the more 
 <div class="inline-figure"><img src="local_images/t22.png" style="width:100.0%"></div>
 <p><strong>gene_dist_mark_params</strong> and <strong>gene_dist_mark_text_params</strong> control the segment
 (<strong><em>arrow direction stands for transciption direction</em></strong>) and chromosome label styles upper the transcript:</p>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span><span class="op">)</span>,</span>
@@ -348,32 +360,32 @@ control how the arrows be generated. <strong>rel_len</strong> smaller, the more 
 <div class="inline-figure"><img src="local_images/t23.png" style="width:100.0%"></div>
 <p>Viewing transcript structures for gene if you do not supply with any signal data
 (bigwig,peaks …):</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Dnaaf5"</span>,<span class="st">"Zfp68"</span>,<span class="st">"Pabpc1"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t24.png" style="width:100.0%"></div>
 <p>Showing all transcripts:</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Dnaaf5"</span>,<span class="st">"Zfp68"</span>,<span class="st">"Pabpc1"</span><span class="op">)</span>,</span>
 <span>               trans_topN <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t24_1.png" style="width:100.0%"></div>
 <p>Collapsing all transcripts:</p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Dnaaf5"</span>,<span class="st">"Zfp68"</span>,<span class="st">"Pabpc1"</span><span class="op">)</span>,</span>
 <span>               trans_topN <span class="op">=</span> <span class="st">"all"</span>,</span>
 <span>               collapse_trans <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t24_2.png" style="width:100.0%"></div>
 <p>Plotting in a genomic region:</p>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               query_region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query_chr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5"</span>,<span class="st">"15"</span><span class="op">)</span>,</span>
 <span>                                   query_start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">65438603</span>,<span class="fl">9263295</span><span class="op">)</span>,</span>
 <span>                                   query_end <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">65834288</span>,<span class="fl">9785835</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t24_3.png" style="width:100.0%"></div>
 <p>Showing all transcripts:</p>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               query_region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query_chr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5"</span>,<span class="st">"15"</span><span class="op">)</span>,</span>
 <span>                                   query_start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">65438603</span>,<span class="fl">9263295</span><span class="op">)</span>,</span>
@@ -381,7 +393,7 @@ control how the arrows be generated. <strong>rel_len</strong> smaller, the more 
 <span>               trans_topN <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t24_4.png" style="width:100.0%"></div>
 <p>You can also map the exon color into different feature types:</p>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># gtf</span></span>
 <span><span class="va">raw_gtf</span> <span class="op">&lt;-</span> <span class="fu">rtracklayer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtracklayer/man/GFFFile-class.html">import.gff</a></span><span class="op">(</span><span class="st">"test-bw2/hg19.ncbiRefSeq.gtf.gz"</span>,format <span class="op">=</span> <span class="st">"gtf"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span> </span>
@@ -393,7 +405,7 @@ control how the arrows be generated. <strong>rel_len</strong> smaller, the more 
 <div class="inline-figure"><img src="local_images/t24_5.png" style="width:100.0%"></div>
 <p><strong>trans_fill_col</strong> accepts a character vectors or named vectors to control exon
 fill colors:</p>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">raw_gtf</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"MYC"</span>,<span class="st">"NANOG"</span>,<span class="st">"MALAT1"</span><span class="op">)</span>,</span>
 <span>               trans_topN <span class="op">=</span> <span class="st">"all"</span>,</span>
@@ -401,7 +413,7 @@ fill colors:</p>
 <span>               trans_fill_col <span class="op">=</span> <span class="fu">ggsci</span><span class="fu">::</span><span class="fu"><a href="https://nanx.me/ggsci/reference/pal_igv.html">pal_igv</a></span><span class="op">(</span><span class="op">)</span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t24_6.png" style="width:100.0%"></div>
 <p>Removing the legend:</p>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">raw_gtf</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"MYC"</span>,<span class="st">"NANOG"</span>,<span class="st">"MALAT1"</span><span class="op">)</span>,</span>
 <span>               trans_topN <span class="op">=</span> <span class="st">"all"</span>,</span>
@@ -410,15 +422,29 @@ fill colors:</p>
 <span>               trans_fill_col <span class="op">=</span> <span class="fu">ggsci</span><span class="fu">::</span><span class="fu"><a href="https://nanx.me/ggsci/reference/pal_locuszoom.html">pal_locuszoom</a></span><span class="op">(</span><span class="op">)</span><span class="op">(</span><span class="fl">6</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t24_7.png" style="width:100.0%"></div>
 </div>
-<div id="x-axis-limitation" class="section level2" number="5.4">
+<div id="intron-line-type" class="section level2" number="5.4">
 <h2>
-<span class="header-section-number">5.4</span> X axis limitation<a class="anchor" aria-label="anchor" href="#x-axis-limitation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4</span> Intron line type<a class="anchor" aria-label="anchor" href="#intron-line-type"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>Intron_line_type</strong> allows you to change the intron line type(default “line”):</p>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gtf</span> <span class="op">&lt;-</span> <span class="fu">rtracklayer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtracklayer/man/GFFFile-class.html">import.gff</a></span><span class="op">(</span><span class="st">"Homo_sapiens.GRCh38.106.gtf.gz"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
+<span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ACTB"</span>,<span class="st">"NANOG"</span>,<span class="st">"YTHDF2"</span><span class="op">)</span>,</span>
+<span>               Intron_line_type <span class="op">=</span> <span class="st">"chevron"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="local_images/intr_1.png" style="width:100.0%"></div>
+</div>
+<div id="x-axis-limitation" class="section level2" number="5.5">
+<h2>
+<span class="header-section-number">5.5</span> X axis limitation<a class="anchor" aria-label="anchor" href="#x-axis-limitation"><i class="fas fa-link"></i></a>
 </h2>
 <p>Basiclly <strong>trackVisProMax</strong> is constructed based on the ggplot. But you can’t
 directlly use <strong>ggplot2::xlim</strong> function to adjust the X axis limitation.
 <strong>xlimit_range</strong> parameter is supplied to control the X axis limits which can
 zoom your interested region:</p>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span><span class="op">)</span>,</span>
@@ -426,16 +452,16 @@ zoom your interested region:</p>
 <span>                                   <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">61987507</span>,<span class="fl">61988278</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t25.png" style="width:100.0%"></div>
 </div>
-<div id="background-and-highlight-region-settings" class="section level2" number="5.5">
+<div id="background-and-highlight-region-settings" class="section level2" number="5.6">
 <h2>
-<span class="header-section-number">5.5</span> Background and highlight region settings<a class="anchor" aria-label="anchor" href="#background-and-highlight-region-settings"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.6</span> Background and highlight region settings<a class="anchor" aria-label="anchor" href="#background-and-highlight-region-settings"><i class="fas fa-link"></i></a>
 </h2>
 <p>Maybe you need to highlight some regions where you are interested in or set
 background color for each track to enhance the track visualization or for
 other purpose. Let’s show some examples with this goal.</p>
 <p><strong>background_color_region</strong> accepts a named list with named vectors to control
 the background colors for each panel:</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1cell-m6A-1"</span>,<span class="st">"1cell-m6A-2"</span>,<span class="st">"1cell-RNA-1"</span>,<span class="st">"1cell-RNA-2"</span>,</span>
 <span>            <span class="st">"2cell-m6A-1"</span>,<span class="st">"2cell-m6A-2"</span>,<span class="st">"2cell-RNA-1"</span>,<span class="st">"2cell-RNA-2"</span><span class="op">)</span></span>
 <span></span>
@@ -465,14 +491,14 @@ the background colors for each panel:</p>
 <span>                                              Mtdh <span class="op">=</span> <span class="va">Mtdh_col</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t26.png" style="width:100.0%"></div>
 <p>You can also set a background color for a specified panel:</p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span><span class="op">)</span>,</span>
 <span>               background_color_region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Myc <span class="op">=</span> <span class="va">Myc_col</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t27.png" style="width:100.0%"></div>
 <p><strong>background_region_alpha</strong> controls the color transparency:</p>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span><span class="op">)</span>,</span>
@@ -484,7 +510,7 @@ the background colors for each panel:</p>
 <hr>
 <p><strong>higlight_region</strong> accepts a named list genomic coordinates where you want to highlight.
 <strong>higlight_col</strong> also accepts a named list to control the highlighted region colors:</p>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">higlight_region</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>Actb <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">142904000</span><span class="op">)</span>,</span>
 <span>                                    end <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">142904500</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                        Myc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">61986000</span>,<span class="fl">61989500</span><span class="op">)</span>,</span>
@@ -500,7 +526,7 @@ the background colors for each panel:</p>
 <span>               higlight_col <span class="op">=</span> <span class="va">higlight_col</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t29.png" style="width:100.0%"></div>
 <p><strong>higlight_col_alpha</strong> controls the color transparency:</p>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span><span class="op">)</span>,</span>
@@ -509,9 +535,9 @@ the background colors for each panel:</p>
 <span>               higlight_col_alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t30.png" style="width:100.0%"></div>
 </div>
-<div id="order-for-genes-and-samples" class="section level2" number="5.6">
+<div id="order-for-genes-and-samples" class="section level2" number="5.7">
 <h2>
-<span class="header-section-number">5.6</span> Order for genes and samples<a class="anchor" aria-label="anchor" href="#order-for-genes-and-samples"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.7</span> Order for genes and samples<a class="anchor" aria-label="anchor" href="#order-for-genes-and-samples"><i class="fas fa-link"></i></a>
 </h2>
 <p>Probably you will re-order your gene or sample orders in the graph. Generally
 speaking, whether the gene orders or sample orders, their orders initially
@@ -519,7 +545,7 @@ have been assigned according to their input orders. You just need to adjust
 the input orders. Even so, I also supply
 <strong>gene_order</strong> and <strong>sample_order</strong> extra parameters to re-order the genes and
 samples:</p>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span><span class="op">)</span>,</span>
@@ -527,7 +553,7 @@ samples:</p>
 <div class="inline-figure">
 <img src="local_images/t31.png" style="width:100.0%">
 Changing sample orders:</div>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span><span class="op">)</span>,</span>
@@ -535,9 +561,9 @@ Changing sample orders:</div>
 <span>               sample_order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">sample</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t32.png" style="width:100.0%"></div>
 </div>
-<div id="adding-group-information-for-genes-and-samples" class="section level2" number="5.7">
+<div id="adding-group-information-for-genes-and-samples" class="section level2" number="5.8">
 <h2>
-<span class="header-section-number">5.7</span> Adding group information for genes and samples<a class="anchor" aria-label="anchor" href="#adding-group-information-for-genes-and-samples"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.8</span> Adding group information for genes and samples<a class="anchor" aria-label="anchor" href="#adding-group-information-for-genes-and-samples"><i class="fas fa-link"></i></a>
 </h2>
 <p>Grouping the genes and samples can clarify author’s experiment design in different
 conditions or treatment. So drawing group graphic elements for multiple genes or
@@ -547,7 +573,7 @@ samples stands for what the author want to express. A picture is worth a thousan
 <p>You can add two group information for genes and samples at most which is enough
 for us. The following codes show how we add group information and modify graphic
 attributes.</p>
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span>,<span class="st">"Adamts3"</span>,<span class="st">"Zfp68"</span>,<span class="st">"Pabpc1"</span><span class="op">)</span>,</span>
@@ -560,7 +586,7 @@ attributes.</p>
 <p><strong>Note:</strong> <strong>panel.spacing</strong> is used to add spacing between each panel along the
 Y axis which can show the line gaps between different sample group.</p>
 </blockquote>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span>,<span class="st">"Adamts3"</span>,<span class="st">"Zfp68"</span>,<span class="st">"Pabpc1"</span><span class="op">)</span>,</span>
@@ -574,7 +600,7 @@ Y axis which can show the line gaps between different sample group.</p>
 <span>               panel.spacing <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.2</span>,<span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t34.png" style="width:100.0%"></div>
 <p>Adding one more group:</p>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span>,<span class="st">"Adamts3"</span>,<span class="st">"Zfp68"</span>,<span class="st">"Pabpc1"</span><span class="op">)</span>,</span>
@@ -595,7 +621,7 @@ Y axis which can show the line gaps between different sample group.</p>
 <div class="inline-figure"><img src="local_images/t35.png" style="width:100.0%"></div>
 <p><strong>gene_group_info_order</strong>, <strong>gene_group_info2_order</strong>,<strong>sample_group_info_order</strong> and
 <strong>sample_group_info2_order</strong> separatelly control each group orders:</p>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span>,<span class="st">"Adamts3"</span>,<span class="st">"Zfp68"</span>,<span class="st">"Pabpc1"</span><span class="op">)</span>,</span>
@@ -619,15 +645,15 @@ Y axis which can show the line gaps between different sample group.</p>
 <span>               panel.spacing <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.2</span>,<span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t36.png" style="width:100.0%"></div>
 </div>
-<div id="strip-settings" class="section level2" number="5.8">
+<div id="strip-settings" class="section level2" number="5.9">
 <h2>
-<span class="header-section-number">5.8</span> Strip settings<a class="anchor" aria-label="anchor" href="#strip-settings"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.9</span> Strip settings<a class="anchor" aria-label="anchor" href="#strip-settings"><i class="fas fa-link"></i></a>
 </h2>
 <p>This chapter shows us how to modify each strip graphic element instead of using
 lines to separate group.</p>
 <p><strong>column_strip_setting_list</strong> and <strong>row_strip_setting_list</strong> accept a named list
 to modify the strip <strong><em>element_rect</em></strong> element by columns or rows:</p>
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span><span class="op">)</span>,</span>
@@ -639,7 +665,7 @@ to modify the strip <strong><em>element_rect</em></strong> element by columns or
 <div class="inline-figure"><img src="local_images/t37.png" style="width:100.0%"></div>
 <p><strong>column_strip_text_setting_list</strong> and <strong>row_strip_text_setting_list</strong> accept a named list
 to modify the strip <strong><em>element_text</em></strong> element by columns or rows:</p>
-<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span><span class="op">)</span>,</span>
@@ -654,7 +680,7 @@ to modify the strip <strong><em>element_text</em></strong> element by columns or
 <div class="inline-figure"><img src="local_images/t38.png" style="width:100.0%"></div>
 <p><strong>by_layer_x</strong> and <strong>by_layer_y</strong> can be setted to <strong>TRUE</strong> and you can modify the
 graphic element by row or column:</p>
-<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span>,<span class="st">"Adamts3"</span>,<span class="st">"Zfp68"</span>,<span class="st">"Pabpc1"</span><span class="op">)</span>,</span>
@@ -683,16 +709,16 @@ graphic element by row or column:</p>
 </ul>
 </blockquote>
 </div>
-<div id="draw-chromosome-annotation" class="section level2" number="5.9">
+<div id="draw-chromosome-annotation" class="section level2" number="5.10">
 <h2>
-<span class="header-section-number">5.9</span> Draw chromosome annotation<a class="anchor" aria-label="anchor" href="#draw-chromosome-annotation"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.10</span> Draw chromosome annotation<a class="anchor" aria-label="anchor" href="#draw-chromosome-annotation"><i class="fas fa-link"></i></a>
 </h2>
 <p>Here you can add corresponding genome ideogram data to show chromosome structure
 for gene. First you should load ideogram data. The are some prepared genome like
 <strong>mm10</strong>, <strong>hg39</strong>, <strong>hg19</strong> can be loaded to use directly. For other genome versions,
 you can use <strong>BioSeqUtils::catchIdeoData</strong> function to download it.</p>
 <p>The <strong>catchIdeoData</strong> returns a list object:</p>
-<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"mm10_obj"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">mm10_obj</span><span class="op">)</span></span>
@@ -714,7 +740,7 @@ facet annotation. <strong>draw_chromosome_params</strong> accepts a named list t
 how the chromosome structure is drawn. More details please refer to
 <strong>BioSeqUtils::drawChromosome</strong> function. Now we add chromosome facet track for
 corresponding genes:</p>
-<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span>,<span class="st">"Adamts3"</span><span class="op">)</span>,</span>
@@ -723,7 +749,7 @@ corresponding genes:</p>
 <div class="inline-figure"><img src="local_images/t40.png" style="width:100.0%"></div>
 <p><strong>remove_chrom_panel_border</strong> can be used to remove chromosome track
 panel borders:</p>
-<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span>,<span class="st">"Adamts3"</span><span class="op">)</span>,</span>
@@ -733,7 +759,7 @@ panel borders:</p>
 <div class="inline-figure"><img src="local_images/t41.png" style="width:100.0%"></div>
 <p>You can also use <strong>remove_all_panel_border</strong> to remove all track panel borders
 with more concise presentation:</p>
-<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span>,<span class="st">"Adamts3"</span><span class="op">)</span>,</span>
@@ -743,7 +769,7 @@ with more concise presentation:</p>
 <div class="inline-figure"><img src="local_images/t42.png" style="width:100.0%"></div>
 <p><strong>panel_size_setting</strong> allows you to set width and height for each panel.
 Here we reduce the chromosome panel height:</p>
-<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span>,<span class="st">"Adamts3"</span><span class="op">)</span>,</span>
@@ -754,7 +780,7 @@ Here we reduce the chromosome panel height:</p>
 <span>                                         cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">12</span>,<span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t43.png" style="width:100.0%"></div>
 <p>Let’s add some group informations:</p>
-<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span>,<span class="st">"Mtdh"</span>,<span class="st">"Adamts3"</span><span class="op">)</span>,</span>
@@ -773,16 +799,16 @@ Here we reduce the chromosome panel height:</p>
 <span>               panel.spacing <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.2</span>,<span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t44.png" style="width:100.0%"></div>
 </div>
-<div id="plot-with-specified-genomic-region" class="section level2" number="5.10">
+<div id="plot-with-specified-genomic-region" class="section level2" number="5.11">
 <h2>
-<span class="header-section-number">5.10</span> Plot with specified genomic region<a class="anchor" aria-label="anchor" href="#plot-with-specified-genomic-region"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.11</span> Plot with specified genomic region<a class="anchor" aria-label="anchor" href="#plot-with-specified-genomic-region"><i class="fas fa-link"></i></a>
 </h2>
 <p>Maybe sometimes we need to show the track information with given a specified
 genomic region instead of genes. You can give a named list for <strong>query_region</strong>
 to draw different genomic region tracks. Multiple genomic positions also can be
 accepted.</p>
 <p>Examples show here:</p>
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               query_region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query_chr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5"</span>,<span class="st">"15"</span><span class="op">)</span>,</span>
@@ -790,7 +816,7 @@ accepted.</p>
 <span>                                   query_end <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">65834288</span>,<span class="fl">9785835</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t45.png" style="width:100.0%"></div>
 <p>Modifing the transcript arrow styles and show all trancripts:</p>
-<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               query_region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query_chr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5"</span>,<span class="st">"15"</span><span class="op">)</span>,</span>
@@ -804,7 +830,7 @@ accepted.</p>
 <p>The details for trans track:</p>
 <div class="inline-figure"><img src="local_images/t47.png" style="width:100.0%"></div>
 <p>Adding gene labels:</p>
-<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               query_region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query_chr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5"</span>,<span class="st">"15"</span><span class="op">)</span>,</span>
@@ -818,7 +844,7 @@ accepted.</p>
 <span>               gene_label_params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>,segment.size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t48.png" style="width:100.0%"></div>
 <p>Collapsing transcripts:</p>
-<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               query_region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query_chr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5"</span>,<span class="st">"15"</span><span class="op">)</span>,</span>
@@ -833,7 +859,7 @@ accepted.</p>
 <span>               gene_label_shift_y <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t49.png" style="width:100.0%"></div>
 <p>Adding chromosome structure:</p>
-<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               query_region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query_chr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"5"</span>,<span class="st">"15"</span><span class="op">)</span>,</span>
@@ -849,14 +875,14 @@ accepted.</p>
 <span>               draw_chromosome_params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>ideogram_obj <span class="op">=</span> <span class="va">mm10_obj</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t50.png" style="width:100.0%"></div>
 </div>
-<div id="adding-peaks-track" class="section level2" number="5.11">
+<div id="adding-peaks-track" class="section level2" number="5.12">
 <h2>
-<span class="header-section-number">5.11</span> Adding peaks track<a class="anchor" aria-label="anchor" href="#adding-peaks-track"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.12</span> Adding peaks track<a class="anchor" aria-label="anchor" href="#adding-peaks-track"><i class="fas fa-link"></i></a>
 </h2>
 <p>I don’t draw the peaks file to assign each new panel. I have put them all into one
 panel which is enough. This is similar with the <strong>trans</strong> panel. <strong>Input_bed</strong> accepts
 peaks data which output from <strong>loadBed</strong> function. We first load the peaks data:</p>
-<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bedfile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"./"</span>,pattern <span class="op">=</span> <span class="st">".bed"</span><span class="op">)</span></span>
 <span><span class="co"># [1] "peaks.bed"  "peaks2.bed"</span></span>
 <span></span>
@@ -869,14 +895,14 @@ peaks data which output from <strong>loadBed</strong> function. We first load th
 <span><span class="co"># 2        5 142903201 142903800      peaks 1</span></span>
 <span><span class="co"># 3       15  61985342  61985900      peaks 1</span></span></code></pre></div>
 <p>Plotting the peaks track:</p>
-<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_bed <span class="op">=</span> <span class="va">bed_df</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Myc"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t51.png" style="width:100.0%"></div>
 <p><strong>peak_width</strong> controls the peaks rectangle height:</p>
-<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_bed <span class="op">=</span> <span class="va">bed_df</span>,</span>
@@ -884,7 +910,7 @@ peaks data which output from <strong>loadBed</strong> function. We first load th
 <span>               peak_width <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t52.png" style="width:100.0%"></div>
 <p><strong>peak_fill_col</strong> controls the peaks rectangle colors:</p>
-<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_bed <span class="op">=</span> <span class="va">bed_df</span>,</span>
@@ -893,7 +919,7 @@ peaks data which output from <strong>loadBed</strong> function. We first load th
 <span>               peak_fill_col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>peaks <span class="op">=</span> <span class="st">"orange"</span>,peaks2 <span class="op">=</span> <span class="st">"purple"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t53.png" style="width:100.0%"></div>
 <p>Adding chromosomes:</p>
-<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_bed <span class="op">=</span> <span class="va">bed_df</span>,</span>
@@ -904,29 +930,29 @@ peaks data which output from <strong>loadBed</strong> function. We first load th
 <span>               draw_chromosome_params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>ideogram_obj <span class="op">=</span> <span class="va">mm10_obj</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/t54.png" style="width:100.0%"></div>
 </div>
-<div id="extending-bases-upstream-and-downstream" class="section level2" number="5.12">
+<div id="extending-bases-upstream-and-downstream" class="section level2" number="5.13">
 <h2>
-<span class="header-section-number">5.12</span> Extending bases upstream and downstream<a class="anchor" aria-label="anchor" href="#extending-bases-upstream-and-downstream"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.13</span> Extending bases upstream and downstream<a class="anchor" aria-label="anchor" href="#extending-bases-upstream-and-downstream"><i class="fas fa-link"></i></a>
 </h2>
 <p>Drawing specific genes and observe the signals sometimes are not enough. Finding the
 transcription factor binding signals for gene upstream is what we want. It is
 not simple to supply exact genomic coordinates to draw. <strong>upstream_extend</strong> and
 <strong>downstream_extend</strong> allow you to extend bases upstream or downstream for your genes,
 here we show some examples:</p>
-<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Utp3"</span>,<span class="st">"Chpf2"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/ud_1.png" style="width:100.0%"></div>
 <p>Extending upstream:</p>
-<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Utp3"</span>,<span class="st">"Chpf2"</span><span class="op">)</span>,</span>
 <span>               upstream_extend <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/ud_2.png" style="width:100.0%"></div>
 <p>Extending upstream and downstream:</p>
-<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Utp3"</span>,<span class="st">"Chpf2"</span><span class="op">)</span>,</span>
@@ -934,7 +960,7 @@ here we show some examples:</p>
 <span>               downstream_extend <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="local_images/ud_3.png" style="width:100.0%"></div>
 <p>You can extend for multiple genes with different values:</p>
-<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">trackVisProMax</span><span class="op">(</span>Input_gtf <span class="op">=</span> <span class="va">gtf</span>,</span>
 <span>               Input_bw <span class="op">=</span> <span class="va">bw</span>,</span>
 <span>               Input_gene <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Utp3"</span>,<span class="st">"Chpf2"</span><span class="op">)</span>,</span>
@@ -955,15 +981,16 @@ here we show some examples:</p>
 <li><a class="nav-link" href="#basic-plot"><span class="header-section-number">5.1</span> Basic plot</a></li>
 <li><a class="nav-link" href="#signal-range-settings"><span class="header-section-number">5.2</span> Signal range settings</a></li>
 <li><a class="nav-link" href="#transcript-track-settings"><span class="header-section-number">5.3</span> Transcript track settings</a></li>
-<li><a class="nav-link" href="#x-axis-limitation"><span class="header-section-number">5.4</span> X axis limitation</a></li>
-<li><a class="nav-link" href="#background-and-highlight-region-settings"><span class="header-section-number">5.5</span> Background and highlight region settings</a></li>
-<li><a class="nav-link" href="#order-for-genes-and-samples"><span class="header-section-number">5.6</span> Order for genes and samples</a></li>
-<li><a class="nav-link" href="#adding-group-information-for-genes-and-samples"><span class="header-section-number">5.7</span> Adding group information for genes and samples</a></li>
-<li><a class="nav-link" href="#strip-settings"><span class="header-section-number">5.8</span> Strip settings</a></li>
-<li><a class="nav-link" href="#draw-chromosome-annotation"><span class="header-section-number">5.9</span> Draw chromosome annotation</a></li>
-<li><a class="nav-link" href="#plot-with-specified-genomic-region"><span class="header-section-number">5.10</span> Plot with specified genomic region</a></li>
-<li><a class="nav-link" href="#adding-peaks-track"><span class="header-section-number">5.11</span> Adding peaks track</a></li>
-<li><a class="nav-link" href="#extending-bases-upstream-and-downstream"><span class="header-section-number">5.12</span> Extending bases upstream and downstream</a></li>
+<li><a class="nav-link" href="#intron-line-type"><span class="header-section-number">5.4</span> Intron line type</a></li>
+<li><a class="nav-link" href="#x-axis-limitation"><span class="header-section-number">5.5</span> X axis limitation</a></li>
+<li><a class="nav-link" href="#background-and-highlight-region-settings"><span class="header-section-number">5.6</span> Background and highlight region settings</a></li>
+<li><a class="nav-link" href="#order-for-genes-and-samples"><span class="header-section-number">5.7</span> Order for genes and samples</a></li>
+<li><a class="nav-link" href="#adding-group-information-for-genes-and-samples"><span class="header-section-number">5.8</span> Adding group information for genes and samples</a></li>
+<li><a class="nav-link" href="#strip-settings"><span class="header-section-number">5.9</span> Strip settings</a></li>
+<li><a class="nav-link" href="#draw-chromosome-annotation"><span class="header-section-number">5.10</span> Draw chromosome annotation</a></li>
+<li><a class="nav-link" href="#plot-with-specified-genomic-region"><span class="header-section-number">5.11</span> Plot with specified genomic region</a></li>
+<li><a class="nav-link" href="#adding-peaks-track"><span class="header-section-number">5.12</span> Adding peaks track</a></li>
+<li><a class="nav-link" href="#extending-bases-upstream-and-downstream"><span class="header-section-number">5.13</span> Extending bases upstream and downstream</a></li>
 </ul>
 
       <div class="book-extra">
@@ -980,7 +1007,7 @@ here we show some examples:</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>BioSeqUtils Reference</strong>" was written by Jun Zhang. It was last built on 2023-04-24.</p>
+    <p>"<strong>BioSeqUtils Reference</strong>" was written by Jun Zhang. It was last built on 2023-04-27.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
