@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Extract sequence | BioSeqUtils Reference</title>
+  <meta name="description" content="This is a detailed documentation of BioSeqUtils package." />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Extract sequence | BioSeqUtils Reference" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a detailed documentation of BioSeqUtils package." />
+  <meta name="github-repo" content="rstudio/bookdown-BioSeqUtils" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Extract sequence | BioSeqUtils Reference" />
+  
+  <meta name="twitter:description" content="This is a detailed documentation of BioSeqUtils package." />
+  
+
+<meta name="author" content="Jun Zhang" />
+
+
+<meta name="date" content="2024-11-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="draw-chromosome-ideograms.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">BioSeqUtils manual documentation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#related-blogs"><i class="fa fa-check"></i><b>1.1</b> Related blogs</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="extract-sequence.html"><a href="extract-sequence.html"><i class="fa fa-check"></i><b>2</b> Extract sequence</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="extract-sequence.html"><a href="extract-sequence.html#data-loading"><i class="fa fa-check"></i><b>2.1</b> Data loading</a></li>
+<li class="chapter" data-level="2.2" data-path="extract-sequence.html"><a href="extract-sequence.html#get-features-information"><i class="fa fa-check"></i><b>2.2</b> Get features information</a></li>
+<li class="chapter" data-level="2.3" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-sequnence"><i class="fa fa-check"></i><b>2.3</b> Extract sequnence</a></li>
+<li class="chapter" data-level="2.4" data-path="extract-sequence.html"><a href="extract-sequence.html#get-inrton-information"><i class="fa fa-check"></i><b>2.4</b> Get inrton information</a></li>
+<li class="chapter" data-level="2.5" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-promoters"><i class="fa fa-check"></i><b>2.5</b> Extract promoters</a></li>
+<li class="chapter" data-level="2.6" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-non-redundant-transcript-length"><i class="fa fa-check"></i><b>2.6</b> Extract non-redundant transcript length</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html"><i class="fa fa-check"></i><b>3</b> Draw chromosome ideograms</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#downloading-related-data"><i class="fa fa-check"></i><b>3.1</b> Downloading related data</a></li>
+<li class="chapter" data-level="3.2" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#making-plot"><i class="fa fa-check"></i><b>3.2</b> Making plot</a></li>
+<li class="chapter" data-level="3.3" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#drawing-gene-density-manually"><i class="fa fa-check"></i><b>3.3</b> Drawing gene density manually</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="track-data-input.html"><a href="track-data-input.html"><i class="fa fa-check"></i><b>4</b> Track data input</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="track-data-input.html"><a href="track-data-input.html#load-signal-data"><i class="fa fa-check"></i><b>4.1</b> Load signal data</a></li>
+<li class="chapter" data-level="4.2" data-path="track-data-input.html"><a href="track-data-input.html#load-peaks-data"><i class="fa fa-check"></i><b>4.2</b> Load peaks data</a></li>
+<li class="chapter" data-level="4.3" data-path="track-data-input.html"><a href="track-data-input.html#load-links-data"><i class="fa fa-check"></i><b>4.3</b> Load links data</a></li>
+<li class="chapter" data-level="4.4" data-path="track-data-input.html"><a href="track-data-input.html#load-hic-related-data"><i class="fa fa-check"></i><b>4.4</b> Load Hic related data</a></li>
+<li class="chapter" data-level="4.5" data-path="track-data-input.html"><a href="track-data-input.html#extract-junction-data"><i class="fa fa-check"></i><b>4.5</b> Extract junction data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="basic-visualization.html"><a href="basic-visualization.html"><i class="fa fa-check"></i><b>5</b> Basic visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="basic-visualization.html"><a href="basic-visualization.html#basic-plot"><i class="fa fa-check"></i><b>5.1</b> Basic plot</a></li>
+<li class="chapter" data-level="5.2" data-path="basic-visualization.html"><a href="basic-visualization.html#signal-range-settings"><i class="fa fa-check"></i><b>5.2</b> Signal range settings</a></li>
+<li class="chapter" data-level="5.3" data-path="basic-visualization.html"><a href="basic-visualization.html#transcript-track-settings"><i class="fa fa-check"></i><b>5.3</b> Transcript track settings</a></li>
+<li class="chapter" data-level="5.4" data-path="basic-visualization.html"><a href="basic-visualization.html#intron-line-type"><i class="fa fa-check"></i><b>5.4</b> Intron line type</a></li>
+<li class="chapter" data-level="5.5" data-path="basic-visualization.html"><a href="basic-visualization.html#x-axis-limitation"><i class="fa fa-check"></i><b>5.5</b> X axis limitation</a></li>
+<li class="chapter" data-level="5.6" data-path="basic-visualization.html"><a href="basic-visualization.html#background-and-highlight-region-settings"><i class="fa fa-check"></i><b>5.6</b> Background and highlight region settings</a></li>
+<li class="chapter" data-level="5.7" data-path="basic-visualization.html"><a href="basic-visualization.html#order-for-genes-and-samples"><i class="fa fa-check"></i><b>5.7</b> Order for genes and samples</a></li>
+<li class="chapter" data-level="5.8" data-path="basic-visualization.html"><a href="basic-visualization.html#adding-group-information-for-genes-and-samples"><i class="fa fa-check"></i><b>5.8</b> Adding group information for genes and samples</a></li>
+<li class="chapter" data-level="5.9" data-path="basic-visualization.html"><a href="basic-visualization.html#strip-settings"><i class="fa fa-check"></i><b>5.9</b> Strip settings</a></li>
+<li class="chapter" data-level="5.10" data-path="basic-visualization.html"><a href="basic-visualization.html#draw-chromosome-annotation"><i class="fa fa-check"></i><b>5.10</b> Draw chromosome annotation</a></li>
+<li class="chapter" data-level="5.11" data-path="basic-visualization.html"><a href="basic-visualization.html#plot-with-specified-genomic-region"><i class="fa fa-check"></i><b>5.11</b> Plot with specified genomic region</a></li>
+<li class="chapter" data-level="5.12" data-path="basic-visualization.html"><a href="basic-visualization.html#adding-peaks-track"><i class="fa fa-check"></i><b>5.12</b> Adding peaks track</a></li>
+<li class="chapter" data-level="5.13" data-path="basic-visualization.html"><a href="basic-visualization.html#extending-bases-upstream-and-downstream"><i class="fa fa-check"></i><b>5.13</b> Extending bases upstream and downstream</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="loops-visualization.html"><a href="loops-visualization.html"><i class="fa fa-check"></i><b>6</b> Loops visualization</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="loops-visualization.html"><a href="loops-visualization.html#input-data-prepration"><i class="fa fa-check"></i><b>6.1</b> Input data prepration</a></li>
+<li class="chapter" data-level="6.2" data-path="loops-visualization.html"><a href="loops-visualization.html#basic-loops-visualization"><i class="fa fa-check"></i><b>6.2</b> Basic loops visualization</a></li>
+<li class="chapter" data-level="6.3" data-path="loops-visualization.html"><a href="loops-visualization.html#reverse-y-axis"><i class="fa fa-check"></i><b>6.3</b> Reverse Y axis</a></li>
+<li class="chapter" data-level="6.4" data-path="loops-visualization.html"><a href="loops-visualization.html#combing-with-chromosome-track"><i class="fa fa-check"></i><b>6.4</b> Combing with chromosome track</a></li>
+<li class="chapter" data-level="6.5" data-path="loops-visualization.html"><a href="loops-visualization.html#higlight-regions"><i class="fa fa-check"></i><b>6.5</b> Higlight regions</a></li>
+<li class="chapter" data-level="6.6" data-path="loops-visualization.html"><a href="loops-visualization.html#drawing-only-loop-tracks"><i class="fa fa-check"></i><b>6.6</b> Drawing only loop tracks</a></li>
+<li class="chapter" data-level="6.7" data-path="loops-visualization.html"><a href="loops-visualization.html#curve-geoms-choosing"><i class="fa fa-check"></i><b>6.7</b> Curve geoms choosing</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html"><i class="fa fa-check"></i><b>7</b> Hic heatmap visualization</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#data-preperation"><i class="fa fa-check"></i><b>7.1</b> Data preperation</a></li>
+<li class="chapter" data-level="7.2" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#basic-plot-1"><i class="fa fa-check"></i><b>7.2</b> Basic plot</a></li>
+<li class="chapter" data-level="7.3" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#real-data-practice"><i class="fa fa-check"></i><b>7.3</b> Real data practice</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html"><i class="fa fa-check"></i><b>8</b> Splice junction visualization</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html#data-pareparation"><i class="fa fa-check"></i><b>8.1</b> Data pareparation</a></li>
+<li class="chapter" data-level="8.2" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html#visualization"><i class="fa fa-check"></i><b>8.2</b> Visualization</a></li>
+<li class="chapter" data-level="8.3" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html#section"><i class="fa fa-check"></i><b>8.3</b> <img src="local_images/t81.png" style="width:100.0%" /></a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="other-funs.html"><a href="other-funs.html"><i class="fa fa-check"></i><b>9</b> Other funs</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="other-funs.html"><a href="other-funs.html#transcript-coordinate-transformation"><i class="fa fa-check"></i><b>9.1</b> Transcript coordinate transformation</a></li>
+<li class="chapter" data-level="9.2" data-path="other-funs.html"><a href="other-funs.html#track-overlap"><i class="fa fa-check"></i><b>9.2</b> Track overlap</a></li>
+<li class="chapter" data-level="9.3" data-path="other-funs.html"><a href="other-funs.html#extend-coordinate-for-gene"><i class="fa fa-check"></i><b>9.3</b> Extend coordinate for gene</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="frequntlly-asked-questions.html"><a href="frequntlly-asked-questions.html"><i class="fa fa-check"></i><b>10</b> Frequntlly asked questions</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BioSeqUtils Reference</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="extract-sequence" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Extract sequence<a href="extract-sequence.html#extract-sequence" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The main reason for this package name <strong>BioSeqUtils</strong> is that I write some utilities
+to extract multiple feature sequences from annotation file, like <strong>transcript</strong>,
+<strong>UTR</strong>, <strong>CDS</strong>. Also it’s my experience to practice with R language. The following
+are examples show how to use.</p>
+<div id="data-loading" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Data loading<a href="extract-sequence.html#data-loading" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>First we can load gtf and genome file from local of your own using <strong>loadGenomeGTF</strong>
+and return a <strong>GenomeGTF</strong> object:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="extract-sequence.html#cb2-1" tabindex="-1"></a><span class="co"># devtools::install_github(&quot;junjunlab/BioSeqUtils&quot;)</span></span>
+<span id="cb2-2"><a href="extract-sequence.html#cb2-2" tabindex="-1"></a><span class="fu">library</span>(BioSeqUtils)</span>
+<span id="cb2-3"><a href="extract-sequence.html#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="extract-sequence.html#cb2-4" tabindex="-1"></a><span class="co"># make object</span></span>
+<span id="cb2-5"><a href="extract-sequence.html#cb2-5" tabindex="-1"></a>mytest <span class="ot">&lt;-</span> <span class="fu">loadGenomeGTF</span>(<span class="at">gtfPath =</span> <span class="st">&quot;hg38.ncbiRefSeq.gtf.gz&quot;</span>,</span>
+<span id="cb2-6"><a href="extract-sequence.html#cb2-6" tabindex="-1"></a>                        <span class="at">genomePath =</span> <span class="st">&quot;hg38.fa.gz&quot;</span>)</span>
+<span id="cb2-7"><a href="extract-sequence.html#cb2-7" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="extract-sequence.html#cb2-8" tabindex="-1"></a><span class="do">## GenomeGTF object for Extracting sequences.</span></span>
+<span id="cb2-9"><a href="extract-sequence.html#cb2-9" tabindex="-1"></a><span class="do">## GTF file is loaded.</span></span>
+<span id="cb2-10"><a href="extract-sequence.html#cb2-10" tabindex="-1"></a><span class="do">## genome file is loaded.</span></span>
+<span id="cb2-11"><a href="extract-sequence.html#cb2-11" tabindex="-1"></a><span class="do">## representTrans file is NULL.</span></span>
+<span id="cb2-12"><a href="extract-sequence.html#cb2-12" tabindex="-1"></a><span class="do">## intron slot is NULL.</span></span></code></pre></div>
+<p><img src="local_images/ex1.png" style="width:100.0%" /></p>
+</div>
+<div id="get-features-information" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Get features information<a href="extract-sequence.html#get-features-information" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>getTransInfo</strong> will summarize all the gene’s transcript length information of
+different features. <strong>selecType</strong> controls the filtering rule, <strong>lcds</strong> mode means
+that sorting the CDS length and then transcript length to select the top transcript
+with <strong>topN</strong> parameter. <strong>lt</strong> mode means that sorting the transcript length to select
+the top transcript. You can get all transcript information when you set <strong>topN=0</strong>.
+Here are some examles:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="extract-sequence.html#cb3-1" tabindex="-1"></a><span class="co"># all gene</span></span>
+<span id="cb3-2"><a href="extract-sequence.html#cb3-2" tabindex="-1"></a>gene <span class="ot">&lt;-</span> <span class="fu">unique</span>(mytest<span class="sc">@</span>gtf<span class="sc">$</span>gene_name)</span>
+<span id="cb3-3"><a href="extract-sequence.html#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="extract-sequence.html#cb3-4" tabindex="-1"></a><span class="co"># get transcript info</span></span>
+<span id="cb3-5"><a href="extract-sequence.html#cb3-5" tabindex="-1"></a>rt <span class="ot">&lt;-</span> <span class="fu">getTransInfo</span>(<span class="at">object =</span> mytest,<span class="at">geneName =</span> gene,</span>
+<span id="cb3-6"><a href="extract-sequence.html#cb3-6" tabindex="-1"></a>                   <span class="at">selecType =</span> <span class="st">&quot;lcds&quot;</span>,<span class="at">topN =</span> <span class="dv">1</span>)</span>
+<span id="cb3-7"><a href="extract-sequence.html#cb3-7" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="extract-sequence.html#cb3-8" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb3-9"><a href="extract-sequence.html#cb3-9" tabindex="-1"></a><span class="fu">head</span>(rt,<span class="dv">3</span>)</span>
+<span id="cb3-10"><a href="extract-sequence.html#cb3-10" tabindex="-1"></a><span class="co"># # A tibble: 3 × 11</span></span>
+<span id="cb3-11"><a href="extract-sequence.html#cb3-11" tabindex="-1"></a><span class="co"># # Groups:   gene_name, gene_id [3]</span></span>
+<span id="cb3-12"><a href="extract-sequence.html#cb3-12" tabindex="-1"></a><span class="co">#   gene_name gene_id  transcript_id   exon   CDS `3UTR` `5UTR` gtype cdsst cdsed tname</span></span>
+<span id="cb3-13"><a href="extract-sequence.html#cb3-13" tabindex="-1"></a><span class="co">#   &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;</span></span>
+<span id="cb3-14"><a href="extract-sequence.html#cb3-14" tabindex="-1"></a><span class="co"># 1 A1BG      A1BG     NM_130786.4     3382  1485   1839     55 CD       56  1541 A1BG|A1BG|NM_130786.4|56|1541|3382|CD</span></span>
+<span id="cb3-15"><a href="extract-sequence.html#cb3-15" tabindex="-1"></a><span class="co"># 2 A1BG-AS1  A1BG-AS1 NR_015380.2     2130     0      0      0 NC        1  2130 A1BG-AS1|A1BG-AS1|NR_015380.2|1|2130|2130|NC</span></span>
+<span id="cb3-16"><a href="extract-sequence.html#cb3-16" tabindex="-1"></a><span class="co"># 3 A1CF      A1CF     NM_001198819.2  9481  1806   7320    352 CD      353  2159 A1CF|A1CF|NM_001198819.2|353|2159|9481|CD</span></span></code></pre></div>
+</div>
+<div id="extract-sequnence" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Extract sequnence<a href="extract-sequence.html#extract-sequnence" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>getFeatureFromGenome</strong> function can be used to extract multiple feature sequence
+which can be <strong>5UTR</strong>, <strong>3UTR</strong>, <strong>exon</strong>, <strong>intron</strong>. Setting the <strong>geneSeq=T</strong>
+to get genomic sequence. <strong>up.extend</strong> and <strong>dn.extend</strong> can extend your target
+sequence when you extract.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="extract-sequence.html#cb4-1" tabindex="-1"></a>longesttrans <span class="ot">&lt;-</span> <span class="fu">getFeatureFromGenome</span>(mytest,<span class="at">transId =</span> rt<span class="sc">$</span>transcript_id[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>],<span class="at">type =</span> <span class="st">&quot;exon&quot;</span>)</span>
+<span id="cb4-2"><a href="extract-sequence.html#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="extract-sequence.html#cb4-3" tabindex="-1"></a>longesttrans</span>
+<span id="cb4-4"><a href="extract-sequence.html#cb4-4" tabindex="-1"></a><span class="co"># DNAStringSet object of length 57285:</span></span>
+<span id="cb4-5"><a href="extract-sequence.html#cb4-5" tabindex="-1"></a><span class="co">#           width seq                                                                names</span></span>
+<span id="cb4-6"><a href="extract-sequence.html#cb4-6" tabindex="-1"></a><span class="co">#     [1]    3382 ATTGCTGCAGACGCTCACCCCAGACACTCACT...ATTTTGCACACTTTAAAATATTGGGTTGTTT A1BG|A1BG|NM_1307...</span></span>
+<span id="cb4-7"><a href="extract-sequence.html#cb4-7" tabindex="-1"></a><span class="co">#     [2]    2130 ATTTTTAGTAGAGACGGGGTTTCGTCATGTTG...TGAAATACCTAGTGTGGTTTCTATTTCCTGA A1BG-AS1|A1BG-AS1...</span></span>
+<span id="cb4-8"><a href="extract-sequence.html#cb4-8" tabindex="-1"></a><span class="co">#     [3]    9481 ATAATCAAGGAAACCTTTTCCGGGTGGGGATC...AGTGCCATTATAAAGTTTTAAAAATTATCAA A1CF|A1CF|NM_0011...</span></span>
+<span id="cb4-9"><a href="extract-sequence.html#cb4-9" tabindex="-1"></a><span class="co">#     [4]    4953 GGGACCAGATGGATTGTAGGGAGTAGGGTACA...TGATGAATAAACACTTTTTCTGGTCAATGTC A2M|A2M|XM_006719...</span></span>
+<span id="cb4-10"><a href="extract-sequence.html#cb4-10" tabindex="-1"></a><span class="co">#     [5]    2300 CATCAGCCCAGCCTGCAAGGAGGCGCCACCGG...GCGGCCCTCTCCAATAAATGTGTTTTTCTAT A2M-AS1|A2M-AS1|N...</span></span>
+<span id="cb4-11"><a href="extract-sequence.html#cb4-11" tabindex="-1"></a><span class="co">#     ...     ... ...</span></span>
+<span id="cb4-12"><a href="extract-sequence.html#cb4-12" tabindex="-1"></a><span class="co"># [57281]    8143 GGAGTCTGCGCTCTGGTTCGGGCTGCGGCTGC...TTTTTTGCCTAAATAAATGTTATAAATTTTA ZYG11B|ZYG11B|NM_...</span></span>
+<span id="cb4-13"><a href="extract-sequence.html#cb4-13" tabindex="-1"></a><span class="co"># [57282]     118 GTGTTACAAGTGAGAGGACTGTGGGAAGCCCC...TGAGAACTGCCTTCCTTCTGGACCCACGACC ZYXP1|ZYXP1|ZYXP1...</span></span>
+<span id="cb4-14"><a href="extract-sequence.html#cb4-14" tabindex="-1"></a><span class="co"># [57283]    9136 AGGAAGCCGGAAGCCGCAGGGGCCGCCGTCGT...AGAGCATGCACGAGCCCCATTTATCAGAGTC ZZEF1|ZZEF1|XM_01...</span></span>
+<span id="cb4-15"><a href="extract-sequence.html#cb4-15" tabindex="-1"></a><span class="co"># [57284]    6475 ACCTGGAAGCGCCGCGGCGCCGCTATCGAGCT...TGTGCTATATAAAACTATTTCTTATTGTGGA ZZZ3|ZZZ3|NM_0013...</span></span>
+<span id="cb4-16"><a href="extract-sequence.html#cb4-16" tabindex="-1"></a><span class="co"># [57285]    2206 GATTAGAGCCTCCCACAGGTGCTCCCCAATTT...GCCCAGTAATAAAGTTTTATGATCTTTTAAA bA255A11.4|bA255A...</span></span>
+<span id="cb4-17"><a href="extract-sequence.html#cb4-17" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="extract-sequence.html#cb4-18" tabindex="-1"></a><span class="co"># output</span></span>
+<span id="cb4-19"><a href="extract-sequence.html#cb4-19" tabindex="-1"></a>Biostrings<span class="sc">::</span><span class="fu">writeXStringSet</span>(longesttrans,<span class="at">filepath =</span> <span class="st">&quot;testlongest.fa&quot;</span>,<span class="at">format =</span> <span class="st">&quot;fasta&quot;</span>)</span></code></pre></div>
+<p><strong>getFeatureFromGenome</strong> works slowly when applying to thousands of sequences. So
+I wrote a python script named <strong>pyExtractSeq</strong> to do the same thing which has a huge
+speed improvement. You can use it directly in R. The following is the comparison:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="extract-sequence.html#cb5-1" tabindex="-1"></a><span class="co"># get exon sequence</span></span>
+<span id="cb5-2"><a href="extract-sequence.html#cb5-2" tabindex="-1"></a><span class="fu">system.time</span>(longesttrans <span class="ot">&lt;-</span> <span class="fu">getFeatureFromGenome</span>(mytest,</span>
+<span id="cb5-3"><a href="extract-sequence.html#cb5-3" tabindex="-1"></a>                                                 <span class="at">transId =</span> rt2<span class="sc">$</span>transcript_id[<span class="dv">1</span><span class="sc">:</span><span class="dv">5000</span>],</span>
+<span id="cb5-4"><a href="extract-sequence.html#cb5-4" tabindex="-1"></a>                                                 <span class="at">type =</span> <span class="st">&quot;exon&quot;</span>))</span>
+<span id="cb5-5"><a href="extract-sequence.html#cb5-5" tabindex="-1"></a><span class="co"># getFeatureFromGenome is running [==================================] 100% in  5m</span></span>
+<span id="cb5-6"><a href="extract-sequence.html#cb5-6" tabindex="-1"></a><span class="co"># 用户   系统   流逝</span></span>
+<span id="cb5-7"><a href="extract-sequence.html#cb5-7" tabindex="-1"></a><span class="co"># 216.31  10.47 299.44</span></span>
+<span id="cb5-8"><a href="extract-sequence.html#cb5-8" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="extract-sequence.html#cb5-9" tabindex="-1"></a><span class="co"># using python code</span></span>
+<span id="cb5-10"><a href="extract-sequence.html#cb5-10" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">pyExtractSeq</span>(<span class="at">gtf_file =</span> <span class="st">&quot;./hg38.ncbiRefSeq.gtf&quot;</span>,</span>
+<span id="cb5-11"><a href="extract-sequence.html#cb5-11" tabindex="-1"></a>                         <span class="at">genome_file =</span> <span class="st">&quot;./hg38.fa&quot;</span>,</span>
+<span id="cb5-12"><a href="extract-sequence.html#cb5-12" tabindex="-1"></a>                         <span class="at">transcript_id =</span> rt2<span class="sc">$</span>transcript_id[<span class="dv">1</span><span class="sc">:</span><span class="dv">5000</span>],</span>
+<span id="cb5-13"><a href="extract-sequence.html#cb5-13" tabindex="-1"></a>                         <span class="at">new_id =</span> rt2<span class="sc">$</span>tname[<span class="dv">1</span><span class="sc">:</span><span class="dv">5000</span>],</span>
+<span id="cb5-14"><a href="extract-sequence.html#cb5-14" tabindex="-1"></a>                         <span class="at">type =</span> <span class="st">&quot;exon&quot;</span>,</span>
+<span id="cb5-15"><a href="extract-sequence.html#cb5-15" tabindex="-1"></a>                         <span class="at">out_file =</span> <span class="st">&quot;output_test.fasta&quot;</span>))</span>
+<span id="cb5-16"><a href="extract-sequence.html#cb5-16" tabindex="-1"></a><span class="co"># 用户  系统  流逝</span></span>
+<span id="cb5-17"><a href="extract-sequence.html#cb5-17" tabindex="-1"></a><span class="co"># 5.13  0.83 14.19</span></span></code></pre></div>
+</div>
+<div id="get-inrton-information" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Get inrton information<a href="extract-sequence.html#get-inrton-information" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>getIntronInfo</strong> allows you to get a inrton coordinate information which is
+similar to gtf format.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="extract-sequence.html#cb6-1" tabindex="-1"></a><span class="co"># get intron info</span></span>
+<span id="cb6-2"><a href="extract-sequence.html#cb6-2" tabindex="-1"></a><span class="fu">getIntronInfo</span>(mytest,<span class="at">geneName =</span> <span class="st">&quot;MYC&quot;</span>)</span>
+<span id="cb6-3"><a href="extract-sequence.html#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="extract-sequence.html#cb6-4" tabindex="-1"></a><span class="co">#   seqnames     start       end width strand                source</span></span>
+<span id="cb6-5"><a href="extract-sequence.html#cb6-5" tabindex="-1"></a><span class="co"># 1     chr8 127736624 127738247  1624      + ncbiRefSeq.2022-10-28</span></span>
+<span id="cb6-6"><a href="extract-sequence.html#cb6-6" tabindex="-1"></a><span class="co"># 2     chr8 127739020 127740395  1376      + ncbiRefSeq.2022-10-28</span></span>
+<span id="cb6-7"><a href="extract-sequence.html#cb6-7" tabindex="-1"></a><span class="co"># 3     chr8 127736624 127738250  1627      + ncbiRefSeq.2022-10-28</span></span>
+<span id="cb6-8"><a href="extract-sequence.html#cb6-8" tabindex="-1"></a><span class="co"># 4     chr8 127739020 127740395  1376      + ncbiRefSeq.2022-10-28</span></span>
+<span id="cb6-9"><a href="extract-sequence.html#cb6-9" tabindex="-1"></a><span class="co">#     type score phase gene_id  transcript_id gene_name exon_number</span></span>
+<span id="cb6-10"><a href="extract-sequence.html#cb6-10" tabindex="-1"></a><span class="co"># 1 intron    NA    NA     MYC    NM_002467.6       MYC           1</span></span>
+<span id="cb6-11"><a href="extract-sequence.html#cb6-11" tabindex="-1"></a><span class="co"># 2 intron    NA    NA     MYC    NM_002467.6       MYC           2</span></span>
+<span id="cb6-12"><a href="extract-sequence.html#cb6-12" tabindex="-1"></a><span class="co"># 3 intron    NA    NA     MYC NM_001354870.1       MYC           1</span></span>
+<span id="cb6-13"><a href="extract-sequence.html#cb6-13" tabindex="-1"></a><span class="co"># 4 intron    NA    NA     MYC NM_001354870.1       MYC           2</span></span>
+<span id="cb6-14"><a href="extract-sequence.html#cb6-14" tabindex="-1"></a><span class="co">#            exon_id</span></span>
+<span id="cb6-15"><a href="extract-sequence.html#cb6-15" tabindex="-1"></a><span class="co"># 1    NM_002467.6.1</span></span>
+<span id="cb6-16"><a href="extract-sequence.html#cb6-16" tabindex="-1"></a><span class="co"># 2    NM_002467.6.2</span></span>
+<span id="cb6-17"><a href="extract-sequence.html#cb6-17" tabindex="-1"></a><span class="co"># 3 NM_001354870.1.1</span></span>
+<span id="cb6-18"><a href="extract-sequence.html#cb6-18" tabindex="-1"></a><span class="co"># 4 NM_001354870.1.2</span></span>
+<span id="cb6-19"><a href="extract-sequence.html#cb6-19" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="extract-sequence.html#cb6-20" tabindex="-1"></a><span class="co"># define transcript_id</span></span>
+<span id="cb6-21"><a href="extract-sequence.html#cb6-21" tabindex="-1"></a><span class="fu">getIntronInfo</span>(mytest,<span class="at">geneName =</span> <span class="st">&quot;MYC&quot;</span>,<span class="at">transId =</span> <span class="st">&quot;NM_002467.6&quot;</span>)</span>
+<span id="cb6-22"><a href="extract-sequence.html#cb6-22" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="extract-sequence.html#cb6-23" tabindex="-1"></a><span class="co">#   seqnames     start       end width strand                source</span></span>
+<span id="cb6-24"><a href="extract-sequence.html#cb6-24" tabindex="-1"></a><span class="co"># 1     chr8 127736624 127738247  1624      + ncbiRefSeq.2022-10-28</span></span>
+<span id="cb6-25"><a href="extract-sequence.html#cb6-25" tabindex="-1"></a><span class="co"># 2     chr8 127739020 127740395  1376      + ncbiRefSeq.2022-10-28</span></span>
+<span id="cb6-26"><a href="extract-sequence.html#cb6-26" tabindex="-1"></a><span class="co">#     type score phase gene_id transcript_id gene_name exon_number</span></span>
+<span id="cb6-27"><a href="extract-sequence.html#cb6-27" tabindex="-1"></a><span class="co"># 1 intron    NA    NA     MYC   NM_002467.6       MYC           1</span></span>
+<span id="cb6-28"><a href="extract-sequence.html#cb6-28" tabindex="-1"></a><span class="co"># 2 intron    NA    NA     MYC   NM_002467.6       MYC           2</span></span>
+<span id="cb6-29"><a href="extract-sequence.html#cb6-29" tabindex="-1"></a><span class="co">#         exon_id</span></span>
+<span id="cb6-30"><a href="extract-sequence.html#cb6-30" tabindex="-1"></a><span class="co"># 1 NM_002467.6.1</span></span>
+<span id="cb6-31"><a href="extract-sequence.html#cb6-31" tabindex="-1"></a><span class="co"># 2 NM_002467.6.2</span></span>
+<span id="cb6-32"><a href="extract-sequence.html#cb6-32" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="extract-sequence.html#cb6-33" tabindex="-1"></a><span class="co"># define geneid</span></span>
+<span id="cb6-34"><a href="extract-sequence.html#cb6-34" tabindex="-1"></a><span class="fu">getIntronInfo</span>(mytest,<span class="at">geneId =</span> <span class="st">&quot;MYC&quot;</span>,<span class="at">transId =</span> <span class="st">&quot;NM_002467.6&quot;</span>)</span>
+<span id="cb6-35"><a href="extract-sequence.html#cb6-35" tabindex="-1"></a></span>
+<span id="cb6-36"><a href="extract-sequence.html#cb6-36" tabindex="-1"></a><span class="co">#   seqnames     start       end width strand                source</span></span>
+<span id="cb6-37"><a href="extract-sequence.html#cb6-37" tabindex="-1"></a><span class="co"># 1     chr8 127736624 127738247  1624      + ncbiRefSeq.2022-10-28</span></span>
+<span id="cb6-38"><a href="extract-sequence.html#cb6-38" tabindex="-1"></a><span class="co"># 2     chr8 127739020 127740395  1376      + ncbiRefSeq.2022-10-28</span></span>
+<span id="cb6-39"><a href="extract-sequence.html#cb6-39" tabindex="-1"></a><span class="co">#     type score phase gene_id transcript_id gene_name exon_number</span></span>
+<span id="cb6-40"><a href="extract-sequence.html#cb6-40" tabindex="-1"></a><span class="co"># 1 intron    NA    NA     MYC   NM_002467.6       MYC           1</span></span>
+<span id="cb6-41"><a href="extract-sequence.html#cb6-41" tabindex="-1"></a><span class="co"># 2 intron    NA    NA     MYC   NM_002467.6       MYC           2</span></span>
+<span id="cb6-42"><a href="extract-sequence.html#cb6-42" tabindex="-1"></a><span class="co">#         exon_id</span></span>
+<span id="cb6-43"><a href="extract-sequence.html#cb6-43" tabindex="-1"></a><span class="co"># 1 NM_002467.6.1</span></span>
+<span id="cb6-44"><a href="extract-sequence.html#cb6-44" tabindex="-1"></a><span class="co"># 2 NM_002467.6.2</span></span>
+<span id="cb6-45"><a href="extract-sequence.html#cb6-45" tabindex="-1"></a></span>
+<span id="cb6-46"><a href="extract-sequence.html#cb6-46" tabindex="-1"></a><span class="co"># multiple genes</span></span>
+<span id="cb6-47"><a href="extract-sequence.html#cb6-47" tabindex="-1"></a><span class="fu">getIntronInfo</span>(mytest,<span class="at">geneName =</span> <span class="fu">c</span>(<span class="st">&quot;MYC&quot;</span>,<span class="st">&quot;H19&quot;</span>))</span>
+<span id="cb6-48"><a href="extract-sequence.html#cb6-48" tabindex="-1"></a><span class="co"># getIntronInfo is running [=========================================] 100% in  0s</span></span>
+<span id="cb6-49"><a href="extract-sequence.html#cb6-49" tabindex="-1"></a><span class="co">#                seqnames     start       end width strand                source   type score phase gene_id  transcript_id</span></span>
+<span id="cb6-50"><a href="extract-sequence.html#cb6-50" tabindex="-1"></a><span class="co"># 1  chr11_ML143358v1_fix    188317    188397    81      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19    NR_002196.2</span></span>
+<span id="cb6-51"><a href="extract-sequence.html#cb6-51" tabindex="-1"></a><span class="co"># 2  chr11_ML143358v1_fix    188521    188600    80      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19    NR_002196.2</span></span>
+<span id="cb6-52"><a href="extract-sequence.html#cb6-52" tabindex="-1"></a><span class="co"># 3  chr11_ML143358v1_fix    188714    188808    95      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19    NR_002196.2</span></span>
+<span id="cb6-53"><a href="extract-sequence.html#cb6-53" tabindex="-1"></a><span class="co"># 4  chr11_ML143358v1_fix    188944    189039    96      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19    NR_002196.2</span></span>
+<span id="cb6-54"><a href="extract-sequence.html#cb6-54" tabindex="-1"></a><span class="co"># 5  chr11_ML143358v1_fix    188311    188397    87      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19    NR_131223.1</span></span>
+<span id="cb6-55"><a href="extract-sequence.html#cb6-55" tabindex="-1"></a><span class="co"># 6  chr11_ML143358v1_fix    188521    188600    80      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19    NR_131223.1</span></span>
+<span id="cb6-56"><a href="extract-sequence.html#cb6-56" tabindex="-1"></a><span class="co"># 7  chr11_ML143358v1_fix    188714    188808    95      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19    NR_131223.1</span></span>
+<span id="cb6-57"><a href="extract-sequence.html#cb6-57" tabindex="-1"></a><span class="co"># 8  chr11_ML143358v1_fix    188944    189039    96      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19    NR_131223.1</span></span>
+<span id="cb6-58"><a href="extract-sequence.html#cb6-58" tabindex="-1"></a><span class="co"># 9  chr11_ML143358v1_fix    188317    188397    81      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19    NR_131224.1</span></span>
+<span id="cb6-59"><a href="extract-sequence.html#cb6-59" tabindex="-1"></a><span class="co"># 10 chr11_ML143358v1_fix    188521    188600    80      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19    NR_131224.1</span></span>
+<span id="cb6-60"><a href="extract-sequence.html#cb6-60" tabindex="-1"></a><span class="co"># 11 chr11_ML143358v1_fix    188714    188808    95      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19    NR_131224.1</span></span>
+<span id="cb6-61"><a href="extract-sequence.html#cb6-61" tabindex="-1"></a><span class="co"># 12 chr11_ML143358v1_fix    188944    193739  4796      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19    NR_131224.1</span></span>
+<span id="cb6-62"><a href="extract-sequence.html#cb6-62" tabindex="-1"></a><span class="co"># 13                chr11   1995795   1995875    81      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19  NR_002196.2_2</span></span>
+<span id="cb6-63"><a href="extract-sequence.html#cb6-63" tabindex="-1"></a><span class="co"># 14                chr11   1995999   1996078    80      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19  NR_002196.2_2</span></span>
+<span id="cb6-64"><a href="extract-sequence.html#cb6-64" tabindex="-1"></a><span class="co"># 15                chr11   1996192   1996286    95      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19  NR_002196.2_2</span></span>
+<span id="cb6-65"><a href="extract-sequence.html#cb6-65" tabindex="-1"></a><span class="co"># 16                chr11   1996422   1996517    96      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19  NR_002196.2_2</span></span>
+<span id="cb6-66"><a href="extract-sequence.html#cb6-66" tabindex="-1"></a><span class="co"># 17                chr11   1995789   1995875    87      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19  NR_131223.1_2</span></span>
+<span id="cb6-67"><a href="extract-sequence.html#cb6-67" tabindex="-1"></a><span class="co"># 18                chr11   1995999   1996078    80      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19  NR_131223.1_2</span></span>
+<span id="cb6-68"><a href="extract-sequence.html#cb6-68" tabindex="-1"></a><span class="co"># 19                chr11   1996192   1996286    95      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19  NR_131223.1_2</span></span>
+<span id="cb6-69"><a href="extract-sequence.html#cb6-69" tabindex="-1"></a><span class="co"># 20                chr11   1996422   1996517    96      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19  NR_131223.1_2</span></span>
+<span id="cb6-70"><a href="extract-sequence.html#cb6-70" tabindex="-1"></a><span class="co"># 21                chr11   1995795   1995875    81      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19  NR_131224.1_2</span></span>
+<span id="cb6-71"><a href="extract-sequence.html#cb6-71" tabindex="-1"></a><span class="co"># 22                chr11   1995999   1996078    80      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19  NR_131224.1_2</span></span>
+<span id="cb6-72"><a href="extract-sequence.html#cb6-72" tabindex="-1"></a><span class="co"># 23                chr11   1996192   1996286    95      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19  NR_131224.1_2</span></span>
+<span id="cb6-73"><a href="extract-sequence.html#cb6-73" tabindex="-1"></a><span class="co"># 24                chr11   1996422   2001217  4796      - ncbiRefSeq.2022-10-28 intron    NA    NA     H19  NR_131224.1_2</span></span>
+<span id="cb6-74"><a href="extract-sequence.html#cb6-74" tabindex="-1"></a><span class="co"># 25                 chr8 127736624 127738247  1624      + ncbiRefSeq.2022-10-28 intron    NA    NA     MYC    NM_002467.6</span></span>
+<span id="cb6-75"><a href="extract-sequence.html#cb6-75" tabindex="-1"></a><span class="co"># 26                 chr8 127739020 127740395  1376      + ncbiRefSeq.2022-10-28 intron    NA    NA     MYC    NM_002467.6</span></span>
+<span id="cb6-76"><a href="extract-sequence.html#cb6-76" tabindex="-1"></a><span class="co"># 27                 chr8 127736624 127738250  1627      + ncbiRefSeq.2022-10-28 intron    NA    NA     MYC NM_001354870.1</span></span>
+<span id="cb6-77"><a href="extract-sequence.html#cb6-77" tabindex="-1"></a><span class="co"># 28                 chr8 127739020 127740395  1376      + ncbiRefSeq.2022-10-28 intron    NA    NA     MYC NM_001354870.1</span></span>
+<span id="cb6-78"><a href="extract-sequence.html#cb6-78" tabindex="-1"></a><span class="co">#    gene_name exon_number          exon_id</span></span>
+<span id="cb6-79"><a href="extract-sequence.html#cb6-79" tabindex="-1"></a><span class="co"># 1        H19           4    NR_002196.2.4</span></span>
+<span id="cb6-80"><a href="extract-sequence.html#cb6-80" tabindex="-1"></a><span class="co"># 2        H19           3    NR_002196.2.3</span></span>
+<span id="cb6-81"><a href="extract-sequence.html#cb6-81" tabindex="-1"></a><span class="co"># 3        H19           2    NR_002196.2.2</span></span>
+<span id="cb6-82"><a href="extract-sequence.html#cb6-82" tabindex="-1"></a><span class="co"># 4        H19           1    NR_002196.2.1</span></span>
+<span id="cb6-83"><a href="extract-sequence.html#cb6-83" tabindex="-1"></a><span class="co"># 5        H19           4    NR_131223.1.4</span></span>
+<span id="cb6-84"><a href="extract-sequence.html#cb6-84" tabindex="-1"></a><span class="co"># 6        H19           3    NR_131223.1.3</span></span>
+<span id="cb6-85"><a href="extract-sequence.html#cb6-85" tabindex="-1"></a><span class="co"># 7        H19           2    NR_131223.1.2</span></span>
+<span id="cb6-86"><a href="extract-sequence.html#cb6-86" tabindex="-1"></a><span class="co"># 8        H19           1    NR_131223.1.1</span></span>
+<span id="cb6-87"><a href="extract-sequence.html#cb6-87" tabindex="-1"></a><span class="co"># 9        H19           4    NR_131224.1.4</span></span>
+<span id="cb6-88"><a href="extract-sequence.html#cb6-88" tabindex="-1"></a><span class="co"># 10       H19           3    NR_131224.1.3</span></span>
+<span id="cb6-89"><a href="extract-sequence.html#cb6-89" tabindex="-1"></a><span class="co"># 11       H19           2    NR_131224.1.2</span></span>
+<span id="cb6-90"><a href="extract-sequence.html#cb6-90" tabindex="-1"></a><span class="co"># 12       H19           1    NR_131224.1.1</span></span>
+<span id="cb6-91"><a href="extract-sequence.html#cb6-91" tabindex="-1"></a><span class="co"># 13       H19           4  NR_002196.2_2.4</span></span>
+<span id="cb6-92"><a href="extract-sequence.html#cb6-92" tabindex="-1"></a><span class="co"># 14       H19           3  NR_002196.2_2.3</span></span>
+<span id="cb6-93"><a href="extract-sequence.html#cb6-93" tabindex="-1"></a><span class="co"># 15       H19           2  NR_002196.2_2.2</span></span>
+<span id="cb6-94"><a href="extract-sequence.html#cb6-94" tabindex="-1"></a><span class="co"># 16       H19           1  NR_002196.2_2.1</span></span>
+<span id="cb6-95"><a href="extract-sequence.html#cb6-95" tabindex="-1"></a><span class="co"># 17       H19           4  NR_131223.1_2.4</span></span>
+<span id="cb6-96"><a href="extract-sequence.html#cb6-96" tabindex="-1"></a><span class="co"># 18       H19           3  NR_131223.1_2.3</span></span>
+<span id="cb6-97"><a href="extract-sequence.html#cb6-97" tabindex="-1"></a><span class="co"># 19       H19           2  NR_131223.1_2.2</span></span>
+<span id="cb6-98"><a href="extract-sequence.html#cb6-98" tabindex="-1"></a><span class="co"># 20       H19           1  NR_131223.1_2.1</span></span>
+<span id="cb6-99"><a href="extract-sequence.html#cb6-99" tabindex="-1"></a><span class="co"># 21       H19           4  NR_131224.1_2.4</span></span>
+<span id="cb6-100"><a href="extract-sequence.html#cb6-100" tabindex="-1"></a><span class="co"># 22       H19           3  NR_131224.1_2.3</span></span>
+<span id="cb6-101"><a href="extract-sequence.html#cb6-101" tabindex="-1"></a><span class="co"># 23       H19           2  NR_131224.1_2.2</span></span>
+<span id="cb6-102"><a href="extract-sequence.html#cb6-102" tabindex="-1"></a><span class="co"># 24       H19           1  NR_131224.1_2.1</span></span>
+<span id="cb6-103"><a href="extract-sequence.html#cb6-103" tabindex="-1"></a><span class="co"># 25       MYC           1    NM_002467.6.1</span></span>
+<span id="cb6-104"><a href="extract-sequence.html#cb6-104" tabindex="-1"></a><span class="co"># 26       MYC           2    NM_002467.6.2</span></span>
+<span id="cb6-105"><a href="extract-sequence.html#cb6-105" tabindex="-1"></a><span class="co"># 27       MYC           1 NM_001354870.1.1</span></span>
+<span id="cb6-106"><a href="extract-sequence.html#cb6-106" tabindex="-1"></a><span class="co"># 28       MYC           2 NM_001354870.1.2</span></span>
+<span id="cb6-107"><a href="extract-sequence.html#cb6-107" tabindex="-1"></a></span>
+<span id="cb6-108"><a href="extract-sequence.html#cb6-108" tabindex="-1"></a><span class="co"># multiple transcript_ids</span></span>
+<span id="cb6-109"><a href="extract-sequence.html#cb6-109" tabindex="-1"></a><span class="fu">getIntronInfo</span>(mytest,<span class="at">transId =</span> <span class="fu">c</span>(<span class="st">&quot;NR_002196.2&quot;</span>,<span class="st">&quot;NM_002467.6&quot;</span>))</span>
+<span id="cb6-110"><a href="extract-sequence.html#cb6-110" tabindex="-1"></a></span>
+<span id="cb6-111"><a href="extract-sequence.html#cb6-111" tabindex="-1"></a><span class="co">#               seqnames     start       end width strand                source   type</span></span>
+<span id="cb6-112"><a href="extract-sequence.html#cb6-112" tabindex="-1"></a><span class="co"># 1 chr11_ML143358v1_fix    188317    188397    81      - ncbiRefSeq.2022-10-28 intron</span></span>
+<span id="cb6-113"><a href="extract-sequence.html#cb6-113" tabindex="-1"></a><span class="co"># 2 chr11_ML143358v1_fix    188521    188600    80      - ncbiRefSeq.2022-10-28 intron</span></span>
+<span id="cb6-114"><a href="extract-sequence.html#cb6-114" tabindex="-1"></a><span class="co"># 3 chr11_ML143358v1_fix    188714    188808    95      - ncbiRefSeq.2022-10-28 intron</span></span>
+<span id="cb6-115"><a href="extract-sequence.html#cb6-115" tabindex="-1"></a><span class="co"># 4 chr11_ML143358v1_fix    188944    189039    96      - ncbiRefSeq.2022-10-28 intron</span></span>
+<span id="cb6-116"><a href="extract-sequence.html#cb6-116" tabindex="-1"></a><span class="co"># 5                 chr8 127736624 127738247  1624      + ncbiRefSeq.2022-10-28 intron</span></span>
+<span id="cb6-117"><a href="extract-sequence.html#cb6-117" tabindex="-1"></a><span class="co"># 6                 chr8 127739020 127740395  1376      + ncbiRefSeq.2022-10-28 intron</span></span>
+<span id="cb6-118"><a href="extract-sequence.html#cb6-118" tabindex="-1"></a><span class="co">#   score phase gene_id transcript_id gene_name exon_number       exon_id</span></span>
+<span id="cb6-119"><a href="extract-sequence.html#cb6-119" tabindex="-1"></a><span class="co"># 1    NA    NA     H19   NR_002196.2       H19           4 NR_002196.2.4</span></span>
+<span id="cb6-120"><a href="extract-sequence.html#cb6-120" tabindex="-1"></a><span class="co"># 2    NA    NA     H19   NR_002196.2       H19           3 NR_002196.2.3</span></span>
+<span id="cb6-121"><a href="extract-sequence.html#cb6-121" tabindex="-1"></a><span class="co"># 3    NA    NA     H19   NR_002196.2       H19           2 NR_002196.2.2</span></span>
+<span id="cb6-122"><a href="extract-sequence.html#cb6-122" tabindex="-1"></a><span class="co"># 4    NA    NA     H19   NR_002196.2       H19           1 NR_002196.2.1</span></span>
+<span id="cb6-123"><a href="extract-sequence.html#cb6-123" tabindex="-1"></a><span class="co"># 5    NA    NA     MYC   NM_002467.6       MYC           1 NM_002467.6.1</span></span>
+<span id="cb6-124"><a href="extract-sequence.html#cb6-124" tabindex="-1"></a><span class="co"># 6    NA    NA     MYC   NM_002467.6       MYC           2 NM_002467.6.2</span></span></code></pre></div>
+</div>
+<div id="extract-promoters" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Extract promoters<a href="extract-sequence.html#extract-promoters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>getPromoters</strong> allows you to extract promoter sequence for gene:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="extract-sequence.html#cb7-1" tabindex="-1"></a><span class="co"># get promoters</span></span>
+<span id="cb7-2"><a href="extract-sequence.html#cb7-2" tabindex="-1"></a>pro <span class="ot">&lt;-</span> <span class="fu">getPromoters</span>(mytest,<span class="at">geneName =</span> <span class="fu">c</span>(<span class="st">&quot;AAC1&quot;</span>,<span class="st">&quot;THI74&quot;</span>))</span>
+<span id="cb7-3"><a href="extract-sequence.html#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="extract-sequence.html#cb7-4" tabindex="-1"></a>pro</span>
+<span id="cb7-5"><a href="extract-sequence.html#cb7-5" tabindex="-1"></a><span class="co"># DNAStringSet object of length 2:</span></span>
+<span id="cb7-6"><a href="extract-sequence.html#cb7-6" tabindex="-1"></a><span class="co">#     width seq                                                                  names</span></span>
+<span id="cb7-7"><a href="extract-sequence.html#cb7-7" tabindex="-1"></a><span class="co"># [1]  2000 ATCGCGGTAAGCAGTCCCTGGAGACCATTTTAC...TAGAGGCAAAAAATAAAAAGTAAGCAGGAGAA THI74|YDR438W|YDR...</span></span>
+<span id="cb7-8"><a href="extract-sequence.html#cb7-8" tabindex="-1"></a><span class="co"># [2]  2000 CGGCTTTAAACCTGATGACGAAATTGGATTGTG...TTCTTTTCTATTTTTCCTTTTTACAGCAGTAA AAC1|YMR056C|YMR0...</span></span>
+<span id="cb7-9"><a href="extract-sequence.html#cb7-9" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="extract-sequence.html#cb7-10" tabindex="-1"></a><span class="co"># same code</span></span>
+<span id="cb7-11"><a href="extract-sequence.html#cb7-11" tabindex="-1"></a><span class="co"># pro &lt;- getPromoters(mytest,geneName = c(&quot;AAC1&quot;,&quot;THI74&quot;),</span></span>
+<span id="cb7-12"><a href="extract-sequence.html#cb7-12" tabindex="-1"></a><span class="co">#                     up.extend = 2000,</span></span>
+<span id="cb7-13"><a href="extract-sequence.html#cb7-13" tabindex="-1"></a><span class="co">#                     dn.extend = 0)</span></span></code></pre></div>
+</div>
+<div id="extract-non-redundant-transcript-length" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Extract non-redundant transcript length<a href="extract-sequence.html#extract-non-redundant-transcript-length" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As we knonw, a gene have multiple isoforms. So how should we quantify the gene expression
+with standard gene length. The <strong>featureCounts</strong> command from <strong>subread</strong> package is
+used to quantify gene expression with using non-redundant exon length. <strong>getNonRedundantLength</strong>
+can do the same thing:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="extract-sequence.html#cb8-1" tabindex="-1"></a><span class="co"># make object</span></span>
+<span id="cb8-2"><a href="extract-sequence.html#cb8-2" tabindex="-1"></a>mytest <span class="ot">&lt;-</span> <span class="fu">loadGenomeGTF</span>(<span class="at">gtfPath =</span> <span class="st">&quot;hg38.ncbiRefSeq.gtf.gz&quot;</span>)</span>
+<span id="cb8-3"><a href="extract-sequence.html#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="extract-sequence.html#cb8-4" tabindex="-1"></a><span class="do">## GenomeGTF object for Extracting sequences.</span></span>
+<span id="cb8-5"><a href="extract-sequence.html#cb8-5" tabindex="-1"></a><span class="do">## GTF file is loaded.</span></span>
+<span id="cb8-6"><a href="extract-sequence.html#cb8-6" tabindex="-1"></a><span class="do">## genome file is NULL.</span></span>
+<span id="cb8-7"><a href="extract-sequence.html#cb8-7" tabindex="-1"></a><span class="do">## representTrans file is NULL.</span></span>
+<span id="cb8-8"><a href="extract-sequence.html#cb8-8" tabindex="-1"></a><span class="do">## intron slot is NULL.</span></span>
+<span id="cb8-9"><a href="extract-sequence.html#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="extract-sequence.html#cb8-10" tabindex="-1"></a><span class="co"># select 300 genes</span></span>
+<span id="cb8-11"><a href="extract-sequence.html#cb8-11" tabindex="-1"></a>gene <span class="ot">&lt;-</span> <span class="fu">unique</span>(mytest<span class="sc">@</span>gtf<span class="sc">$</span>gene_name)[<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>]</span>
+<span id="cb8-12"><a href="extract-sequence.html#cb8-12" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="extract-sequence.html#cb8-13" tabindex="-1"></a>len <span class="ot">&lt;-</span> <span class="fu">getNonRedundantLength</span>(<span class="at">object =</span> mytest,<span class="at">geneName =</span> gene)</span>
+<span id="cb8-14"><a href="extract-sequence.html#cb8-14" tabindex="-1"></a><span class="co"># getNonRedundantLength is running [=================================] 100% in 19s</span></span>
+<span id="cb8-15"><a href="extract-sequence.html#cb8-15" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="extract-sequence.html#cb8-16" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb8-17"><a href="extract-sequence.html#cb8-17" tabindex="-1"></a><span class="fu">head</span>(len)</span>
+<span id="cb8-18"><a href="extract-sequence.html#cb8-18" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="extract-sequence.html#cb8-19" tabindex="-1"></a><span class="co">#   gene_name gene_id exonLength</span></span>
+<span id="cb8-20"><a href="extract-sequence.html#cb8-20" tabindex="-1"></a><span class="co"># 1      TRNP    TRNP         68</span></span>
+<span id="cb8-21"><a href="extract-sequence.html#cb8-21" tabindex="-1"></a><span class="co"># 2      TRNT    TRNT         66</span></span>
+<span id="cb8-22"><a href="extract-sequence.html#cb8-22" tabindex="-1"></a><span class="co"># 3      CYTB    CYTB       1141</span></span>
+<span id="cb8-23"><a href="extract-sequence.html#cb8-23" tabindex="-1"></a><span class="co"># 4      TRNE    TRNE         69</span></span>
+<span id="cb8-24"><a href="extract-sequence.html#cb8-24" tabindex="-1"></a><span class="co"># 5       ND6     ND6        525</span></span>
+<span id="cb8-25"><a href="extract-sequence.html#cb8-25" tabindex="-1"></a><span class="co"># 6       ND5     ND5       1812</span></span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="draw-chromosome-ideograms.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-Extract_sequence.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

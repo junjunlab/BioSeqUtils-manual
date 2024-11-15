@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Splice junction visualization | BioSeqUtils Reference</title>
+  <meta name="description" content="This is a detailed documentation of BioSeqUtils package." />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Splice junction visualization | BioSeqUtils Reference" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a detailed documentation of BioSeqUtils package." />
+  <meta name="github-repo" content="rstudio/bookdown-BioSeqUtils" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Splice junction visualization | BioSeqUtils Reference" />
+  
+  <meta name="twitter:description" content="This is a detailed documentation of BioSeqUtils package." />
+  
+
+<meta name="author" content="Jun Zhang" />
+
+
+<meta name="date" content="2024-11-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="hic-heatmap-visualization.html"/>
+<link rel="next" href="other-funs.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">BioSeqUtils manual documentation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#related-blogs"><i class="fa fa-check"></i><b>1.1</b> Related blogs</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="extract-sequence.html"><a href="extract-sequence.html"><i class="fa fa-check"></i><b>2</b> Extract sequence</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="extract-sequence.html"><a href="extract-sequence.html#data-loading"><i class="fa fa-check"></i><b>2.1</b> Data loading</a></li>
+<li class="chapter" data-level="2.2" data-path="extract-sequence.html"><a href="extract-sequence.html#get-features-information"><i class="fa fa-check"></i><b>2.2</b> Get features information</a></li>
+<li class="chapter" data-level="2.3" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-sequnence"><i class="fa fa-check"></i><b>2.3</b> Extract sequnence</a></li>
+<li class="chapter" data-level="2.4" data-path="extract-sequence.html"><a href="extract-sequence.html#get-inrton-information"><i class="fa fa-check"></i><b>2.4</b> Get inrton information</a></li>
+<li class="chapter" data-level="2.5" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-promoters"><i class="fa fa-check"></i><b>2.5</b> Extract promoters</a></li>
+<li class="chapter" data-level="2.6" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-non-redundant-transcript-length"><i class="fa fa-check"></i><b>2.6</b> Extract non-redundant transcript length</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html"><i class="fa fa-check"></i><b>3</b> Draw chromosome ideograms</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#downloading-related-data"><i class="fa fa-check"></i><b>3.1</b> Downloading related data</a></li>
+<li class="chapter" data-level="3.2" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#making-plot"><i class="fa fa-check"></i><b>3.2</b> Making plot</a></li>
+<li class="chapter" data-level="3.3" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#drawing-gene-density-manually"><i class="fa fa-check"></i><b>3.3</b> Drawing gene density manually</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="track-data-input.html"><a href="track-data-input.html"><i class="fa fa-check"></i><b>4</b> Track data input</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="track-data-input.html"><a href="track-data-input.html#load-signal-data"><i class="fa fa-check"></i><b>4.1</b> Load signal data</a></li>
+<li class="chapter" data-level="4.2" data-path="track-data-input.html"><a href="track-data-input.html#load-peaks-data"><i class="fa fa-check"></i><b>4.2</b> Load peaks data</a></li>
+<li class="chapter" data-level="4.3" data-path="track-data-input.html"><a href="track-data-input.html#load-links-data"><i class="fa fa-check"></i><b>4.3</b> Load links data</a></li>
+<li class="chapter" data-level="4.4" data-path="track-data-input.html"><a href="track-data-input.html#load-hic-related-data"><i class="fa fa-check"></i><b>4.4</b> Load Hic related data</a></li>
+<li class="chapter" data-level="4.5" data-path="track-data-input.html"><a href="track-data-input.html#extract-junction-data"><i class="fa fa-check"></i><b>4.5</b> Extract junction data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="basic-visualization.html"><a href="basic-visualization.html"><i class="fa fa-check"></i><b>5</b> Basic visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="basic-visualization.html"><a href="basic-visualization.html#basic-plot"><i class="fa fa-check"></i><b>5.1</b> Basic plot</a></li>
+<li class="chapter" data-level="5.2" data-path="basic-visualization.html"><a href="basic-visualization.html#signal-range-settings"><i class="fa fa-check"></i><b>5.2</b> Signal range settings</a></li>
+<li class="chapter" data-level="5.3" data-path="basic-visualization.html"><a href="basic-visualization.html#transcript-track-settings"><i class="fa fa-check"></i><b>5.3</b> Transcript track settings</a></li>
+<li class="chapter" data-level="5.4" data-path="basic-visualization.html"><a href="basic-visualization.html#intron-line-type"><i class="fa fa-check"></i><b>5.4</b> Intron line type</a></li>
+<li class="chapter" data-level="5.5" data-path="basic-visualization.html"><a href="basic-visualization.html#x-axis-limitation"><i class="fa fa-check"></i><b>5.5</b> X axis limitation</a></li>
+<li class="chapter" data-level="5.6" data-path="basic-visualization.html"><a href="basic-visualization.html#background-and-highlight-region-settings"><i class="fa fa-check"></i><b>5.6</b> Background and highlight region settings</a></li>
+<li class="chapter" data-level="5.7" data-path="basic-visualization.html"><a href="basic-visualization.html#order-for-genes-and-samples"><i class="fa fa-check"></i><b>5.7</b> Order for genes and samples</a></li>
+<li class="chapter" data-level="5.8" data-path="basic-visualization.html"><a href="basic-visualization.html#adding-group-information-for-genes-and-samples"><i class="fa fa-check"></i><b>5.8</b> Adding group information for genes and samples</a></li>
+<li class="chapter" data-level="5.9" data-path="basic-visualization.html"><a href="basic-visualization.html#strip-settings"><i class="fa fa-check"></i><b>5.9</b> Strip settings</a></li>
+<li class="chapter" data-level="5.10" data-path="basic-visualization.html"><a href="basic-visualization.html#draw-chromosome-annotation"><i class="fa fa-check"></i><b>5.10</b> Draw chromosome annotation</a></li>
+<li class="chapter" data-level="5.11" data-path="basic-visualization.html"><a href="basic-visualization.html#plot-with-specified-genomic-region"><i class="fa fa-check"></i><b>5.11</b> Plot with specified genomic region</a></li>
+<li class="chapter" data-level="5.12" data-path="basic-visualization.html"><a href="basic-visualization.html#adding-peaks-track"><i class="fa fa-check"></i><b>5.12</b> Adding peaks track</a></li>
+<li class="chapter" data-level="5.13" data-path="basic-visualization.html"><a href="basic-visualization.html#extending-bases-upstream-and-downstream"><i class="fa fa-check"></i><b>5.13</b> Extending bases upstream and downstream</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="loops-visualization.html"><a href="loops-visualization.html"><i class="fa fa-check"></i><b>6</b> Loops visualization</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="loops-visualization.html"><a href="loops-visualization.html#input-data-prepration"><i class="fa fa-check"></i><b>6.1</b> Input data prepration</a></li>
+<li class="chapter" data-level="6.2" data-path="loops-visualization.html"><a href="loops-visualization.html#basic-loops-visualization"><i class="fa fa-check"></i><b>6.2</b> Basic loops visualization</a></li>
+<li class="chapter" data-level="6.3" data-path="loops-visualization.html"><a href="loops-visualization.html#reverse-y-axis"><i class="fa fa-check"></i><b>6.3</b> Reverse Y axis</a></li>
+<li class="chapter" data-level="6.4" data-path="loops-visualization.html"><a href="loops-visualization.html#combing-with-chromosome-track"><i class="fa fa-check"></i><b>6.4</b> Combing with chromosome track</a></li>
+<li class="chapter" data-level="6.5" data-path="loops-visualization.html"><a href="loops-visualization.html#higlight-regions"><i class="fa fa-check"></i><b>6.5</b> Higlight regions</a></li>
+<li class="chapter" data-level="6.6" data-path="loops-visualization.html"><a href="loops-visualization.html#drawing-only-loop-tracks"><i class="fa fa-check"></i><b>6.6</b> Drawing only loop tracks</a></li>
+<li class="chapter" data-level="6.7" data-path="loops-visualization.html"><a href="loops-visualization.html#curve-geoms-choosing"><i class="fa fa-check"></i><b>6.7</b> Curve geoms choosing</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html"><i class="fa fa-check"></i><b>7</b> Hic heatmap visualization</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#data-preperation"><i class="fa fa-check"></i><b>7.1</b> Data preperation</a></li>
+<li class="chapter" data-level="7.2" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#basic-plot-1"><i class="fa fa-check"></i><b>7.2</b> Basic plot</a></li>
+<li class="chapter" data-level="7.3" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#real-data-practice"><i class="fa fa-check"></i><b>7.3</b> Real data practice</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html"><i class="fa fa-check"></i><b>8</b> Splice junction visualization</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html#data-pareparation"><i class="fa fa-check"></i><b>8.1</b> Data pareparation</a></li>
+<li class="chapter" data-level="8.2" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html#visualization"><i class="fa fa-check"></i><b>8.2</b> Visualization</a></li>
+<li class="chapter" data-level="8.3" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html#section"><i class="fa fa-check"></i><b>8.3</b> <img src="local_images/t81.png" style="width:100.0%" /></a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="other-funs.html"><a href="other-funs.html"><i class="fa fa-check"></i><b>9</b> Other funs</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="other-funs.html"><a href="other-funs.html#transcript-coordinate-transformation"><i class="fa fa-check"></i><b>9.1</b> Transcript coordinate transformation</a></li>
+<li class="chapter" data-level="9.2" data-path="other-funs.html"><a href="other-funs.html#track-overlap"><i class="fa fa-check"></i><b>9.2</b> Track overlap</a></li>
+<li class="chapter" data-level="9.3" data-path="other-funs.html"><a href="other-funs.html#extend-coordinate-for-gene"><i class="fa fa-check"></i><b>9.3</b> Extend coordinate for gene</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="frequntlly-asked-questions.html"><a href="frequntlly-asked-questions.html"><i class="fa fa-check"></i><b>10</b> Frequntlly asked questions</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BioSeqUtils Reference</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="splice-junction-visualization" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Splice junction visualization<a href="splice-junction-visualization.html#splice-junction-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>There have been some visualization tools for RNA different types of splice and junction events.
+The most popular tool is called <strong>sashimiplot</strong> with embeded into multiple splice-analysis
+tools. It is still not convenient to visualize the splice data with your own bigwig format
+data with significant differential splice sites information which produced from other softwares.
+The <strong>trackVisProMax</strong> also allows you plot the RNA splice and junctions data with your own
+data.</p>
+<div id="data-pareparation" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Data pareparation<a href="splice-junction-visualization.html#data-pareparation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here we use RNA-seq as example data, first we extract all junctions from <strong>bam</strong>
+files:</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="splice-junction-visualization.html#cb125-1" tabindex="-1"></a>bam_file <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">&quot;F:/junc-test/&quot;</span>,</span>
+<span id="cb125-2"><a href="splice-junction-visualization.html#cb125-2" tabindex="-1"></a>                       <span class="at">pattern =</span> <span class="st">&quot;.bam$&quot;</span>,<span class="at">full.names =</span> T)</span>
+<span id="cb125-3"><a href="splice-junction-visualization.html#cb125-3" tabindex="-1"></a>bam_file</span>
+<span id="cb125-4"><a href="splice-junction-visualization.html#cb125-4" tabindex="-1"></a><span class="co"># [1] &quot;F:/junc-test/C1.sorted.bam&quot; &quot;F:/junc-test/WT.sorted.bam&quot;</span></span>
+<span id="cb125-5"><a href="splice-junction-visualization.html#cb125-5" tabindex="-1"></a></span>
+<span id="cb125-6"><a href="splice-junction-visualization.html#cb125-6" tabindex="-1"></a>junc_df <span class="ot">&lt;-</span> <span class="fu">loadJunction</span>(<span class="at">data_path =</span> bam_file,</span>
+<span id="cb125-7"><a href="splice-junction-visualization.html#cb125-7" tabindex="-1"></a>                        <span class="at">file_name =</span> <span class="fu">c</span>(<span class="st">&quot;C1&quot;</span>,<span class="st">&quot;WT&quot;</span>))</span>
+<span id="cb125-8"><a href="splice-junction-visualization.html#cb125-8" tabindex="-1"></a>junc_df <span class="ot">&lt;-</span> junc_df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(score <span class="sc">&gt;=</span> <span class="dv">5</span>)</span>
+<span id="cb125-9"><a href="splice-junction-visualization.html#cb125-9" tabindex="-1"></a></span>
+<span id="cb125-10"><a href="splice-junction-visualization.html#cb125-10" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb125-11"><a href="splice-junction-visualization.html#cb125-11" tabindex="-1"></a><span class="fu">head</span>(junc_df,<span class="dv">3</span>)</span>
+<span id="cb125-12"><a href="splice-junction-visualization.html#cb125-12" tabindex="-1"></a><span class="co">#   seqnames   start     end score fileName</span></span>
+<span id="cb125-13"><a href="splice-junction-visualization.html#cb125-13" tabindex="-1"></a><span class="co"># 1        1 3154117 3159706     1       C1</span></span>
+<span id="cb125-14"><a href="splice-junction-visualization.html#cb125-14" tabindex="-1"></a><span class="co"># 2        1 3207318 3213608     1       C1</span></span>
+<span id="cb125-15"><a href="splice-junction-visualization.html#cb125-15" tabindex="-1"></a><span class="co"># 3        1 4492669 4493099     8       C1</span></span></code></pre></div>
+<p>Load bigwig files:</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="splice-junction-visualization.html#cb126-1" tabindex="-1"></a><span class="co"># gtf</span></span>
+<span id="cb126-2"><a href="splice-junction-visualization.html#cb126-2" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import.gff</span>(<span class="st">&quot;Mus_musculus.GRCm38.102.gtf&quot;</span>,<span class="at">format =</span> <span class="st">&quot;gtf&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb126-3"><a href="splice-junction-visualization.html#cb126-3" tabindex="-1"></a>  <span class="fu">data.frame</span>() </span>
+<span id="cb126-4"><a href="splice-junction-visualization.html#cb126-4" tabindex="-1"></a></span>
+<span id="cb126-5"><a href="splice-junction-visualization.html#cb126-5" tabindex="-1"></a><span class="co"># load bigwig files</span></span>
+<span id="cb126-6"><a href="splice-junction-visualization.html#cb126-6" tabindex="-1"></a>bw_file <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">&quot;F:/junc-test/&quot;</span>,<span class="at">pattern =</span> <span class="st">&#39;.bw&#39;</span>,<span class="at">full.names =</span> T)</span>
+<span id="cb126-7"><a href="splice-junction-visualization.html#cb126-7" tabindex="-1"></a>bw_file</span>
+<span id="cb126-8"><a href="splice-junction-visualization.html#cb126-8" tabindex="-1"></a><span class="co"># [1] &quot;F:/junc-test/C1.BPM.bw&quot; &quot;F:/junc-test/WT.BPM.bw&quot;</span></span>
+<span id="cb126-9"><a href="splice-junction-visualization.html#cb126-9" tabindex="-1"></a></span>
+<span id="cb126-10"><a href="splice-junction-visualization.html#cb126-10" tabindex="-1"></a><span class="co"># select some chromosomes for test</span></span>
+<span id="cb126-11"><a href="splice-junction-visualization.html#cb126-11" tabindex="-1"></a>bw <span class="ot">&lt;-</span> <span class="fu">loadBigWig</span>(<span class="at">bw_file =</span> bw_file,<span class="at">file_name =</span> <span class="fu">c</span>(<span class="st">&quot;C1&quot;</span>,<span class="st">&quot;WT&quot;</span>))</span>
+<span id="cb126-12"><a href="splice-junction-visualization.html#cb126-12" tabindex="-1"></a>bw2 <span class="ot">&lt;-</span> <span class="fu">loadBigWig</span>(<span class="at">bw_file =</span> bw_file,<span class="at">file_name =</span> <span class="fu">c</span>(<span class="st">&quot;C1_BW&quot;</span>,<span class="st">&quot;WT_BW&quot;</span>))</span></code></pre></div>
+</div>
+<div id="visualization" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Visualization<a href="splice-junction-visualization.html#visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Single gene test:</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="splice-junction-visualization.html#cb127-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb127-2"><a href="splice-junction-visualization.html#cb127-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw2,</span>
+<span id="cb127-3"><a href="splice-junction-visualization.html#cb127-3" tabindex="-1"></a>               <span class="at">Input_junction =</span> junc_df,</span>
+<span id="cb127-4"><a href="splice-junction-visualization.html#cb127-4" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb127-5"><a href="splice-junction-visualization.html#cb127-5" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>))</span></code></pre></div>
+</div>
+<div id="section" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> <img src="local_images/t81.png" style="width:100.0%" /><a href="splice-junction-visualization.html#section" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p><strong>Note:</strong> The junction curve will be drawn together with siganal track if your
+junction <strong>fileName’s</strong> are same as bigwig files and <strong>junc_layer_combined</strong>
+should be setted to <strong>TRUE</strong>.</p>
+</blockquote>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="splice-junction-visualization.html#cb128-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb128-2"><a href="splice-junction-visualization.html#cb128-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb128-3"><a href="splice-junction-visualization.html#cb128-3" tabindex="-1"></a>               <span class="at">junc_layer_combined =</span> T,</span>
+<span id="cb128-4"><a href="splice-junction-visualization.html#cb128-4" tabindex="-1"></a>               <span class="at">Input_junction =</span> junc_df,</span>
+<span id="cb128-5"><a href="splice-junction-visualization.html#cb128-5" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Pou5f1&quot;</span>,<span class="st">&quot;Gnpda2&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t82.png" style="width:100.0%" />
+<strong>signal_layer_junction_params</strong> and <strong>signal_layer_junction_label_params</strong> control
+the curve graphics and text label graphics. Here we change the linewidth and
+label size:</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="splice-junction-visualization.html#cb129-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb129-2"><a href="splice-junction-visualization.html#cb129-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb129-3"><a href="splice-junction-visualization.html#cb129-3" tabindex="-1"></a>               <span class="at">junc_layer_combined =</span> T,</span>
+<span id="cb129-4"><a href="splice-junction-visualization.html#cb129-4" tabindex="-1"></a>               <span class="at">Input_junction =</span> junc_df,</span>
+<span id="cb129-5"><a href="splice-junction-visualization.html#cb129-5" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Pou5f1&quot;</span>,<span class="st">&quot;Gnpda2&quot;</span>),</span>
+<span id="cb129-6"><a href="splice-junction-visualization.html#cb129-6" tabindex="-1"></a>               <span class="at">signal_layer_junction_params =</span> <span class="fu">list</span>(<span class="at">linewidth =</span> <span class="dv">1</span>),</span>
+<span id="cb129-7"><a href="splice-junction-visualization.html#cb129-7" tabindex="-1"></a>               <span class="at">signal_layer_junction_label_params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">2</span>))</span></code></pre></div>
+<p><img src="local_images/t83.png" style="width:100.0%" /></p>
+<p>Drawing the junctions track separately and we can turn the curve style into
+band-curve style with <strong>add_band_line=TRUE</strong>. The width of line is relatted
+with the junction counts which means using the <strong>score</strong> column:</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="splice-junction-visualization.html#cb130-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb130-2"><a href="splice-junction-visualization.html#cb130-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw2,</span>
+<span id="cb130-3"><a href="splice-junction-visualization.html#cb130-3" tabindex="-1"></a>               <span class="at">Input_junction =</span> junc_df,</span>
+<span id="cb130-4"><a href="splice-junction-visualization.html#cb130-4" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb130-5"><a href="splice-junction-visualization.html#cb130-5" tabindex="-1"></a>               <span class="at">add_band_line =</span> T,</span>
+<span id="cb130-6"><a href="splice-junction-visualization.html#cb130-6" tabindex="-1"></a>               <span class="at">signal_range_pos =</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.9</span>),</span>
+<span id="cb130-7"><a href="splice-junction-visualization.html#cb130-7" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Pou5f1&quot;</span>,<span class="st">&quot;Gnpda2&quot;</span>),</span>
+<span id="cb130-8"><a href="splice-junction-visualization.html#cb130-8" tabindex="-1"></a>               <span class="at">sample_order =</span> <span class="fu">c</span>(<span class="st">&quot;C1_BW&quot;</span>,<span class="st">&quot;C1&quot;</span>,<span class="st">&quot;WT_BW&quot;</span>,<span class="st">&quot;WT&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t84.png" style="width:100.0%" /></p>
+<p>Reversing the junction tracks. <strong>band_width</strong> controls the curve witdth:</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="splice-junction-visualization.html#cb131-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb131-2"><a href="splice-junction-visualization.html#cb131-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw2,</span>
+<span id="cb131-3"><a href="splice-junction-visualization.html#cb131-3" tabindex="-1"></a>               <span class="at">Input_junction =</span> junc_df,</span>
+<span id="cb131-4"><a href="splice-junction-visualization.html#cb131-4" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb131-5"><a href="splice-junction-visualization.html#cb131-5" tabindex="-1"></a>               <span class="at">add_band_line =</span> T,</span>
+<span id="cb131-6"><a href="splice-junction-visualization.html#cb131-6" tabindex="-1"></a>               <span class="at">signal_range_pos =</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.9</span>),</span>
+<span id="cb131-7"><a href="splice-junction-visualization.html#cb131-7" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Pou5f1&quot;</span>,<span class="st">&quot;Gnpda2&quot;</span>),</span>
+<span id="cb131-8"><a href="splice-junction-visualization.html#cb131-8" tabindex="-1"></a>               <span class="at">sample_order =</span> <span class="fu">c</span>(<span class="st">&quot;C1_BW&quot;</span>,<span class="st">&quot;C1&quot;</span>,<span class="st">&quot;WT_BW&quot;</span>,<span class="st">&quot;WT&quot;</span>),</span>
+<span id="cb131-9"><a href="splice-junction-visualization.html#cb131-9" tabindex="-1"></a>               <span class="at">band_width =</span> <span class="dv">1</span>,</span>
+<span id="cb131-10"><a href="splice-junction-visualization.html#cb131-10" tabindex="-1"></a>               <span class="at">reverse_y_vars =</span> <span class="fu">c</span>(<span class="st">&quot;C1&quot;</span>,<span class="st">&quot;WT&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t85.png" style="width:100.0%" /></p>
+<p>Combining the signal tracks and junction tracks:</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="splice-junction-visualization.html#cb132-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb132-2"><a href="splice-junction-visualization.html#cb132-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb132-3"><a href="splice-junction-visualization.html#cb132-3" tabindex="-1"></a>               <span class="at">junc_layer_combined =</span> T,</span>
+<span id="cb132-4"><a href="splice-junction-visualization.html#cb132-4" tabindex="-1"></a>               <span class="at">Input_junction =</span> junc_df,</span>
+<span id="cb132-5"><a href="splice-junction-visualization.html#cb132-5" tabindex="-1"></a>               <span class="at">signal_range_pos =</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.9</span>),</span>
+<span id="cb132-6"><a href="splice-junction-visualization.html#cb132-6" tabindex="-1"></a>               <span class="at">add_band_line =</span> T,</span>
+<span id="cb132-7"><a href="splice-junction-visualization.html#cb132-7" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Pou5f1&quot;</span>,<span class="st">&quot;Gnpda2&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t86.png" style="width:100.0%" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="hic-heatmap-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="other-funs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-Splice_junctions_visualization.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Basic visualization | BioSeqUtils Reference</title>
+  <meta name="description" content="This is a detailed documentation of BioSeqUtils package." />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Basic visualization | BioSeqUtils Reference" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a detailed documentation of BioSeqUtils package." />
+  <meta name="github-repo" content="rstudio/bookdown-BioSeqUtils" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Basic visualization | BioSeqUtils Reference" />
+  
+  <meta name="twitter:description" content="This is a detailed documentation of BioSeqUtils package." />
+  
+
+<meta name="author" content="Jun Zhang" />
+
+
+<meta name="date" content="2024-11-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="track-data-input.html"/>
+<link rel="next" href="loops-visualization.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">BioSeqUtils manual documentation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#related-blogs"><i class="fa fa-check"></i><b>1.1</b> Related blogs</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="extract-sequence.html"><a href="extract-sequence.html"><i class="fa fa-check"></i><b>2</b> Extract sequence</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="extract-sequence.html"><a href="extract-sequence.html#data-loading"><i class="fa fa-check"></i><b>2.1</b> Data loading</a></li>
+<li class="chapter" data-level="2.2" data-path="extract-sequence.html"><a href="extract-sequence.html#get-features-information"><i class="fa fa-check"></i><b>2.2</b> Get features information</a></li>
+<li class="chapter" data-level="2.3" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-sequnence"><i class="fa fa-check"></i><b>2.3</b> Extract sequnence</a></li>
+<li class="chapter" data-level="2.4" data-path="extract-sequence.html"><a href="extract-sequence.html#get-inrton-information"><i class="fa fa-check"></i><b>2.4</b> Get inrton information</a></li>
+<li class="chapter" data-level="2.5" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-promoters"><i class="fa fa-check"></i><b>2.5</b> Extract promoters</a></li>
+<li class="chapter" data-level="2.6" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-non-redundant-transcript-length"><i class="fa fa-check"></i><b>2.6</b> Extract non-redundant transcript length</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html"><i class="fa fa-check"></i><b>3</b> Draw chromosome ideograms</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#downloading-related-data"><i class="fa fa-check"></i><b>3.1</b> Downloading related data</a></li>
+<li class="chapter" data-level="3.2" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#making-plot"><i class="fa fa-check"></i><b>3.2</b> Making plot</a></li>
+<li class="chapter" data-level="3.3" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#drawing-gene-density-manually"><i class="fa fa-check"></i><b>3.3</b> Drawing gene density manually</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="track-data-input.html"><a href="track-data-input.html"><i class="fa fa-check"></i><b>4</b> Track data input</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="track-data-input.html"><a href="track-data-input.html#load-signal-data"><i class="fa fa-check"></i><b>4.1</b> Load signal data</a></li>
+<li class="chapter" data-level="4.2" data-path="track-data-input.html"><a href="track-data-input.html#load-peaks-data"><i class="fa fa-check"></i><b>4.2</b> Load peaks data</a></li>
+<li class="chapter" data-level="4.3" data-path="track-data-input.html"><a href="track-data-input.html#load-links-data"><i class="fa fa-check"></i><b>4.3</b> Load links data</a></li>
+<li class="chapter" data-level="4.4" data-path="track-data-input.html"><a href="track-data-input.html#load-hic-related-data"><i class="fa fa-check"></i><b>4.4</b> Load Hic related data</a></li>
+<li class="chapter" data-level="4.5" data-path="track-data-input.html"><a href="track-data-input.html#extract-junction-data"><i class="fa fa-check"></i><b>4.5</b> Extract junction data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="basic-visualization.html"><a href="basic-visualization.html"><i class="fa fa-check"></i><b>5</b> Basic visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="basic-visualization.html"><a href="basic-visualization.html#basic-plot"><i class="fa fa-check"></i><b>5.1</b> Basic plot</a></li>
+<li class="chapter" data-level="5.2" data-path="basic-visualization.html"><a href="basic-visualization.html#signal-range-settings"><i class="fa fa-check"></i><b>5.2</b> Signal range settings</a></li>
+<li class="chapter" data-level="5.3" data-path="basic-visualization.html"><a href="basic-visualization.html#transcript-track-settings"><i class="fa fa-check"></i><b>5.3</b> Transcript track settings</a></li>
+<li class="chapter" data-level="5.4" data-path="basic-visualization.html"><a href="basic-visualization.html#intron-line-type"><i class="fa fa-check"></i><b>5.4</b> Intron line type</a></li>
+<li class="chapter" data-level="5.5" data-path="basic-visualization.html"><a href="basic-visualization.html#x-axis-limitation"><i class="fa fa-check"></i><b>5.5</b> X axis limitation</a></li>
+<li class="chapter" data-level="5.6" data-path="basic-visualization.html"><a href="basic-visualization.html#background-and-highlight-region-settings"><i class="fa fa-check"></i><b>5.6</b> Background and highlight region settings</a></li>
+<li class="chapter" data-level="5.7" data-path="basic-visualization.html"><a href="basic-visualization.html#order-for-genes-and-samples"><i class="fa fa-check"></i><b>5.7</b> Order for genes and samples</a></li>
+<li class="chapter" data-level="5.8" data-path="basic-visualization.html"><a href="basic-visualization.html#adding-group-information-for-genes-and-samples"><i class="fa fa-check"></i><b>5.8</b> Adding group information for genes and samples</a></li>
+<li class="chapter" data-level="5.9" data-path="basic-visualization.html"><a href="basic-visualization.html#strip-settings"><i class="fa fa-check"></i><b>5.9</b> Strip settings</a></li>
+<li class="chapter" data-level="5.10" data-path="basic-visualization.html"><a href="basic-visualization.html#draw-chromosome-annotation"><i class="fa fa-check"></i><b>5.10</b> Draw chromosome annotation</a></li>
+<li class="chapter" data-level="5.11" data-path="basic-visualization.html"><a href="basic-visualization.html#plot-with-specified-genomic-region"><i class="fa fa-check"></i><b>5.11</b> Plot with specified genomic region</a></li>
+<li class="chapter" data-level="5.12" data-path="basic-visualization.html"><a href="basic-visualization.html#adding-peaks-track"><i class="fa fa-check"></i><b>5.12</b> Adding peaks track</a></li>
+<li class="chapter" data-level="5.13" data-path="basic-visualization.html"><a href="basic-visualization.html#extending-bases-upstream-and-downstream"><i class="fa fa-check"></i><b>5.13</b> Extending bases upstream and downstream</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="loops-visualization.html"><a href="loops-visualization.html"><i class="fa fa-check"></i><b>6</b> Loops visualization</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="loops-visualization.html"><a href="loops-visualization.html#input-data-prepration"><i class="fa fa-check"></i><b>6.1</b> Input data prepration</a></li>
+<li class="chapter" data-level="6.2" data-path="loops-visualization.html"><a href="loops-visualization.html#basic-loops-visualization"><i class="fa fa-check"></i><b>6.2</b> Basic loops visualization</a></li>
+<li class="chapter" data-level="6.3" data-path="loops-visualization.html"><a href="loops-visualization.html#reverse-y-axis"><i class="fa fa-check"></i><b>6.3</b> Reverse Y axis</a></li>
+<li class="chapter" data-level="6.4" data-path="loops-visualization.html"><a href="loops-visualization.html#combing-with-chromosome-track"><i class="fa fa-check"></i><b>6.4</b> Combing with chromosome track</a></li>
+<li class="chapter" data-level="6.5" data-path="loops-visualization.html"><a href="loops-visualization.html#higlight-regions"><i class="fa fa-check"></i><b>6.5</b> Higlight regions</a></li>
+<li class="chapter" data-level="6.6" data-path="loops-visualization.html"><a href="loops-visualization.html#drawing-only-loop-tracks"><i class="fa fa-check"></i><b>6.6</b> Drawing only loop tracks</a></li>
+<li class="chapter" data-level="6.7" data-path="loops-visualization.html"><a href="loops-visualization.html#curve-geoms-choosing"><i class="fa fa-check"></i><b>6.7</b> Curve geoms choosing</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html"><i class="fa fa-check"></i><b>7</b> Hic heatmap visualization</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#data-preperation"><i class="fa fa-check"></i><b>7.1</b> Data preperation</a></li>
+<li class="chapter" data-level="7.2" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#basic-plot-1"><i class="fa fa-check"></i><b>7.2</b> Basic plot</a></li>
+<li class="chapter" data-level="7.3" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#real-data-practice"><i class="fa fa-check"></i><b>7.3</b> Real data practice</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html"><i class="fa fa-check"></i><b>8</b> Splice junction visualization</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html#data-pareparation"><i class="fa fa-check"></i><b>8.1</b> Data pareparation</a></li>
+<li class="chapter" data-level="8.2" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html#visualization"><i class="fa fa-check"></i><b>8.2</b> Visualization</a></li>
+<li class="chapter" data-level="8.3" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html#section"><i class="fa fa-check"></i><b>8.3</b> <img src="local_images/t81.png" style="width:100.0%" /></a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="other-funs.html"><a href="other-funs.html"><i class="fa fa-check"></i><b>9</b> Other funs</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="other-funs.html"><a href="other-funs.html#transcript-coordinate-transformation"><i class="fa fa-check"></i><b>9.1</b> Transcript coordinate transformation</a></li>
+<li class="chapter" data-level="9.2" data-path="other-funs.html"><a href="other-funs.html#track-overlap"><i class="fa fa-check"></i><b>9.2</b> Track overlap</a></li>
+<li class="chapter" data-level="9.3" data-path="other-funs.html"><a href="other-funs.html#extend-coordinate-for-gene"><i class="fa fa-check"></i><b>9.3</b> Extend coordinate for gene</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="frequntlly-asked-questions.html"><a href="frequntlly-asked-questions.html"><i class="fa fa-check"></i><b>10</b> Frequntlly asked questions</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BioSeqUtils Reference</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="basic-visualization" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Basic visualization<a href="basic-visualization.html#basic-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>There are multiple chapters to illustrate how to use <strong>trackVisProMax</strong> draw
+basic tracks.</p>
+<blockquote>
+<p>Raw fastqs can be fetched <a href="https://ngdc.cncb.ac.cn/gsa/browse/CRA003985"><strong>CRA003985</strong></a>,
+You need download them and map to genome and convert bam files to bigwig format.</p>
+</blockquote>
+<p>First we load test data into R:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="basic-visualization.html#cb25-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb25-2"><a href="basic-visualization.html#cb25-2" tabindex="-1"></a><span class="fu">library</span>(BioSeqUtils)</span>
+<span id="cb25-3"><a href="basic-visualization.html#cb25-3" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="basic-visualization.html#cb25-4" tabindex="-1"></a><span class="co"># load bigwig files</span></span>
+<span id="cb25-5"><a href="basic-visualization.html#cb25-5" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">&quot;test-bw/&quot;</span>,<span class="at">pattern =</span> <span class="st">&#39;.bw&#39;</span>,<span class="at">full.names =</span> T)</span>
+<span id="cb25-6"><a href="basic-visualization.html#cb25-6" tabindex="-1"></a>file</span>
+<span id="cb25-7"><a href="basic-visualization.html#cb25-7" tabindex="-1"></a><span class="co"># [1] &quot;test-bw/1cell-m6A-1.bw&quot; &quot;test-bw/1cell-m6A-2.bw&quot; &quot;test-bw/1cell-RNA-1.bw&quot;</span></span>
+<span id="cb25-8"><a href="basic-visualization.html#cb25-8" tabindex="-1"></a><span class="co"># [4] &quot;test-bw/1cell-RNA-2.bw&quot; &quot;test-bw/2cell-m6A-1.bw&quot; &quot;test-bw/2cell-m6A-2.bw&quot;</span></span>
+<span id="cb25-9"><a href="basic-visualization.html#cb25-9" tabindex="-1"></a><span class="co"># [7] &quot;test-bw/2cell-RNA-1.bw&quot; &quot;test-bw/2cell-RNA-2.bw&quot;</span></span>
+<span id="cb25-10"><a href="basic-visualization.html#cb25-10" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="basic-visualization.html#cb25-11" tabindex="-1"></a><span class="co"># select some chromosomes for test</span></span>
+<span id="cb25-12"><a href="basic-visualization.html#cb25-12" tabindex="-1"></a>bw <span class="ot">&lt;-</span> <span class="fu">loadBigWig</span>(file,<span class="at">chrom =</span> <span class="fu">c</span>(<span class="st">&quot;5&quot;</span>,<span class="st">&quot;15&quot;</span>))</span>
+<span id="cb25-13"><a href="basic-visualization.html#cb25-13" tabindex="-1"></a></span>
+<span id="cb25-14"><a href="basic-visualization.html#cb25-14" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb25-15"><a href="basic-visualization.html#cb25-15" tabindex="-1"></a><span class="fu">head</span>(bw,<span class="dv">3</span>)</span>
+<span id="cb25-16"><a href="basic-visualization.html#cb25-16" tabindex="-1"></a><span class="co">#   seqnames   start     end   score    fileName</span></span>
+<span id="cb25-17"><a href="basic-visualization.html#cb25-17" tabindex="-1"></a><span class="co"># 1       15       1 3054635 0.00000 1cell-m6A-1</span></span>
+<span id="cb25-18"><a href="basic-visualization.html#cb25-18" tabindex="-1"></a><span class="co"># 2       15 3054636 3054640 1.34079 1cell-m6A-1</span></span>
+<span id="cb25-19"><a href="basic-visualization.html#cb25-19" tabindex="-1"></a><span class="co"># 3       15 3054641 3054715 2.68159 1cell-m6A-1</span></span>
+<span id="cb25-20"><a href="basic-visualization.html#cb25-20" tabindex="-1"></a></span>
+<span id="cb25-21"><a href="basic-visualization.html#cb25-21" tabindex="-1"></a><span class="co"># gtf</span></span>
+<span id="cb25-22"><a href="basic-visualization.html#cb25-22" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import.gff</span>(<span class="st">&quot;Mus_musculus.GRCm38.102.gtf&quot;</span>,<span class="at">format =</span> <span class="st">&quot;gtf&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-23"><a href="basic-visualization.html#cb25-23" tabindex="-1"></a>  <span class="fu">data.frame</span>() </span></code></pre></div>
+<div id="basic-plot" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Basic plot<a href="basic-visualization.html#basic-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Plot with given one gene symbol (<strong><em>make sure the <u>gene_name</u> column in your annotation file</em></strong>):</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="basic-visualization.html#cb26-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb26-2"><a href="basic-visualization.html#cb26-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb26-3"><a href="basic-visualization.html#cb26-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Kmt2d&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t1.png" style="width:100.0%" /></p>
+<p>Plot multiple genes at the same time:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="basic-visualization.html#cb27-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb27-2"><a href="basic-visualization.html#cb27-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb27-3"><a href="basic-visualization.html#cb27-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Kmt2d&quot;</span>,<span class="st">&quot;Dnaaf5&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t2.png" style="width:100.0%" />
+Change track colors with color vectors:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="basic-visualization.html#cb28-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb28-2"><a href="basic-visualization.html#cb28-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb28-3"><a href="basic-visualization.html#cb28-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Kmt2d&quot;</span>),</span>
+<span id="cb28-4"><a href="basic-visualization.html#cb28-4" tabindex="-1"></a>               <span class="at">sample_fill_col =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;red&quot;</span>,<span class="st">&quot;grey50&quot;</span>,<span class="st">&quot;grey50&quot;</span>),<span class="dv">3</span>)))</span></code></pre></div>
+<p><img src="local_images/t3.png" style="width:100.0%" /></p>
+<p>Or you can give a named vector to assign colors for each track:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="basic-visualization.html#cb29-1" tabindex="-1"></a>trmycol <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1cell-m6A-1&quot;</span> <span class="ot">=</span> <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;1cell-m6A-2&quot;</span> <span class="ot">=</span> <span class="st">&quot;orange&quot;</span>, </span>
+<span id="cb29-2"><a href="basic-visualization.html#cb29-2" tabindex="-1"></a>           <span class="st">&quot;1cell-RNA-1&quot;</span> <span class="ot">=</span> <span class="st">&quot;green&quot;</span>, <span class="st">&quot;1cell-RNA-2&quot;</span>  <span class="ot">=</span> <span class="st">&quot;green&quot;</span>,</span>
+<span id="cb29-3"><a href="basic-visualization.html#cb29-3" tabindex="-1"></a>           <span class="st">&quot;2cell-m6A-1&quot;</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;2cell-m6A-2&quot;</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb29-4"><a href="basic-visualization.html#cb29-4" tabindex="-1"></a>           <span class="st">&quot;2cell-RNA-1&quot;</span> <span class="ot">=</span> <span class="st">&quot;pink&quot;</span>, <span class="st">&quot;2cell-RNA-2&quot;</span> <span class="ot">=</span> <span class="st">&quot;pink&quot;</span>)</span>
+<span id="cb29-5"><a href="basic-visualization.html#cb29-5" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="basic-visualization.html#cb29-6" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb29-7"><a href="basic-visualization.html#cb29-7" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb29-8"><a href="basic-visualization.html#cb29-8" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Kmt2d&quot;</span>),</span>
+<span id="cb29-9"><a href="basic-visualization.html#cb29-9" tabindex="-1"></a>               <span class="at">sample_fill_col =</span> mycol)</span></code></pre></div>
+<p><img src="local_images/t4.png" style="width:100.0%" /></p>
+<p>Adding genomic region label:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="basic-visualization.html#cb30-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb30-2"><a href="basic-visualization.html#cb30-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb30-3"><a href="basic-visualization.html#cb30-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Kmt2d&quot;</span>,<span class="st">&quot;Dnaaf5&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>),</span>
+<span id="cb30-4"><a href="basic-visualization.html#cb30-4" tabindex="-1"></a>               <span class="at">add_gene_region_label =</span> T)</span></code></pre></div>
+<p><img src="local_images/t5.png" style="width:100.0%" /></p>
+<p>Adding legend:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="basic-visualization.html#cb31-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb31-2"><a href="basic-visualization.html#cb31-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb31-3"><a href="basic-visualization.html#cb31-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Kmt2d&quot;</span>,<span class="st">&quot;Dnaaf5&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>),</span>
+<span id="cb31-4"><a href="basic-visualization.html#cb31-4" tabindex="-1"></a>               <span class="at">add_gene_region_label =</span> T,</span>
+<span id="cb31-5"><a href="basic-visualization.html#cb31-5" tabindex="-1"></a>               <span class="at">signal_layer_bw_params =</span> <span class="fu">list</span>(<span class="at">show.legend =</span> T))</span></code></pre></div>
+<p><img src="local_images/t6.png" style="width:100.0%" /></p>
+<hr />
+</div>
+<div id="signal-range-settings" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Signal range settings<a href="basic-visualization.html#signal-range-settings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>signal_range_pos</strong> can be used to change the y axis limitation range label position:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="basic-visualization.html#cb32-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb32-2"><a href="basic-visualization.html#cb32-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb32-3"><a href="basic-visualization.html#cb32-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Kmt2d&quot;</span>,<span class="st">&quot;Dnaaf5&quot;</span>),</span>
+<span id="cb32-4"><a href="basic-visualization.html#cb32-4" tabindex="-1"></a>               <span class="at">signal_range_pos =</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.85</span>))</span></code></pre></div>
+<p><img src="local_images/t7.png" style="width:100.0%" /></p>
+<p><strong>signal_range_label_params</strong> can be used to change the y label styles:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="basic-visualization.html#cb33-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb33-2"><a href="basic-visualization.html#cb33-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb33-3"><a href="basic-visualization.html#cb33-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Kmt2d&quot;</span>,<span class="st">&quot;Dnaaf5&quot;</span>),</span>
+<span id="cb33-4"><a href="basic-visualization.html#cb33-4" tabindex="-1"></a>               <span class="at">signal_range_pos =</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.85</span>),</span>
+<span id="cb33-5"><a href="basic-visualization.html#cb33-5" tabindex="-1"></a>               <span class="at">signal_range_label_params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">2</span>,<span class="at">color =</span> <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t8.png" style="width:100.0%" /></p>
+<p>As you can see, the signal range is same by each column panel, you can set
+<strong>fixed_column_range = F</strong> to make free scales for each panel:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="basic-visualization.html#cb34-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb34-2"><a href="basic-visualization.html#cb34-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb34-3"><a href="basic-visualization.html#cb34-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Kmt2d&quot;</span>,<span class="st">&quot;Dnaaf5&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>),</span>
+<span id="cb34-4"><a href="basic-visualization.html#cb34-4" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F)</span></code></pre></div>
+<p><img src="local_images/t9.png" style="width:100.0%" /></p>
+<p>Giving a named list with named vectors to control signal range for each panel:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="basic-visualization.html#cb35-1" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1cell-m6A-1&quot;</span>,<span class="st">&quot;1cell-m6A-2&quot;</span>,<span class="st">&quot;1cell-RNA-1&quot;</span>,<span class="st">&quot;1cell-RNA-2&quot;</span>,</span>
+<span id="cb35-2"><a href="basic-visualization.html#cb35-2" tabindex="-1"></a>            <span class="st">&quot;2cell-m6A-1&quot;</span>,<span class="st">&quot;2cell-m6A-2&quot;</span>,<span class="st">&quot;2cell-RNA-1&quot;</span>,<span class="st">&quot;2cell-RNA-2&quot;</span>)</span>
+<span id="cb35-3"><a href="basic-visualization.html#cb35-3" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="basic-visualization.html#cb35-4" tabindex="-1"></a>Kmt2d_rg <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">4000</span>,<span class="dv">2</span>),<span class="fu">rep</span>(<span class="dv">8000</span>,<span class="dv">2</span>),<span class="fu">rep</span>(<span class="dv">4000</span>,<span class="dv">4</span>))</span>
+<span id="cb35-5"><a href="basic-visualization.html#cb35-5" tabindex="-1"></a><span class="fu">names</span>(Kmt2d_rg) <span class="ot">&lt;-</span> sample</span>
+<span id="cb35-6"><a href="basic-visualization.html#cb35-6" tabindex="-1"></a>Kmt2d_rg</span>
+<span id="cb35-7"><a href="basic-visualization.html#cb35-7" tabindex="-1"></a><span class="co"># 1cell-m6A-1 1cell-m6A-2 1cell-RNA-1 1cell-RNA-2 2cell-m6A-1 2cell-m6A-2 2cell-RNA-1 2cell-RNA-2 </span></span>
+<span id="cb35-8"><a href="basic-visualization.html#cb35-8" tabindex="-1"></a><span class="co"># 4000        4000        8000        8000        4000        4000        4000        4000 </span></span>
+<span id="cb35-9"><a href="basic-visualization.html#cb35-9" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="basic-visualization.html#cb35-10" tabindex="-1"></a>Dnaaf5_rg <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1000</span>,<span class="dv">2</span>),<span class="fu">rep</span>(<span class="dv">5000</span>,<span class="dv">2</span>),<span class="fu">rep</span>(<span class="dv">2000</span>,<span class="dv">4</span>))</span>
+<span id="cb35-11"><a href="basic-visualization.html#cb35-11" tabindex="-1"></a><span class="fu">names</span>(Dnaaf5_rg) <span class="ot">&lt;-</span> sample</span>
+<span id="cb35-12"><a href="basic-visualization.html#cb35-12" tabindex="-1"></a>Dnaaf5_rg</span>
+<span id="cb35-13"><a href="basic-visualization.html#cb35-13" tabindex="-1"></a><span class="co"># 1cell-m6A-1 1cell-m6A-2 1cell-RNA-1 1cell-RNA-2 2cell-m6A-1 2cell-m6A-2 2cell-RNA-1 2cell-RNA-2 </span></span>
+<span id="cb35-14"><a href="basic-visualization.html#cb35-14" tabindex="-1"></a><span class="co"># 1000        1000        5000        5000        2000        2000        2000        2000 </span></span>
+<span id="cb35-15"><a href="basic-visualization.html#cb35-15" tabindex="-1"></a></span>
+<span id="cb35-16"><a href="basic-visualization.html#cb35-16" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb35-17"><a href="basic-visualization.html#cb35-17" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb35-18"><a href="basic-visualization.html#cb35-18" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Kmt2d&quot;</span>,<span class="st">&quot;Dnaaf5&quot;</span>),</span>
+<span id="cb35-19"><a href="basic-visualization.html#cb35-19" tabindex="-1"></a>               <span class="at">signal_range =</span> <span class="fu">list</span>(<span class="at">Kmt2d =</span> Kmt2d_rg,</span>
+<span id="cb35-20"><a href="basic-visualization.html#cb35-20" tabindex="-1"></a>                                   <span class="at">Dnaaf5 =</span> Dnaaf5_rg))</span></code></pre></div>
+<p><img src="local_images/t10.png" style="width:100.0%" />
+You can even set a range for a specified panel:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="basic-visualization.html#cb36-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb36-2"><a href="basic-visualization.html#cb36-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb36-3"><a href="basic-visualization.html#cb36-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Kmt2d&quot;</span>,<span class="st">&quot;Dnaaf5&quot;</span>),</span>
+<span id="cb36-4"><a href="basic-visualization.html#cb36-4" tabindex="-1"></a>               <span class="at">signal_range =</span> <span class="fu">list</span>(<span class="at">Kmt2d =</span> <span class="fu">c</span>(<span class="st">&quot;1cell-m6A-1&quot;</span> <span class="ot">=</span> <span class="dv">8000</span>),</span>
+<span id="cb36-5"><a href="basic-visualization.html#cb36-5" tabindex="-1"></a>                                   <span class="at">Dnaaf5 =</span> <span class="fu">c</span>(<span class="st">&quot;1cell-m6A-1&quot;</span> <span class="ot">=</span> <span class="dv">1000</span>)))</span></code></pre></div>
+<p><img src="local_images/t11.png" style="width:100.0%" /></p>
+<p>Containing negative values in signal file is also supported. Here we set the
+score range in <strong>(-500,500)</strong> and plot:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="basic-visualization.html#cb37-1" tabindex="-1"></a><span class="co"># load bigwig files</span></span>
+<span id="cb37-2"><a href="basic-visualization.html#cb37-2" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">&quot;test-bw/&quot;</span>,<span class="at">pattern =</span> <span class="st">&#39;.bw&#39;</span>,<span class="at">full.names =</span> T)[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb37-3"><a href="basic-visualization.html#cb37-3" tabindex="-1"></a>file</span>
+<span id="cb37-4"><a href="basic-visualization.html#cb37-4" tabindex="-1"></a><span class="co"># [1] &quot;test-bw/1cell-m6A-1.bw&quot; &quot;test-bw/1cell-m6A-2.bw&quot; </span></span>
+<span id="cb37-5"><a href="basic-visualization.html#cb37-5" tabindex="-1"></a><span class="co"># &quot;test-bw/1cell-RNA-1.bw&quot; &quot;test-bw/1cell-RNA-2.bw&quot;</span></span>
+<span id="cb37-6"><a href="basic-visualization.html#cb37-6" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="basic-visualization.html#cb37-7" tabindex="-1"></a><span class="co"># select some chromosomes for test</span></span>
+<span id="cb37-8"><a href="basic-visualization.html#cb37-8" tabindex="-1"></a>bw <span class="ot">&lt;-</span> <span class="fu">loadBigWig</span>(file,<span class="at">chrom =</span> <span class="fu">c</span>(<span class="st">&quot;5&quot;</span>,<span class="st">&quot;15&quot;</span>))</span>
+<span id="cb37-9"><a href="basic-visualization.html#cb37-9" tabindex="-1"></a>bw<span class="sc">$</span>score <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq</span>(<span class="sc">-</span><span class="dv">500</span>,<span class="dv">500</span>,<span class="fl">0.5</span>),<span class="at">size =</span> <span class="fu">nrow</span>(bw),<span class="at">replace =</span> T)</span>
+<span id="cb37-10"><a href="basic-visualization.html#cb37-10" tabindex="-1"></a></span>
+<span id="cb37-11"><a href="basic-visualization.html#cb37-11" tabindex="-1"></a><span class="co"># gtf</span></span>
+<span id="cb37-12"><a href="basic-visualization.html#cb37-12" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import.gff</span>(<span class="st">&quot;Mus_musculus.GRCm38.102.gtf&quot;</span>,<span class="at">format =</span> <span class="st">&quot;gtf&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-13"><a href="basic-visualization.html#cb37-13" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
+<span id="cb37-14"><a href="basic-visualization.html#cb37-14" tabindex="-1"></a></span>
+<span id="cb37-15"><a href="basic-visualization.html#cb37-15" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb37-16"><a href="basic-visualization.html#cb37-16" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb37-17"><a href="basic-visualization.html#cb37-17" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Utp3&quot;</span>,<span class="st">&quot;Chpf2&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t11_1.png" style="width:100.0%" />
+If you want to control the <strong>minimum value</strong> and <strong>maximum value</strong> for each panel, you can
+give <strong>a named list with 2 element vectors in a named list</strong> for <strong>signal_range</strong>
+parameter, here we show an example:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="basic-visualization.html#cb38-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb38-2"><a href="basic-visualization.html#cb38-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb38-3"><a href="basic-visualization.html#cb38-3" tabindex="-1"></a>               <span class="at">signal_range =</span> <span class="fu">list</span>(<span class="at">Utp3 =</span> <span class="fu">list</span>(<span class="st">&quot;1cell-m6A-1&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1000</span>,<span class="dv">1000</span>),</span>
+<span id="cb38-4"><a href="basic-visualization.html#cb38-4" tabindex="-1"></a>                                               <span class="st">&quot;1cell-m6A-2&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1000</span>),</span>
+<span id="cb38-5"><a href="basic-visualization.html#cb38-5" tabindex="-1"></a>                                               <span class="st">&quot;1cell-RNA-1&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1000</span>,<span class="dv">1000</span>),</span>
+<span id="cb38-6"><a href="basic-visualization.html#cb38-6" tabindex="-1"></a>                                               <span class="st">&quot;1cell-RNA-2&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1000</span>,<span class="dv">0</span>)),</span>
+<span id="cb38-7"><a href="basic-visualization.html#cb38-7" tabindex="-1"></a>                                   <span class="at">Chpf2 =</span> <span class="fu">c</span>(<span class="st">&quot;1cell-m6A-1&quot;</span> <span class="ot">=</span> <span class="dv">1000</span>,</span>
+<span id="cb38-8"><a href="basic-visualization.html#cb38-8" tabindex="-1"></a>                                             <span class="st">&quot;1cell-RNA-2&quot;</span> <span class="ot">=</span> <span class="dv">500</span>)),</span>
+<span id="cb38-9"><a href="basic-visualization.html#cb38-9" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Utp3&quot;</span>,<span class="st">&quot;Chpf2&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t11_2.png" style="width:100.0%" /></p>
+<p>The genomic coordinate region id has been your gene mark to change the range for
+each panel:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="basic-visualization.html#cb39-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb39-2"><a href="basic-visualization.html#cb39-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb39-3"><a href="basic-visualization.html#cb39-3" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="fu">c</span>(<span class="st">&quot;5&quot;</span>,<span class="st">&quot;15&quot;</span>),</span>
+<span id="cb39-4"><a href="basic-visualization.html#cb39-4" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="fu">c</span>(<span class="dv">65438603</span>,<span class="dv">9263295</span>),</span>
+<span id="cb39-5"><a href="basic-visualization.html#cb39-5" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="fu">c</span>(<span class="dv">65834288</span>,<span class="dv">9785835</span>)),</span>
+<span id="cb39-6"><a href="basic-visualization.html#cb39-6" tabindex="-1"></a>               <span class="at">signal_range =</span> <span class="fu">list</span>(<span class="st">&quot;chr5:65438603-65834288&quot;</span> <span class="ot">=</span> </span>
+<span id="cb39-7"><a href="basic-visualization.html#cb39-7" tabindex="-1"></a>                                     <span class="fu">c</span>(<span class="st">&quot;1cell-m6A-1&quot;</span> <span class="ot">=</span> <span class="dv">4000</span>,<span class="st">&quot;1cell-m6A-2&quot;</span> <span class="ot">=</span> <span class="dv">3000</span>,</span>
+<span id="cb39-8"><a href="basic-visualization.html#cb39-8" tabindex="-1"></a>                                       <span class="st">&quot;1cell-RNA-1&quot;</span> <span class="ot">=</span> <span class="dv">2000</span>,<span class="st">&quot;1cell-RNA-2&quot;</span> <span class="ot">=</span> <span class="dv">1000</span>))) </span></code></pre></div>
+<p><img src="local_images/t11_3.png" style="width:100.0%" /></p>
+</div>
+<div id="transcript-track-settings" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Transcript track settings<a href="basic-visualization.html#transcript-track-settings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here we illustrate some related parameters to draw the transcript track. <strong>trans_topN</strong> is
+used to control how many transcripts for a gene to be drawn in the track. The default
+is to show top 2 longest transcripts according to their transcipt exon length. You
+can change it with other values:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="basic-visualization.html#cb40-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb40-2"><a href="basic-visualization.html#cb40-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb40-3"><a href="basic-visualization.html#cb40-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Dnaaf5&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>),</span>
+<span id="cb40-4"><a href="basic-visualization.html#cb40-4" tabindex="-1"></a>               <span class="at">trans_topN =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="local_images/t12.png" style="width:100.0%" /></p>
+<p>Showing top 5 transcripts:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="basic-visualization.html#cb41-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb41-2"><a href="basic-visualization.html#cb41-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb41-3"><a href="basic-visualization.html#cb41-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Dnaaf5&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>),</span>
+<span id="cb41-4"><a href="basic-visualization.html#cb41-4" tabindex="-1"></a>               <span class="at">trans_topN =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="local_images/t13.png" style="width:100.0%" /></p>
+<p><strong>collapse_trans</strong> parameter allows you to collapse all transcripts you have
+shown in the <strong><em>trans</em></strong> track:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="basic-visualization.html#cb42-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb42-2"><a href="basic-visualization.html#cb42-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb42-3"><a href="basic-visualization.html#cb42-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Dnaaf5&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>),</span>
+<span id="cb42-4"><a href="basic-visualization.html#cb42-4" tabindex="-1"></a>               <span class="at">trans_topN =</span> <span class="dv">5</span>,</span>
+<span id="cb42-5"><a href="basic-visualization.html#cb42-5" tabindex="-1"></a>               <span class="at">collapse_trans =</span> T)</span></code></pre></div>
+<p><img src="local_images/t14.png" style="width:100.0%" /></p>
+<p>Setting <strong>trans_topN = “all”</strong> which can show all transcripts for a gene:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="basic-visualization.html#cb43-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb43-2"><a href="basic-visualization.html#cb43-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb43-3"><a href="basic-visualization.html#cb43-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Dnaaf5&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>),</span>
+<span id="cb43-4"><a href="basic-visualization.html#cb43-4" tabindex="-1"></a>               <span class="at">trans_topN =</span> <span class="st">&quot;all&quot;</span>)</span></code></pre></div>
+<p><img src="local_images/t15.png" style="width:100.0%" /></p>
+<p>You can also collapse the transcripts:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="basic-visualization.html#cb44-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb44-2"><a href="basic-visualization.html#cb44-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb44-3"><a href="basic-visualization.html#cb44-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Dnaaf5&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>),</span>
+<span id="cb44-4"><a href="basic-visualization.html#cb44-4" tabindex="-1"></a>               <span class="at">trans_topN =</span> <span class="st">&quot;all&quot;</span>,</span>
+<span id="cb44-5"><a href="basic-visualization.html#cb44-5" tabindex="-1"></a>               <span class="at">collapse_trans =</span> T)</span></code></pre></div>
+<p><img src="local_images/t16.png" style="width:100.0%" /></p>
+<p><strong>rel_len</strong> control the arrow densities on transcript, you can check <strong>createSegment</strong>
+function for details. <strong>arrow_rel_len_params_list</strong> accepts a list parameters to
+control how the arrows be generated. <strong>rel_len</strong> smaller, the more arrows be generated:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="basic-visualization.html#cb45-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb45-2"><a href="basic-visualization.html#cb45-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb45-3"><a href="basic-visualization.html#cb45-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb45-4"><a href="basic-visualization.html#cb45-4" tabindex="-1"></a>               <span class="at">arrow_rel_len_params_list =</span> <span class="fu">list</span>(<span class="at">rel_len =</span> <span class="fl">0.2</span>))</span></code></pre></div>
+<p><img src="local_images/t17.png" style="width:100.0%" /></p>
+<p>More controls for arrows:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="basic-visualization.html#cb46-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb46-2"><a href="basic-visualization.html#cb46-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb46-3"><a href="basic-visualization.html#cb46-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb46-4"><a href="basic-visualization.html#cb46-4" tabindex="-1"></a>               <span class="at">arrow_rel_len_params_list =</span> <span class="fu">list</span>(<span class="at">rel_len =</span> <span class="fl">0.15</span>),</span>
+<span id="cb46-5"><a href="basic-visualization.html#cb46-5" tabindex="-1"></a>               <span class="at">trans_exon_arrow_params =</span> <span class="fu">list</span>(<span class="at">fill =</span> <span class="st">&quot;red&quot;</span>,<span class="at">color =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb46-6"><a href="basic-visualization.html#cb46-6" tabindex="-1"></a>                                              <span class="at">linewidth =</span> <span class="dv">1</span>))</span></code></pre></div>
+<p><img src="local_images/t18.png" style="width:100.0%" /></p>
+<p>Changing arrow styles:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="basic-visualization.html#cb47-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb47-2"><a href="basic-visualization.html#cb47-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb47-3"><a href="basic-visualization.html#cb47-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb47-4"><a href="basic-visualization.html#cb47-4" tabindex="-1"></a>               <span class="at">arrow_rel_len_params_list =</span> <span class="fu">list</span>(<span class="at">rel_len =</span> <span class="fl">0.15</span>),</span>
+<span id="cb47-5"><a href="basic-visualization.html#cb47-5" tabindex="-1"></a>               <span class="at">trans_exon_arrow_params =</span> <span class="fu">list</span>(<span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">type =</span> <span class="st">&quot;open&quot;</span>,</span>
+<span id="cb47-6"><a href="basic-visualization.html#cb47-6" tabindex="-1"></a>                                                            <span class="at">length =</span> <span class="fu">unit</span>(<span class="dv">3</span>,<span class="st">&quot;mm&quot;</span>))))</span></code></pre></div>
+<p><img src="local_images/t19.png" style="width:100.0%" /></p>
+<p>Changing arrow colors:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="basic-visualization.html#cb48-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb48-2"><a href="basic-visualization.html#cb48-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb48-3"><a href="basic-visualization.html#cb48-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb48-4"><a href="basic-visualization.html#cb48-4" tabindex="-1"></a>               <span class="at">trans_exon_col_params =</span> <span class="fu">list</span>(<span class="at">fill =</span> <span class="st">&quot;black&quot;</span>,<span class="at">color =</span> <span class="st">&quot;black&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t20.png" style="width:100.0%" /></p>
+<p><strong>add_gene_label_layer</strong> allows you to mark gene symbols beside the transcript:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="basic-visualization.html#cb49-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb49-2"><a href="basic-visualization.html#cb49-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb49-3"><a href="basic-visualization.html#cb49-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb49-4"><a href="basic-visualization.html#cb49-4" tabindex="-1"></a>               <span class="at">collapse_trans =</span> T,</span>
+<span id="cb49-5"><a href="basic-visualization.html#cb49-5" tabindex="-1"></a>               <span class="at">add_gene_label_layer =</span> T,</span>
+<span id="cb49-6"><a href="basic-visualization.html#cb49-6" tabindex="-1"></a>               <span class="at">gene_label_shift_y =</span> <span class="sc">-</span><span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="local_images/t21.png" style="width:100.0%" /></p>
+<p><strong>exon_width</strong> allows you to change exon width:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="basic-visualization.html#cb50-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb50-2"><a href="basic-visualization.html#cb50-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb50-3"><a href="basic-visualization.html#cb50-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb50-4"><a href="basic-visualization.html#cb50-4" tabindex="-1"></a>               <span class="at">exon_width =</span> <span class="fl">0.9</span>)</span></code></pre></div>
+<p><img src="local_images/t22.png" style="width:100.0%" /></p>
+<p><strong>gene_dist_mark_params</strong> and <strong>gene_dist_mark_text_params</strong> control the segment
+(<strong><em>arrow direction stands for transciption direction</em></strong>) and chromosome label styles upper the transcript:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="basic-visualization.html#cb51-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb51-2"><a href="basic-visualization.html#cb51-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb51-3"><a href="basic-visualization.html#cb51-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>),</span>
+<span id="cb51-4"><a href="basic-visualization.html#cb51-4" tabindex="-1"></a>               <span class="at">gene_dist_mark_params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;blue&quot;</span>,<span class="at">size =</span> <span class="dv">1</span>),</span>
+<span id="cb51-5"><a href="basic-visualization.html#cb51-5" tabindex="-1"></a>               <span class="at">gene_dist_mark_text_params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>,<span class="at">size =</span> <span class="dv">2</span>))</span></code></pre></div>
+<p><img src="local_images/t23.png" style="width:100.0%" /></p>
+<p>Viewing transcript structures for gene if you do not supply with any signal data
+(bigwig,peaks …):</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="basic-visualization.html#cb52-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb52-2"><a href="basic-visualization.html#cb52-2" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Dnaaf5&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t24.png" style="width:100.0%" /></p>
+<p>Showing all transcripts:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="basic-visualization.html#cb53-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb53-2"><a href="basic-visualization.html#cb53-2" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Dnaaf5&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>),</span>
+<span id="cb53-3"><a href="basic-visualization.html#cb53-3" tabindex="-1"></a>               <span class="at">trans_topN =</span> <span class="st">&quot;all&quot;</span>)</span></code></pre></div>
+<p><img src="local_images/t24_1.png" style="width:100.0%" /></p>
+<p>Collapsing all transcripts:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="basic-visualization.html#cb54-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb54-2"><a href="basic-visualization.html#cb54-2" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Dnaaf5&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>),</span>
+<span id="cb54-3"><a href="basic-visualization.html#cb54-3" tabindex="-1"></a>               <span class="at">trans_topN =</span> <span class="st">&quot;all&quot;</span>,</span>
+<span id="cb54-4"><a href="basic-visualization.html#cb54-4" tabindex="-1"></a>               <span class="at">collapse_trans =</span> T)</span></code></pre></div>
+<p><img src="local_images/t24_2.png" style="width:100.0%" /></p>
+<p>Plotting in a genomic region:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="basic-visualization.html#cb55-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb55-2"><a href="basic-visualization.html#cb55-2" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="fu">c</span>(<span class="st">&quot;5&quot;</span>,<span class="st">&quot;15&quot;</span>),</span>
+<span id="cb55-3"><a href="basic-visualization.html#cb55-3" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="fu">c</span>(<span class="dv">65438603</span>,<span class="dv">9263295</span>),</span>
+<span id="cb55-4"><a href="basic-visualization.html#cb55-4" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="fu">c</span>(<span class="dv">65834288</span>,<span class="dv">9785835</span>)))</span></code></pre></div>
+<p><img src="local_images/t24_3.png" style="width:100.0%" /></p>
+<p>Showing all transcripts:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="basic-visualization.html#cb56-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb56-2"><a href="basic-visualization.html#cb56-2" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="fu">c</span>(<span class="st">&quot;5&quot;</span>,<span class="st">&quot;15&quot;</span>),</span>
+<span id="cb56-3"><a href="basic-visualization.html#cb56-3" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="fu">c</span>(<span class="dv">65438603</span>,<span class="dv">9263295</span>),</span>
+<span id="cb56-4"><a href="basic-visualization.html#cb56-4" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="fu">c</span>(<span class="dv">65834288</span>,<span class="dv">9785835</span>)),</span>
+<span id="cb56-5"><a href="basic-visualization.html#cb56-5" tabindex="-1"></a>               <span class="at">trans_topN =</span> <span class="st">&quot;all&quot;</span>)</span></code></pre></div>
+<p><img src="local_images/t24_4.png" style="width:100.0%" /></p>
+<p>You can also map the exon color into different feature types:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="basic-visualization.html#cb57-1" tabindex="-1"></a><span class="co"># gtf</span></span>
+<span id="cb57-2"><a href="basic-visualization.html#cb57-2" tabindex="-1"></a>raw_gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import.gff</span>(<span class="st">&quot;test-bw2/hg19.ncbiRefSeq.gtf.gz&quot;</span>,<span class="at">format =</span> <span class="st">&quot;gtf&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb57-3"><a href="basic-visualization.html#cb57-3" tabindex="-1"></a>  <span class="fu">data.frame</span>() </span>
+<span id="cb57-4"><a href="basic-visualization.html#cb57-4" tabindex="-1"></a></span>
+<span id="cb57-5"><a href="basic-visualization.html#cb57-5" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> raw_gtf,</span>
+<span id="cb57-6"><a href="basic-visualization.html#cb57-6" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;MYC&quot;</span>,<span class="st">&quot;NANOG&quot;</span>,<span class="st">&quot;MALAT1&quot;</span>),</span>
+<span id="cb57-7"><a href="basic-visualization.html#cb57-7" tabindex="-1"></a>               <span class="at">trans_topN =</span> <span class="st">&quot;all&quot;</span>,</span>
+<span id="cb57-8"><a href="basic-visualization.html#cb57-8" tabindex="-1"></a>               <span class="at">trans_exon_col_params =</span> <span class="fu">list</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> type)))</span></code></pre></div>
+<p><img src="local_images/t24_5.png" style="width:100.0%" /></p>
+<p><strong>trans_fill_col</strong> accepts a character vectors or named vectors to control exon
+fill colors:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="basic-visualization.html#cb58-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> raw_gtf,</span>
+<span id="cb58-2"><a href="basic-visualization.html#cb58-2" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;MYC&quot;</span>,<span class="st">&quot;NANOG&quot;</span>,<span class="st">&quot;MALAT1&quot;</span>),</span>
+<span id="cb58-3"><a href="basic-visualization.html#cb58-3" tabindex="-1"></a>               <span class="at">trans_topN =</span> <span class="st">&quot;all&quot;</span>,</span>
+<span id="cb58-4"><a href="basic-visualization.html#cb58-4" tabindex="-1"></a>               <span class="at">trans_exon_col_params =</span> <span class="fu">list</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> type)),</span>
+<span id="cb58-5"><a href="basic-visualization.html#cb58-5" tabindex="-1"></a>               <span class="at">trans_fill_col =</span> ggsci<span class="sc">::</span><span class="fu">pal_igv</span>()(<span class="dv">6</span>))</span></code></pre></div>
+<p><img src="local_images/t24_6.png" style="width:100.0%" /></p>
+<p>Removing the legend:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="basic-visualization.html#cb59-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> raw_gtf,</span>
+<span id="cb59-2"><a href="basic-visualization.html#cb59-2" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;MYC&quot;</span>,<span class="st">&quot;NANOG&quot;</span>,<span class="st">&quot;MALAT1&quot;</span>),</span>
+<span id="cb59-3"><a href="basic-visualization.html#cb59-3" tabindex="-1"></a>               <span class="at">trans_topN =</span> <span class="st">&quot;all&quot;</span>,</span>
+<span id="cb59-4"><a href="basic-visualization.html#cb59-4" tabindex="-1"></a>               <span class="at">trans_exon_col_params =</span> <span class="fu">list</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> type),</span>
+<span id="cb59-5"><a href="basic-visualization.html#cb59-5" tabindex="-1"></a>                                            <span class="at">show.legend =</span> F),</span>
+<span id="cb59-6"><a href="basic-visualization.html#cb59-6" tabindex="-1"></a>               <span class="at">trans_fill_col =</span> ggsci<span class="sc">::</span><span class="fu">pal_locuszoom</span>()(<span class="dv">6</span>))</span></code></pre></div>
+<p><img src="local_images/t24_7.png" style="width:100.0%" /></p>
+</div>
+<div id="intron-line-type" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Intron line type<a href="basic-visualization.html#intron-line-type" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Intron_line_type</strong> allows you to change the intron line type(default “line”):</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="basic-visualization.html#cb60-1" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import.gff</span>(<span class="st">&quot;Homo_sapiens.GRCh38.106.gtf.gz&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb60-2"><a href="basic-visualization.html#cb60-2" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
+<span id="cb60-3"><a href="basic-visualization.html#cb60-3" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="basic-visualization.html#cb60-4" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb60-5"><a href="basic-visualization.html#cb60-5" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;ACTB&quot;</span>,<span class="st">&quot;NANOG&quot;</span>,<span class="st">&quot;YTHDF2&quot;</span>),</span>
+<span id="cb60-6"><a href="basic-visualization.html#cb60-6" tabindex="-1"></a>               <span class="at">Intron_line_type =</span> <span class="st">&quot;chevron&quot;</span>)</span></code></pre></div>
+<p><img src="local_images/intr_1.png" style="width:100.0%" /></p>
+</div>
+<div id="x-axis-limitation" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> X axis limitation<a href="basic-visualization.html#x-axis-limitation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Basiclly <strong>trackVisProMax</strong> is constructed based on the ggplot. But you can’t
+directlly use <strong>ggplot2::xlim</strong> function to adjust the X axis limitation.
+<strong>xlimit_range</strong> parameter is supplied to control the X axis limits which can
+zoom your interested region:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="basic-visualization.html#cb61-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb61-2"><a href="basic-visualization.html#cb61-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb61-3"><a href="basic-visualization.html#cb61-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>),</span>
+<span id="cb61-4"><a href="basic-visualization.html#cb61-4" tabindex="-1"></a>               <span class="at">xlimit_range =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">142904344</span>,<span class="dv">142904782</span>),</span>
+<span id="cb61-5"><a href="basic-visualization.html#cb61-5" tabindex="-1"></a>                                   <span class="fu">c</span>(<span class="dv">61987507</span>,<span class="dv">61988278</span>)))</span></code></pre></div>
+<p><img src="local_images/t25.png" style="width:100.0%" /></p>
+</div>
+<div id="background-and-highlight-region-settings" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Background and highlight region settings<a href="basic-visualization.html#background-and-highlight-region-settings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Maybe you need to highlight some regions where you are interested in or set
+background color for each track to enhance the track visualization or for
+other purpose. Let’s show some examples with this goal.</p>
+<p><strong>background_color_region</strong> accepts a named list with named vectors to control
+the background colors for each panel:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="basic-visualization.html#cb62-1" tabindex="-1"></a>sample <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1cell-m6A-1&quot;</span>,<span class="st">&quot;1cell-m6A-2&quot;</span>,<span class="st">&quot;1cell-RNA-1&quot;</span>,<span class="st">&quot;1cell-RNA-2&quot;</span>,</span>
+<span id="cb62-2"><a href="basic-visualization.html#cb62-2" tabindex="-1"></a>            <span class="st">&quot;2cell-m6A-1&quot;</span>,<span class="st">&quot;2cell-m6A-2&quot;</span>,<span class="st">&quot;2cell-RNA-1&quot;</span>,<span class="st">&quot;2cell-RNA-2&quot;</span>)</span>
+<span id="cb62-3"><a href="basic-visualization.html#cb62-3" tabindex="-1"></a></span>
+<span id="cb62-4"><a href="basic-visualization.html#cb62-4" tabindex="-1"></a>Actb_col <span class="ot">&lt;-</span> <span class="fu">rep</span>(ggsci<span class="sc">::</span><span class="fu">pal_npg</span>()(<span class="dv">4</span>),<span class="at">each =</span> <span class="dv">2</span>)</span>
+<span id="cb62-5"><a href="basic-visualization.html#cb62-5" tabindex="-1"></a><span class="fu">names</span>(Actb_col) <span class="ot">&lt;-</span> sample</span>
+<span id="cb62-6"><a href="basic-visualization.html#cb62-6" tabindex="-1"></a>Actb_col</span>
+<span id="cb62-7"><a href="basic-visualization.html#cb62-7" tabindex="-1"></a><span class="co"># 1cell-m6A-1 1cell-m6A-2 1cell-RNA-1 1cell-RNA-2 2cell-m6A-1 2cell-m6A-2 2cell-RNA-1 2cell-RNA-2 </span></span>
+<span id="cb62-8"><a href="basic-visualization.html#cb62-8" tabindex="-1"></a><span class="co"># &quot;#E64B35FF&quot; &quot;#E64B35FF&quot; &quot;#4DBBD5FF&quot; &quot;#4DBBD5FF&quot; &quot;#00A087FF&quot; &quot;#00A087FF&quot; &quot;#3C5488FF&quot; &quot;#3C5488FF&quot; </span></span>
+<span id="cb62-9"><a href="basic-visualization.html#cb62-9" tabindex="-1"></a></span>
+<span id="cb62-10"><a href="basic-visualization.html#cb62-10" tabindex="-1"></a>Myc_col <span class="ot">&lt;-</span> <span class="fu">rep</span>(ggsci<span class="sc">::</span><span class="fu">pal_d3</span>()(<span class="dv">4</span>),<span class="at">each =</span> <span class="dv">2</span>)</span>
+<span id="cb62-11"><a href="basic-visualization.html#cb62-11" tabindex="-1"></a><span class="fu">names</span>(Myc_col) <span class="ot">&lt;-</span> sample</span>
+<span id="cb62-12"><a href="basic-visualization.html#cb62-12" tabindex="-1"></a>Myc_col</span>
+<span id="cb62-13"><a href="basic-visualization.html#cb62-13" tabindex="-1"></a><span class="co"># 1cell-m6A-1 1cell-m6A-2 1cell-RNA-1 1cell-RNA-2 2cell-m6A-1 2cell-m6A-2 2cell-RNA-1 2cell-RNA-2 </span></span>
+<span id="cb62-14"><a href="basic-visualization.html#cb62-14" tabindex="-1"></a><span class="co"># &quot;#1F77B4FF&quot; &quot;#1F77B4FF&quot; &quot;#FF7F0EFF&quot; &quot;#FF7F0EFF&quot; &quot;#2CA02CFF&quot; &quot;#2CA02CFF&quot; &quot;#D62728FF&quot; &quot;#D62728FF&quot;</span></span>
+<span id="cb62-15"><a href="basic-visualization.html#cb62-15" tabindex="-1"></a></span>
+<span id="cb62-16"><a href="basic-visualization.html#cb62-16" tabindex="-1"></a>Mtdh_col <span class="ot">&lt;-</span> <span class="fu">rep</span>(ggsci<span class="sc">::</span><span class="fu">pal_lancet</span>()(<span class="dv">4</span>),<span class="at">each =</span> <span class="dv">2</span>)</span>
+<span id="cb62-17"><a href="basic-visualization.html#cb62-17" tabindex="-1"></a><span class="fu">names</span>(Mtdh_col) <span class="ot">&lt;-</span> sample</span>
+<span id="cb62-18"><a href="basic-visualization.html#cb62-18" tabindex="-1"></a>Mtdh_col</span>
+<span id="cb62-19"><a href="basic-visualization.html#cb62-19" tabindex="-1"></a><span class="co"># 1cell-m6A-1 1cell-m6A-2 1cell-RNA-1 1cell-RNA-2 2cell-m6A-1 2cell-m6A-2 2cell-RNA-1 2cell-RNA-2 </span></span>
+<span id="cb62-20"><a href="basic-visualization.html#cb62-20" tabindex="-1"></a><span class="co"># &quot;#00468BFF&quot; &quot;#00468BFF&quot; &quot;#ED0000FF&quot; &quot;#ED0000FF&quot; &quot;#42B540FF&quot; &quot;#42B540FF&quot; &quot;#0099B4FF&quot; &quot;#0099B4FF&quot; </span></span>
+<span id="cb62-21"><a href="basic-visualization.html#cb62-21" tabindex="-1"></a></span>
+<span id="cb62-22"><a href="basic-visualization.html#cb62-22" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb62-23"><a href="basic-visualization.html#cb62-23" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb62-24"><a href="basic-visualization.html#cb62-24" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb62-25"><a href="basic-visualization.html#cb62-25" tabindex="-1"></a>               <span class="at">background_color_region =</span> <span class="fu">list</span>(<span class="at">Actb =</span> Actb_col,</span>
+<span id="cb62-26"><a href="basic-visualization.html#cb62-26" tabindex="-1"></a>                                              <span class="at">Myc =</span> Myc_col,</span>
+<span id="cb62-27"><a href="basic-visualization.html#cb62-27" tabindex="-1"></a>                                              <span class="at">Mtdh =</span> Mtdh_col))</span></code></pre></div>
+<p><img src="local_images/t26.png" style="width:100.0%" /></p>
+<p>You can also set a background color for a specified panel:</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="basic-visualization.html#cb63-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb63-2"><a href="basic-visualization.html#cb63-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb63-3"><a href="basic-visualization.html#cb63-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb63-4"><a href="basic-visualization.html#cb63-4" tabindex="-1"></a>               <span class="at">background_color_region =</span> <span class="fu">list</span>(<span class="at">Myc =</span> Myc_col))</span></code></pre></div>
+<p><img src="local_images/t27.png" style="width:100.0%" /></p>
+<p><strong>background_region_alpha</strong> controls the color transparency:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="basic-visualization.html#cb64-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb64-2"><a href="basic-visualization.html#cb64-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb64-3"><a href="basic-visualization.html#cb64-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb64-4"><a href="basic-visualization.html#cb64-4" tabindex="-1"></a>               <span class="at">background_color_region =</span> <span class="fu">list</span>(<span class="at">Actb =</span> Actb_col,</span>
+<span id="cb64-5"><a href="basic-visualization.html#cb64-5" tabindex="-1"></a>                                              <span class="at">Myc =</span> Myc_col,</span>
+<span id="cb64-6"><a href="basic-visualization.html#cb64-6" tabindex="-1"></a>                                              <span class="at">Mtdh =</span> Mtdh_col),</span>
+<span id="cb64-7"><a href="basic-visualization.html#cb64-7" tabindex="-1"></a>               <span class="at">background_region_alpha =</span> <span class="fl">0.75</span>)</span></code></pre></div>
+<p><img src="local_images/t28.png" style="width:100.0%" /></p>
+<hr />
+<p><strong>higlight_region</strong> accepts a named list genomic coordinates where you want to highlight.
+<strong>higlight_col</strong> also accepts a named list to control the highlighted region colors:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="basic-visualization.html#cb65-1" tabindex="-1"></a>higlight_region <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Actb =</span> <span class="fu">list</span>(<span class="at">start =</span> <span class="fu">c</span>(<span class="dv">142904000</span>),</span>
+<span id="cb65-2"><a href="basic-visualization.html#cb65-2" tabindex="-1"></a>                                    <span class="at">end =</span> <span class="fu">c</span>(<span class="dv">142904500</span>)),</span>
+<span id="cb65-3"><a href="basic-visualization.html#cb65-3" tabindex="-1"></a>                        <span class="at">Myc =</span> <span class="fu">list</span>(<span class="at">start =</span> <span class="fu">c</span>(<span class="dv">61986000</span>,<span class="dv">61989500</span>),</span>
+<span id="cb65-4"><a href="basic-visualization.html#cb65-4" tabindex="-1"></a>                                   <span class="at">end =</span> <span class="fu">c</span>(<span class="dv">61986500</span>,<span class="dv">61989900</span>)))</span>
+<span id="cb65-5"><a href="basic-visualization.html#cb65-5" tabindex="-1"></a></span>
+<span id="cb65-6"><a href="basic-visualization.html#cb65-6" tabindex="-1"></a>higlight_col <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Actb =</span> <span class="fu">c</span>(<span class="st">&quot;pink&quot;</span>),</span>
+<span id="cb65-7"><a href="basic-visualization.html#cb65-7" tabindex="-1"></a>                     <span class="at">Myc =</span> <span class="fu">c</span>(<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;green&quot;</span>))</span>
+<span id="cb65-8"><a href="basic-visualization.html#cb65-8" tabindex="-1"></a></span>
+<span id="cb65-9"><a href="basic-visualization.html#cb65-9" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb65-10"><a href="basic-visualization.html#cb65-10" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb65-11"><a href="basic-visualization.html#cb65-11" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb65-12"><a href="basic-visualization.html#cb65-12" tabindex="-1"></a>               <span class="at">higlight_region =</span> higlight_region,</span>
+<span id="cb65-13"><a href="basic-visualization.html#cb65-13" tabindex="-1"></a>               <span class="at">higlight_col =</span> higlight_col)</span></code></pre></div>
+<p><img src="local_images/t29.png" style="width:100.0%" /></p>
+<p><strong>higlight_col_alpha</strong> controls the color transparency:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="basic-visualization.html#cb66-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb66-2"><a href="basic-visualization.html#cb66-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb66-3"><a href="basic-visualization.html#cb66-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb66-4"><a href="basic-visualization.html#cb66-4" tabindex="-1"></a>               <span class="at">higlight_region =</span> higlight_region,</span>
+<span id="cb66-5"><a href="basic-visualization.html#cb66-5" tabindex="-1"></a>               <span class="at">higlight_col =</span> higlight_col,</span>
+<span id="cb66-6"><a href="basic-visualization.html#cb66-6" tabindex="-1"></a>               <span class="at">higlight_col_alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="local_images/t30.png" style="width:100.0%" /></p>
+</div>
+<div id="order-for-genes-and-samples" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Order for genes and samples<a href="basic-visualization.html#order-for-genes-and-samples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Probably you will re-order your gene or sample orders in the graph. Generally
+speaking, whether the gene orders or sample orders, their orders initially
+have been assigned according to their input orders. You just need to adjust
+the input orders. Even so, I also supply
+<strong>gene_order</strong> and <strong>sample_order</strong> extra parameters to re-order the genes and
+samples:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="basic-visualization.html#cb67-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb67-2"><a href="basic-visualization.html#cb67-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb67-3"><a href="basic-visualization.html#cb67-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb67-4"><a href="basic-visualization.html#cb67-4" tabindex="-1"></a>               <span class="at">gene_order =</span> <span class="fu">c</span>(<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Actb&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t31.png" style="width:100.0%" />
+Changing sample orders:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="basic-visualization.html#cb68-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb68-2"><a href="basic-visualization.html#cb68-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb68-3"><a href="basic-visualization.html#cb68-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb68-4"><a href="basic-visualization.html#cb68-4" tabindex="-1"></a>               <span class="at">gene_order =</span> <span class="fu">c</span>(<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Actb&quot;</span>),</span>
+<span id="cb68-5"><a href="basic-visualization.html#cb68-5" tabindex="-1"></a>               <span class="at">sample_order =</span> <span class="fu">rev</span>(sample))</span></code></pre></div>
+<p><img src="local_images/t32.png" style="width:100.0%" /></p>
+</div>
+<div id="adding-group-information-for-genes-and-samples" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> Adding group information for genes and samples<a href="basic-visualization.html#adding-group-information-for-genes-and-samples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Grouping the genes and samples can clarify author’s experiment design in different
+conditions or treatment. So drawing group graphic elements for multiple genes or
+samples stands for what the author want to express. A picture is worth a thousand words.</p>
+<p><strong>gene_group_info</strong>, <strong>gene_group_info2</strong>,<strong>sample_group_info</strong> and
+<strong>sample_group_info2</strong> accepts a named list with vectors to add group information.</p>
+<p>You can add two group information for genes and samples at most which is enough
+for us. The following codes show how we add group information and modify graphic
+attributes.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="basic-visualization.html#cb69-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb69-2"><a href="basic-visualization.html#cb69-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb69-3"><a href="basic-visualization.html#cb69-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Adamts3&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>),</span>
+<span id="cb69-4"><a href="basic-visualization.html#cb69-4" tabindex="-1"></a>               <span class="at">gene_group_info =</span> <span class="fu">list</span>(<span class="at">cluster1 =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>),</span>
+<span id="cb69-5"><a href="basic-visualization.html#cb69-5" tabindex="-1"></a>                                      <span class="at">cluster2 =</span> <span class="fu">c</span>(<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Adamts3&quot;</span>),</span>
+<span id="cb69-6"><a href="basic-visualization.html#cb69-6" tabindex="-1"></a>                                      <span class="at">cluster3 =</span> <span class="fu">c</span>(<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>)))</span></code></pre></div>
+<p><img src="local_images/t33.png" style="width:100.0%" /></p>
+<p>Adding sample group information:</p>
+<blockquote>
+<p><strong>Note:</strong> <strong>panel.spacing</strong> is used to add spacing between each panel along the
+Y axis which can show the line gaps between different sample group.</p>
+</blockquote>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="basic-visualization.html#cb70-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb70-2"><a href="basic-visualization.html#cb70-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb70-3"><a href="basic-visualization.html#cb70-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Adamts3&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>),</span>
+<span id="cb70-4"><a href="basic-visualization.html#cb70-4" tabindex="-1"></a>               <span class="at">gene_group_info =</span> <span class="fu">list</span>(<span class="at">cluster1 =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>),</span>
+<span id="cb70-5"><a href="basic-visualization.html#cb70-5" tabindex="-1"></a>                                      <span class="at">cluster2 =</span> <span class="fu">c</span>(<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Adamts3&quot;</span>),</span>
+<span id="cb70-6"><a href="basic-visualization.html#cb70-6" tabindex="-1"></a>                                      <span class="at">cluster3 =</span> <span class="fu">c</span>(<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>)),</span>
+<span id="cb70-7"><a href="basic-visualization.html#cb70-7" tabindex="-1"></a>               <span class="at">sample_group_info =</span> <span class="fu">list</span>(<span class="st">&quot;input&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;1cell-RNA-1&quot;</span>, <span class="st">&quot;1cell-RNA-2&quot;</span>,</span>
+<span id="cb70-8"><a href="basic-visualization.html#cb70-8" tabindex="-1"></a>                                                    <span class="st">&quot;2cell-RNA-1&quot;</span>, <span class="st">&quot;2cell-RNA-2&quot;</span>),</span>
+<span id="cb70-9"><a href="basic-visualization.html#cb70-9" tabindex="-1"></a>                                        <span class="st">&quot;treat&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;1cell-m6A-1&quot;</span>, <span class="st">&quot;1cell-m6A-2&quot;</span>,</span>
+<span id="cb70-10"><a href="basic-visualization.html#cb70-10" tabindex="-1"></a>                                                    <span class="st">&quot;2cell-m6A-1&quot;</span>, <span class="st">&quot;2cell-m6A-2&quot;</span>)),</span>
+<span id="cb70-11"><a href="basic-visualization.html#cb70-11" tabindex="-1"></a>               <span class="at">panel.spacing =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.2</span>))</span></code></pre></div>
+<p><img src="local_images/t34.png" style="width:100.0%" /></p>
+<p>Adding one more group:</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="basic-visualization.html#cb71-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb71-2"><a href="basic-visualization.html#cb71-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb71-3"><a href="basic-visualization.html#cb71-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Adamts3&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>),</span>
+<span id="cb71-4"><a href="basic-visualization.html#cb71-4" tabindex="-1"></a>               <span class="at">gene_group_info =</span> <span class="fu">list</span>(<span class="at">cluster1 =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>),</span>
+<span id="cb71-5"><a href="basic-visualization.html#cb71-5" tabindex="-1"></a>                                      <span class="at">cluster2 =</span> <span class="fu">c</span>(<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Adamts3&quot;</span>),</span>
+<span id="cb71-6"><a href="basic-visualization.html#cb71-6" tabindex="-1"></a>                                      <span class="at">cluster3 =</span> <span class="fu">c</span>(<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>)),</span>
+<span id="cb71-7"><a href="basic-visualization.html#cb71-7" tabindex="-1"></a>               <span class="at">gene_group_info2 =</span> <span class="fu">list</span>(<span class="at">geneGroup1 =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb71-8"><a href="basic-visualization.html#cb71-8" tabindex="-1"></a>                                       <span class="at">geneGroup2 =</span> <span class="fu">c</span>(<span class="st">&quot;Adamts3&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>)),</span>
+<span id="cb71-9"><a href="basic-visualization.html#cb71-9" tabindex="-1"></a>               <span class="at">sample_group_info =</span> <span class="fu">list</span>(<span class="st">&quot;input&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;1cell-RNA-1&quot;</span>, <span class="st">&quot;1cell-RNA-2&quot;</span>,</span>
+<span id="cb71-10"><a href="basic-visualization.html#cb71-10" tabindex="-1"></a>                                                    <span class="st">&quot;2cell-RNA-1&quot;</span>, <span class="st">&quot;2cell-RNA-2&quot;</span>),</span>
+<span id="cb71-11"><a href="basic-visualization.html#cb71-11" tabindex="-1"></a>                                        <span class="st">&quot;treat&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;1cell-m6A-1&quot;</span>, <span class="st">&quot;1cell-m6A-2&quot;</span>,</span>
+<span id="cb71-12"><a href="basic-visualization.html#cb71-12" tabindex="-1"></a>                                                    <span class="st">&quot;2cell-m6A-1&quot;</span>, <span class="st">&quot;2cell-m6A-2&quot;</span>)),</span>
+<span id="cb71-13"><a href="basic-visualization.html#cb71-13" tabindex="-1"></a>               <span class="at">sample_group_info2 =</span> <span class="fu">list</span>(<span class="st">&quot;cellState1&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;1cell-RNA-1&quot;</span>, <span class="st">&quot;1cell-RNA-2&quot;</span>,</span>
+<span id="cb71-14"><a href="basic-visualization.html#cb71-14" tabindex="-1"></a>                                                          <span class="st">&quot;1cell-m6A-1&quot;</span>, <span class="st">&quot;1cell-m6A-2&quot;</span>),</span>
+<span id="cb71-15"><a href="basic-visualization.html#cb71-15" tabindex="-1"></a>                                         <span class="st">&quot;cellState2&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;2cell-RNA-1&quot;</span>, <span class="st">&quot;2cell-RNA-2&quot;</span>,</span>
+<span id="cb71-16"><a href="basic-visualization.html#cb71-16" tabindex="-1"></a>                                                          <span class="st">&quot;2cell-m6A-1&quot;</span>, <span class="st">&quot;2cell-m6A-2&quot;</span>)),</span>
+<span id="cb71-17"><a href="basic-visualization.html#cb71-17" tabindex="-1"></a>               <span class="at">panel.spacing =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.2</span>))</span></code></pre></div>
+<p><img src="local_images/t35.png" style="width:100.0%" /></p>
+<p><strong>gene_group_info_order</strong>, <strong>gene_group_info2_order</strong>,<strong>sample_group_info_order</strong> and
+<strong>sample_group_info2_order</strong> separatelly control each group orders:</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="basic-visualization.html#cb72-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb72-2"><a href="basic-visualization.html#cb72-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb72-3"><a href="basic-visualization.html#cb72-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Adamts3&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>),</span>
+<span id="cb72-4"><a href="basic-visualization.html#cb72-4" tabindex="-1"></a>               <span class="at">gene_group_info =</span> <span class="fu">list</span>(<span class="at">cluster1 =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>),</span>
+<span id="cb72-5"><a href="basic-visualization.html#cb72-5" tabindex="-1"></a>                                      <span class="at">cluster2 =</span> <span class="fu">c</span>(<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Adamts3&quot;</span>),</span>
+<span id="cb72-6"><a href="basic-visualization.html#cb72-6" tabindex="-1"></a>                                      <span class="at">cluster3 =</span> <span class="fu">c</span>(<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>)),</span>
+<span id="cb72-7"><a href="basic-visualization.html#cb72-7" tabindex="-1"></a>               <span class="at">gene_group_info_order =</span> <span class="fu">c</span>(<span class="st">&quot;cluster3&quot;</span>,<span class="st">&quot;cluster2&quot;</span>,<span class="st">&quot;cluster1&quot;</span>),</span>
+<span id="cb72-8"><a href="basic-visualization.html#cb72-8" tabindex="-1"></a>               <span class="at">gene_group_info2 =</span> <span class="fu">list</span>(<span class="at">geneGroup1 =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb72-9"><a href="basic-visualization.html#cb72-9" tabindex="-1"></a>                                       <span class="at">geneGroup2 =</span> <span class="fu">c</span>(<span class="st">&quot;Adamts3&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>)),</span>
+<span id="cb72-10"><a href="basic-visualization.html#cb72-10" tabindex="-1"></a>               <span class="at">gene_group_info2_order =</span> <span class="fu">c</span>(<span class="st">&quot;geneGroup2&quot;</span>,<span class="st">&quot;geneGroup1&quot;</span>),</span>
+<span id="cb72-11"><a href="basic-visualization.html#cb72-11" tabindex="-1"></a>               <span class="at">sample_group_info =</span> <span class="fu">list</span>(<span class="st">&quot;input&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;1cell-RNA-1&quot;</span>, <span class="st">&quot;1cell-RNA-2&quot;</span>,</span>
+<span id="cb72-12"><a href="basic-visualization.html#cb72-12" tabindex="-1"></a>                                                    <span class="st">&quot;2cell-RNA-1&quot;</span>, <span class="st">&quot;2cell-RNA-2&quot;</span>),</span>
+<span id="cb72-13"><a href="basic-visualization.html#cb72-13" tabindex="-1"></a>                                        <span class="st">&quot;treat&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;1cell-m6A-1&quot;</span>, <span class="st">&quot;1cell-m6A-2&quot;</span>,</span>
+<span id="cb72-14"><a href="basic-visualization.html#cb72-14" tabindex="-1"></a>                                                    <span class="st">&quot;2cell-m6A-1&quot;</span>, <span class="st">&quot;2cell-m6A-2&quot;</span>)),</span>
+<span id="cb72-15"><a href="basic-visualization.html#cb72-15" tabindex="-1"></a>               <span class="at">sample_group_info_order =</span> <span class="fu">c</span>(<span class="st">&quot;treat&quot;</span>,<span class="st">&quot;input&quot;</span>),</span>
+<span id="cb72-16"><a href="basic-visualization.html#cb72-16" tabindex="-1"></a>               <span class="at">sample_group_info2 =</span> <span class="fu">list</span>(<span class="st">&quot;cellState1&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;1cell-RNA-1&quot;</span>, <span class="st">&quot;1cell-RNA-2&quot;</span>,</span>
+<span id="cb72-17"><a href="basic-visualization.html#cb72-17" tabindex="-1"></a>                                                          <span class="st">&quot;1cell-m6A-1&quot;</span>, <span class="st">&quot;1cell-m6A-2&quot;</span>),</span>
+<span id="cb72-18"><a href="basic-visualization.html#cb72-18" tabindex="-1"></a>                                         <span class="st">&quot;cellState2&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;2cell-RNA-1&quot;</span>, <span class="st">&quot;2cell-RNA-2&quot;</span>,</span>
+<span id="cb72-19"><a href="basic-visualization.html#cb72-19" tabindex="-1"></a>                                                          <span class="st">&quot;2cell-m6A-1&quot;</span>, <span class="st">&quot;2cell-m6A-2&quot;</span>)),</span>
+<span id="cb72-20"><a href="basic-visualization.html#cb72-20" tabindex="-1"></a>               <span class="at">sample_group_info2_order =</span> <span class="fu">c</span>(<span class="st">&quot;cellState2&quot;</span>,<span class="st">&quot;cellState1&quot;</span>),</span>
+<span id="cb72-21"><a href="basic-visualization.html#cb72-21" tabindex="-1"></a>               <span class="at">panel.spacing =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.2</span>))</span></code></pre></div>
+<p><img src="local_images/t36.png" style="width:100.0%" /></p>
+</div>
+<div id="strip-settings" class="section level2 hasAnchor" number="5.9">
+<h2><span class="header-section-number">5.9</span> Strip settings<a href="basic-visualization.html#strip-settings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This chapter shows us how to modify each strip graphic element instead of using
+lines to separate group.</p>
+<p><strong>column_strip_setting_list</strong> and <strong>row_strip_setting_list</strong> accept a named list
+to modify the strip <strong><em>element_rect</em></strong> element by columns or rows:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="basic-visualization.html#cb73-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb73-2"><a href="basic-visualization.html#cb73-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb73-3"><a href="basic-visualization.html#cb73-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb73-4"><a href="basic-visualization.html#cb73-4" tabindex="-1"></a>               <span class="at">column_strip_setting_list =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="fu">rep</span>(<span class="st">&quot;red&quot;</span>,<span class="dv">3</span>),</span>
+<span id="cb73-5"><a href="basic-visualization.html#cb73-5" tabindex="-1"></a>                                                <span class="at">fill =</span> <span class="fu">rep</span>(<span class="st">&quot;grey80&quot;</span>,<span class="dv">3</span>)),</span>
+<span id="cb73-6"><a href="basic-visualization.html#cb73-6" tabindex="-1"></a>               <span class="at">row_strip_setting_list =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="fu">rep</span>(<span class="st">&quot;black&quot;</span>,<span class="dv">8</span>),</span>
+<span id="cb73-7"><a href="basic-visualization.html#cb73-7" tabindex="-1"></a>                                             <span class="at">fill =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;purple&quot;</span>),<span class="at">each =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>),</span>
+<span id="cb73-8"><a href="basic-visualization.html#cb73-8" tabindex="-1"></a>                                                        <span class="at">times =</span> <span class="dv">2</span>)))</span></code></pre></div>
+<p><img src="local_images/t37.png" style="width:100.0%" /></p>
+<p><strong>column_strip_text_setting_list</strong> and <strong>row_strip_text_setting_list</strong> accept a named list
+to modify the strip <strong><em>element_text</em></strong> element by columns or rows:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="basic-visualization.html#cb74-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb74-2"><a href="basic-visualization.html#cb74-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb74-3"><a href="basic-visualization.html#cb74-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb74-4"><a href="basic-visualization.html#cb74-4" tabindex="-1"></a>               <span class="at">column_strip_setting_list =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="fu">rep</span>(<span class="st">&quot;red&quot;</span>,<span class="dv">3</span>),</span>
+<span id="cb74-5"><a href="basic-visualization.html#cb74-5" tabindex="-1"></a>                                                <span class="at">fill =</span> <span class="fu">rep</span>(<span class="st">&quot;grey80&quot;</span>,<span class="dv">3</span>)),</span>
+<span id="cb74-6"><a href="basic-visualization.html#cb74-6" tabindex="-1"></a>               <span class="at">column_strip_text_setting_list =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>,<span class="at">size =</span> <span class="dv">8</span>,</span>
+<span id="cb74-7"><a href="basic-visualization.html#cb74-7" tabindex="-1"></a>                                                     <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb74-8"><a href="basic-visualization.html#cb74-8" tabindex="-1"></a>               <span class="at">row_strip_setting_list =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="fu">rep</span>(<span class="st">&quot;black&quot;</span>,<span class="dv">8</span>),</span>
+<span id="cb74-9"><a href="basic-visualization.html#cb74-9" tabindex="-1"></a>                                             <span class="at">fill =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;purple&quot;</span>),<span class="at">each =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>),</span>
+<span id="cb74-10"><a href="basic-visualization.html#cb74-10" tabindex="-1"></a>                                                        <span class="at">times =</span> <span class="dv">2</span>)),</span>
+<span id="cb74-11"><a href="basic-visualization.html#cb74-11" tabindex="-1"></a>               <span class="at">row_strip_text_setting_list =</span> <span class="fu">list</span>(<span class="at">fontface =</span> <span class="st">&quot;italic.bold&quot;</span>,<span class="at">color =</span> <span class="st">&quot;white&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t38.png" style="width:100.0%" /></p>
+<p><strong>by_layer_x</strong> and <strong>by_layer_y</strong> can be setted to <strong>TRUE</strong> and you can modify the
+graphic element by row or column:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="basic-visualization.html#cb75-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb75-2"><a href="basic-visualization.html#cb75-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb75-3"><a href="basic-visualization.html#cb75-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Adamts3&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>),</span>
+<span id="cb75-4"><a href="basic-visualization.html#cb75-4" tabindex="-1"></a>               <span class="at">gene_group_info =</span> <span class="fu">list</span>(<span class="at">cluster1 =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>),</span>
+<span id="cb75-5"><a href="basic-visualization.html#cb75-5" tabindex="-1"></a>                                      <span class="at">cluster2 =</span> <span class="fu">c</span>(<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Adamts3&quot;</span>),</span>
+<span id="cb75-6"><a href="basic-visualization.html#cb75-6" tabindex="-1"></a>                                      <span class="at">cluster3 =</span> <span class="fu">c</span>(<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>)),</span>
+<span id="cb75-7"><a href="basic-visualization.html#cb75-7" tabindex="-1"></a>               <span class="at">gene_group_info2 =</span> <span class="fu">list</span>(<span class="at">geneGroup1 =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>),</span>
+<span id="cb75-8"><a href="basic-visualization.html#cb75-8" tabindex="-1"></a>                                       <span class="at">geneGroup2 =</span> <span class="fu">c</span>(<span class="st">&quot;Adamts3&quot;</span>,<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>)),</span>
+<span id="cb75-9"><a href="basic-visualization.html#cb75-9" tabindex="-1"></a>               <span class="at">by_layer_x =</span> T,</span>
+<span id="cb75-10"><a href="basic-visualization.html#cb75-10" tabindex="-1"></a>               <span class="at">column_strip_setting_list =</span> <span class="fu">list</span>(<span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;grey80&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;green&quot;</span>)),</span>
+<span id="cb75-11"><a href="basic-visualization.html#cb75-11" tabindex="-1"></a>               <span class="at">sample_group_info =</span> <span class="fu">list</span>(<span class="st">&quot;input&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;1cell-RNA-1&quot;</span>, <span class="st">&quot;1cell-RNA-2&quot;</span>,</span>
+<span id="cb75-12"><a href="basic-visualization.html#cb75-12" tabindex="-1"></a>                                                    <span class="st">&quot;2cell-RNA-1&quot;</span>, <span class="st">&quot;2cell-RNA-2&quot;</span>),</span>
+<span id="cb75-13"><a href="basic-visualization.html#cb75-13" tabindex="-1"></a>                                        <span class="st">&quot;treat&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;1cell-m6A-1&quot;</span>, <span class="st">&quot;1cell-m6A-2&quot;</span>,</span>
+<span id="cb75-14"><a href="basic-visualization.html#cb75-14" tabindex="-1"></a>                                                    <span class="st">&quot;2cell-m6A-1&quot;</span>, <span class="st">&quot;2cell-m6A-2&quot;</span>)),</span>
+<span id="cb75-15"><a href="basic-visualization.html#cb75-15" tabindex="-1"></a>               <span class="at">sample_group_info2 =</span> <span class="fu">list</span>(<span class="st">&quot;cellState1&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;1cell-RNA-1&quot;</span>, <span class="st">&quot;1cell-RNA-2&quot;</span>,</span>
+<span id="cb75-16"><a href="basic-visualization.html#cb75-16" tabindex="-1"></a>                                                          <span class="st">&quot;1cell-m6A-1&quot;</span>, <span class="st">&quot;1cell-m6A-2&quot;</span>),</span>
+<span id="cb75-17"><a href="basic-visualization.html#cb75-17" tabindex="-1"></a>                                         <span class="st">&quot;cellState2&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;2cell-RNA-1&quot;</span>, <span class="st">&quot;2cell-RNA-2&quot;</span>,</span>
+<span id="cb75-18"><a href="basic-visualization.html#cb75-18" tabindex="-1"></a>                                                          <span class="st">&quot;2cell-m6A-1&quot;</span>, <span class="st">&quot;2cell-m6A-2&quot;</span>)),</span>
+<span id="cb75-19"><a href="basic-visualization.html#cb75-19" tabindex="-1"></a>               <span class="at">by_layer_y =</span> T,</span>
+<span id="cb75-20"><a href="basic-visualization.html#cb75-20" tabindex="-1"></a>               <span class="at">row_strip_setting_list =</span> <span class="fu">list</span>(<span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;purple&quot;</span>,<span class="st">&quot;yellow&quot;</span>,<span class="st">&quot;pink&quot;</span>)),</span>
+<span id="cb75-21"><a href="basic-visualization.html#cb75-21" tabindex="-1"></a>               <span class="at">panel.spacing =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.2</span>))</span></code></pre></div>
+<p><img src="local_images/t39.png" style="width:100.0%" /></p>
+<blockquote>
+<ul>
+<li>More details you can check <strong>ggh4x::strip_themed</strong> function.</li>
+</ul>
+</blockquote>
+</div>
+<div id="draw-chromosome-annotation" class="section level2 hasAnchor" number="5.10">
+<h2><span class="header-section-number">5.10</span> Draw chromosome annotation<a href="basic-visualization.html#draw-chromosome-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here you can add corresponding genome ideogram data to show chromosome structure
+for gene. First you should load ideogram data. The are some prepared genome like
+<strong>mm10</strong>, <strong>hg39</strong>, <strong>hg19</strong> can be loaded to use directly. For other genome versions,
+you can use <strong>BioSeqUtils::catchIdeoData</strong> function to download it.</p>
+<p>The <strong>catchIdeoData</strong> returns a list object:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="basic-visualization.html#cb76-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;mm10_obj&quot;</span>)</span>
+<span id="cb76-2"><a href="basic-visualization.html#cb76-2" tabindex="-1"></a></span>
+<span id="cb76-3"><a href="basic-visualization.html#cb76-3" tabindex="-1"></a><span class="fu">str</span>(mm10_obj)</span>
+<span id="cb76-4"><a href="basic-visualization.html#cb76-4" tabindex="-1"></a><span class="co"># List of 3</span></span>
+<span id="cb76-5"><a href="basic-visualization.html#cb76-5" tabindex="-1"></a><span class="co"># $ plot_df     :&#39;data.frame&#39;:  403 obs. of  6 variables:</span></span>
+<span id="cb76-6"><a href="basic-visualization.html#cb76-6" tabindex="-1"></a><span class="co">#   ..$ chr        : chr [1:403] &quot;chr1&quot; &quot;chr1&quot; &quot;chr1&quot; &quot;chr1&quot; ...</span></span>
+<span id="cb76-7"><a href="basic-visualization.html#cb76-7" tabindex="-1"></a><span class="co"># ..$ chromStart : num [1:403] 0 8840440 12278390 20136559 22101102 ...</span></span>
+<span id="cb76-8"><a href="basic-visualization.html#cb76-8" tabindex="-1"></a><span class="co"># ..$ chromEnd   : num [1:403] 8840440 12278390 20136559 22101102 30941543 ...</span></span>
+<span id="cb76-9"><a href="basic-visualization.html#cb76-9" tabindex="-1"></a><span class="co"># ..$ name       : chr [1:403] &quot;qA1&quot; &quot;qA2&quot; &quot;qA3&quot; &quot;qA4&quot; ...</span></span>
+<span id="cb76-10"><a href="basic-visualization.html#cb76-10" tabindex="-1"></a><span class="co"># ..$ gieStain   : chr [1:403] &quot;gpos100&quot; &quot;gneg&quot; &quot;gpos33&quot; &quot;gneg&quot; ...</span></span>
+<span id="cb76-11"><a href="basic-visualization.html#cb76-11" tabindex="-1"></a><span class="co"># ..$ gieStainCol: chr [1:403] &quot;black&quot; &quot;white&quot; &quot;gray67&quot; &quot;white&quot; ...</span></span>
+<span id="cb76-12"><a href="basic-visualization.html#cb76-12" tabindex="-1"></a><span class="co"># $ border_df   : tibble [21 × 3] (S3: tbl_df/tbl/data.frame)</span></span>
+<span id="cb76-13"><a href="basic-visualization.html#cb76-13" tabindex="-1"></a><span class="co"># ..$ chr : chr [1:21] &quot;chr1&quot; &quot;chr10&quot; &quot;chr11&quot; &quot;chr12&quot; ...</span></span>
+<span id="cb76-14"><a href="basic-visualization.html#cb76-14" tabindex="-1"></a><span class="co"># ..$ xmin: num [1:21] 0 0 0 0 0 0 0 0 0 0 ...</span></span>
+<span id="cb76-15"><a href="basic-visualization.html#cb76-15" tabindex="-1"></a><span class="co"># ..$ xmax: num [1:21] 1.95e+08 1.31e+08 1.22e+08 1.20e+08 1.20e+08 ...</span></span>
+<span id="cb76-16"><a href="basic-visualization.html#cb76-16" tabindex="-1"></a><span class="co"># $ acen_plot_df: NULL</span></span></code></pre></div>
+<p><strong>draw_chromosome</strong> should be setted to <strong>TRUE</strong> if you want to add chromosome
+facet annotation. <strong>draw_chromosome_params</strong> accepts a named list to control
+how the chromosome structure is drawn. More details please refer to
+<strong>BioSeqUtils::drawChromosome</strong> function. Now we add chromosome facet track for
+corresponding genes:</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="basic-visualization.html#cb77-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb77-2"><a href="basic-visualization.html#cb77-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb77-3"><a href="basic-visualization.html#cb77-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Adamts3&quot;</span>),</span>
+<span id="cb77-4"><a href="basic-visualization.html#cb77-4" tabindex="-1"></a>               <span class="at">draw_chromosome =</span> T,</span>
+<span id="cb77-5"><a href="basic-visualization.html#cb77-5" tabindex="-1"></a>               <span class="at">draw_chromosome_params =</span> <span class="fu">list</span>(<span class="at">ideogram_obj =</span> mm10_obj))</span></code></pre></div>
+<p><img src="local_images/t40.png" style="width:100.0%" /></p>
+<p><strong>remove_chrom_panel_border</strong> can be used to remove chromosome track
+panel borders:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="basic-visualization.html#cb78-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb78-2"><a href="basic-visualization.html#cb78-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb78-3"><a href="basic-visualization.html#cb78-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Adamts3&quot;</span>),</span>
+<span id="cb78-4"><a href="basic-visualization.html#cb78-4" tabindex="-1"></a>               <span class="at">draw_chromosome =</span> T,</span>
+<span id="cb78-5"><a href="basic-visualization.html#cb78-5" tabindex="-1"></a>               <span class="at">draw_chromosome_params =</span> <span class="fu">list</span>(<span class="at">ideogram_obj =</span> mm10_obj),</span>
+<span id="cb78-6"><a href="basic-visualization.html#cb78-6" tabindex="-1"></a>               <span class="at">remove_chrom_panel_border =</span> T)</span></code></pre></div>
+<p><img src="local_images/t41.png" style="width:100.0%" /></p>
+<p>You can also use <strong>remove_all_panel_border</strong> to remove all track panel borders
+with more concise presentation:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="basic-visualization.html#cb79-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb79-2"><a href="basic-visualization.html#cb79-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb79-3"><a href="basic-visualization.html#cb79-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Adamts3&quot;</span>),</span>
+<span id="cb79-4"><a href="basic-visualization.html#cb79-4" tabindex="-1"></a>               <span class="at">draw_chromosome =</span> T,</span>
+<span id="cb79-5"><a href="basic-visualization.html#cb79-5" tabindex="-1"></a>               <span class="at">draw_chromosome_params =</span> <span class="fu">list</span>(<span class="at">ideogram_obj =</span> mm10_obj),</span>
+<span id="cb79-6"><a href="basic-visualization.html#cb79-6" tabindex="-1"></a>               <span class="at">remove_all_panel_border =</span> T)</span></code></pre></div>
+<p><img src="local_images/t42.png" style="width:100.0%" /></p>
+<p><strong>panel_size_setting</strong> allows you to set width and height for each panel.
+Here we reduce the chromosome panel height:</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="basic-visualization.html#cb80-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb80-2"><a href="basic-visualization.html#cb80-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb80-3"><a href="basic-visualization.html#cb80-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Adamts3&quot;</span>),</span>
+<span id="cb80-4"><a href="basic-visualization.html#cb80-4" tabindex="-1"></a>               <span class="at">draw_chromosome =</span> T,</span>
+<span id="cb80-5"><a href="basic-visualization.html#cb80-5" tabindex="-1"></a>               <span class="at">draw_chromosome_params =</span> <span class="fu">list</span>(<span class="at">ideogram_obj =</span> mm10_obj),</span>
+<span id="cb80-6"><a href="basic-visualization.html#cb80-6" tabindex="-1"></a>               <span class="at">remove_chrom_panel_border =</span> T,</span>
+<span id="cb80-7"><a href="basic-visualization.html#cb80-7" tabindex="-1"></a>               <span class="at">panel_size_setting =</span> <span class="fu">list</span>(<span class="at">rows =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">2</span>),<span class="dv">4</span>),</span>
+<span id="cb80-8"><a href="basic-visualization.html#cb80-8" tabindex="-1"></a>                                         <span class="at">cols =</span> <span class="fu">rep</span>(<span class="dv">12</span>,<span class="dv">4</span>)))</span></code></pre></div>
+<p><img src="local_images/t43.png" style="width:100.0%" /></p>
+<p>Let’s add some group informations:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="basic-visualization.html#cb81-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb81-2"><a href="basic-visualization.html#cb81-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb81-3"><a href="basic-visualization.html#cb81-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>,<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Adamts3&quot;</span>),</span>
+<span id="cb81-4"><a href="basic-visualization.html#cb81-4" tabindex="-1"></a>               <span class="at">draw_chromosome =</span> T,</span>
+<span id="cb81-5"><a href="basic-visualization.html#cb81-5" tabindex="-1"></a>               <span class="at">draw_chromosome_params =</span> <span class="fu">list</span>(<span class="at">ideogram_obj =</span> mm10_obj),</span>
+<span id="cb81-6"><a href="basic-visualization.html#cb81-6" tabindex="-1"></a>               <span class="at">remove_chrom_panel_border =</span> T,</span>
+<span id="cb81-7"><a href="basic-visualization.html#cb81-7" tabindex="-1"></a>               <span class="at">panel_size_setting =</span> <span class="fu">list</span>(<span class="at">rows =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">2</span>),<span class="dv">4</span>),</span>
+<span id="cb81-8"><a href="basic-visualization.html#cb81-8" tabindex="-1"></a>                                         <span class="at">cols =</span> <span class="fu">rep</span>(<span class="dv">12</span>,<span class="dv">4</span>)),</span>
+<span id="cb81-9"><a href="basic-visualization.html#cb81-9" tabindex="-1"></a>               <span class="at">gene_group_info =</span> <span class="fu">list</span>(<span class="at">cluster1 =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>),</span>
+<span id="cb81-10"><a href="basic-visualization.html#cb81-10" tabindex="-1"></a>                                      <span class="at">cluster2 =</span> <span class="fu">c</span>(<span class="st">&quot;Mtdh&quot;</span>,<span class="st">&quot;Adamts3&quot;</span>),</span>
+<span id="cb81-11"><a href="basic-visualization.html#cb81-11" tabindex="-1"></a>                                      <span class="at">cluster3 =</span> <span class="fu">c</span>(<span class="st">&quot;Zfp68&quot;</span>,<span class="st">&quot;Pabpc1&quot;</span>)),</span>
+<span id="cb81-12"><a href="basic-visualization.html#cb81-12" tabindex="-1"></a>               <span class="at">sample_group_info =</span> <span class="fu">list</span>(<span class="st">&quot;input&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;1cell-RNA-1&quot;</span>, <span class="st">&quot;1cell-RNA-2&quot;</span>,</span>
+<span id="cb81-13"><a href="basic-visualization.html#cb81-13" tabindex="-1"></a>                                                    <span class="st">&quot;2cell-RNA-1&quot;</span>, <span class="st">&quot;2cell-RNA-2&quot;</span>),</span>
+<span id="cb81-14"><a href="basic-visualization.html#cb81-14" tabindex="-1"></a>                                        <span class="st">&quot;treat&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;1cell-m6A-1&quot;</span>, <span class="st">&quot;1cell-m6A-2&quot;</span>,</span>
+<span id="cb81-15"><a href="basic-visualization.html#cb81-15" tabindex="-1"></a>                                                    <span class="st">&quot;2cell-m6A-1&quot;</span>, <span class="st">&quot;2cell-m6A-2&quot;</span>)),</span>
+<span id="cb81-16"><a href="basic-visualization.html#cb81-16" tabindex="-1"></a>               <span class="at">panel.spacing =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.2</span>))</span></code></pre></div>
+<p><img src="local_images/t44.png" style="width:100.0%" /></p>
+</div>
+<div id="plot-with-specified-genomic-region" class="section level2 hasAnchor" number="5.11">
+<h2><span class="header-section-number">5.11</span> Plot with specified genomic region<a href="basic-visualization.html#plot-with-specified-genomic-region" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Maybe sometimes we need to show the track information with given a specified
+genomic region instead of genes. You can give a named list for <strong>query_region</strong>
+to draw different genomic region tracks. Multiple genomic positions also can be
+accepted.</p>
+<p>Examples show here:</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="basic-visualization.html#cb82-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb82-2"><a href="basic-visualization.html#cb82-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb82-3"><a href="basic-visualization.html#cb82-3" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="fu">c</span>(<span class="st">&quot;5&quot;</span>,<span class="st">&quot;15&quot;</span>),</span>
+<span id="cb82-4"><a href="basic-visualization.html#cb82-4" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="fu">c</span>(<span class="dv">65438603</span>,<span class="dv">9263295</span>),</span>
+<span id="cb82-5"><a href="basic-visualization.html#cb82-5" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="fu">c</span>(<span class="dv">65834288</span>,<span class="dv">9785835</span>)))</span></code></pre></div>
+<p><img src="local_images/t45.png" style="width:100.0%" /></p>
+<p>Modifing the transcript arrow styles and show all trancripts:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="basic-visualization.html#cb83-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb83-2"><a href="basic-visualization.html#cb83-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb83-3"><a href="basic-visualization.html#cb83-3" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="fu">c</span>(<span class="st">&quot;5&quot;</span>,<span class="st">&quot;15&quot;</span>),</span>
+<span id="cb83-4"><a href="basic-visualization.html#cb83-4" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="fu">c</span>(<span class="dv">65438603</span>,<span class="dv">9263295</span>),</span>
+<span id="cb83-5"><a href="basic-visualization.html#cb83-5" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="fu">c</span>(<span class="dv">65834288</span>,<span class="dv">9785835</span>)),</span>
+<span id="cb83-6"><a href="basic-visualization.html#cb83-6" tabindex="-1"></a>               <span class="at">trans_topN =</span> <span class="st">&quot;all&quot;</span>,</span>
+<span id="cb83-7"><a href="basic-visualization.html#cb83-7" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb83-8"><a href="basic-visualization.html#cb83-8" tabindex="-1"></a>               <span class="at">trans_exon_arrow_params =</span> <span class="fu">list</span>(<span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>,<span class="st">&quot;mm&quot;</span>)),</span>
+<span id="cb83-9"><a href="basic-visualization.html#cb83-9" tabindex="-1"></a>                                              <span class="at">linewidth =</span> <span class="fl">0.2</span>))</span></code></pre></div>
+<p><img src="local_images/t46.png" style="width:100.0%" /></p>
+<p>The details for trans track:</p>
+<p><img src="local_images/t47.png" style="width:100.0%" /></p>
+<p>Adding gene labels:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="basic-visualization.html#cb84-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb84-2"><a href="basic-visualization.html#cb84-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb84-3"><a href="basic-visualization.html#cb84-3" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="fu">c</span>(<span class="st">&quot;5&quot;</span>,<span class="st">&quot;15&quot;</span>),</span>
+<span id="cb84-4"><a href="basic-visualization.html#cb84-4" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="fu">c</span>(<span class="dv">65438603</span>,<span class="dv">9263295</span>),</span>
+<span id="cb84-5"><a href="basic-visualization.html#cb84-5" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="fu">c</span>(<span class="dv">65834288</span>,<span class="dv">9785835</span>)),</span>
+<span id="cb84-6"><a href="basic-visualization.html#cb84-6" tabindex="-1"></a>               <span class="at">trans_topN =</span> <span class="st">&quot;all&quot;</span>,</span>
+<span id="cb84-7"><a href="basic-visualization.html#cb84-7" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb84-8"><a href="basic-visualization.html#cb84-8" tabindex="-1"></a>               <span class="at">trans_exon_arrow_params =</span> <span class="fu">list</span>(<span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>,<span class="st">&quot;mm&quot;</span>)),</span>
+<span id="cb84-9"><a href="basic-visualization.html#cb84-9" tabindex="-1"></a>                                              <span class="at">linewidth =</span> <span class="fl">0.2</span>),</span>
+<span id="cb84-10"><a href="basic-visualization.html#cb84-10" tabindex="-1"></a>               <span class="at">add_gene_label_layer =</span> T,</span>
+<span id="cb84-11"><a href="basic-visualization.html#cb84-11" tabindex="-1"></a>               <span class="at">gene_label_params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">1</span>,<span class="at">segment.size =</span> <span class="fl">0.1</span>))</span></code></pre></div>
+<p><img src="local_images/t48.png" style="width:100.0%" /></p>
+<p>Collapsing transcripts:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="basic-visualization.html#cb85-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb85-2"><a href="basic-visualization.html#cb85-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb85-3"><a href="basic-visualization.html#cb85-3" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="fu">c</span>(<span class="st">&quot;5&quot;</span>,<span class="st">&quot;15&quot;</span>),</span>
+<span id="cb85-4"><a href="basic-visualization.html#cb85-4" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="fu">c</span>(<span class="dv">65438603</span>,<span class="dv">9263295</span>),</span>
+<span id="cb85-5"><a href="basic-visualization.html#cb85-5" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="fu">c</span>(<span class="dv">65834288</span>,<span class="dv">9785835</span>)),</span>
+<span id="cb85-6"><a href="basic-visualization.html#cb85-6" tabindex="-1"></a>               <span class="at">collapse_trans =</span> T,</span>
+<span id="cb85-7"><a href="basic-visualization.html#cb85-7" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb85-8"><a href="basic-visualization.html#cb85-8" tabindex="-1"></a>               <span class="at">trans_exon_arrow_params =</span> <span class="fu">list</span>(<span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>,<span class="st">&quot;mm&quot;</span>)),</span>
+<span id="cb85-9"><a href="basic-visualization.html#cb85-9" tabindex="-1"></a>                                              <span class="at">linewidth =</span> <span class="fl">0.2</span>),</span>
+<span id="cb85-10"><a href="basic-visualization.html#cb85-10" tabindex="-1"></a>               <span class="at">add_gene_label_layer =</span> T,</span>
+<span id="cb85-11"><a href="basic-visualization.html#cb85-11" tabindex="-1"></a>               <span class="at">gene_label_params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">1</span>,<span class="at">segment.size =</span> <span class="fl">0.1</span>),</span>
+<span id="cb85-12"><a href="basic-visualization.html#cb85-12" tabindex="-1"></a>               <span class="at">gene_label_shift_y =</span> <span class="sc">-</span><span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="local_images/t49.png" style="width:100.0%" /></p>
+<p>Adding chromosome structure:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="basic-visualization.html#cb86-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb86-2"><a href="basic-visualization.html#cb86-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb86-3"><a href="basic-visualization.html#cb86-3" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="fu">c</span>(<span class="st">&quot;5&quot;</span>,<span class="st">&quot;15&quot;</span>),</span>
+<span id="cb86-4"><a href="basic-visualization.html#cb86-4" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="fu">c</span>(<span class="dv">65438603</span>,<span class="dv">9263295</span>),</span>
+<span id="cb86-5"><a href="basic-visualization.html#cb86-5" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="fu">c</span>(<span class="dv">65834288</span>,<span class="dv">9785835</span>)),</span>
+<span id="cb86-6"><a href="basic-visualization.html#cb86-6" tabindex="-1"></a>               <span class="at">trans_topN =</span> <span class="st">&quot;all&quot;</span>,</span>
+<span id="cb86-7"><a href="basic-visualization.html#cb86-7" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb86-8"><a href="basic-visualization.html#cb86-8" tabindex="-1"></a>               <span class="at">trans_exon_arrow_params =</span> <span class="fu">list</span>(<span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.3</span>,<span class="st">&quot;mm&quot;</span>)),</span>
+<span id="cb86-9"><a href="basic-visualization.html#cb86-9" tabindex="-1"></a>                                              <span class="at">linewidth =</span> <span class="fl">0.2</span>),</span>
+<span id="cb86-10"><a href="basic-visualization.html#cb86-10" tabindex="-1"></a>               <span class="at">add_gene_label_layer =</span> T,</span>
+<span id="cb86-11"><a href="basic-visualization.html#cb86-11" tabindex="-1"></a>               <span class="at">gene_label_params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">1</span>,<span class="at">segment.size =</span> <span class="fl">0.1</span>),</span>
+<span id="cb86-12"><a href="basic-visualization.html#cb86-12" tabindex="-1"></a>               <span class="at">draw_chromosome =</span> T,</span>
+<span id="cb86-13"><a href="basic-visualization.html#cb86-13" tabindex="-1"></a>               <span class="at">draw_chromosome_params =</span> <span class="fu">list</span>(<span class="at">ideogram_obj =</span> mm10_obj))</span></code></pre></div>
+<p><img src="local_images/t50.png" style="width:100.0%" /></p>
+</div>
+<div id="adding-peaks-track" class="section level2 hasAnchor" number="5.12">
+<h2><span class="header-section-number">5.12</span> Adding peaks track<a href="basic-visualization.html#adding-peaks-track" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>I don’t draw the peaks file to assign each new panel. I have put them all into one
+panel which is enough. This is similar with the <strong>trans</strong> panel. <strong>Input_bed</strong> accepts
+peaks data which output from <strong>loadBed</strong> function. We first load the peaks data:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="basic-visualization.html#cb87-1" tabindex="-1"></a>bedfile <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">&quot;./&quot;</span>,<span class="at">pattern =</span> <span class="st">&quot;.bed&quot;</span>)</span>
+<span id="cb87-2"><a href="basic-visualization.html#cb87-2" tabindex="-1"></a><span class="co"># [1] &quot;peaks.bed&quot;  &quot;peaks2.bed&quot;</span></span>
+<span id="cb87-3"><a href="basic-visualization.html#cb87-3" tabindex="-1"></a></span>
+<span id="cb87-4"><a href="basic-visualization.html#cb87-4" tabindex="-1"></a>bed_df <span class="ot">&lt;-</span> <span class="fu">loadBed</span>(bedfile)</span>
+<span id="cb87-5"><a href="basic-visualization.html#cb87-5" tabindex="-1"></a></span>
+<span id="cb87-6"><a href="basic-visualization.html#cb87-6" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb87-7"><a href="basic-visualization.html#cb87-7" tabindex="-1"></a><span class="fu">head</span>(bed_df,<span class="dv">3</span>)</span>
+<span id="cb87-8"><a href="basic-visualization.html#cb87-8" tabindex="-1"></a><span class="co">#   seqnames     start       end sampleName y</span></span>
+<span id="cb87-9"><a href="basic-visualization.html#cb87-9" tabindex="-1"></a><span class="co"># 1        5 142905501 142905600      peaks 1</span></span>
+<span id="cb87-10"><a href="basic-visualization.html#cb87-10" tabindex="-1"></a><span class="co"># 2        5 142903201 142903800      peaks 1</span></span>
+<span id="cb87-11"><a href="basic-visualization.html#cb87-11" tabindex="-1"></a><span class="co"># 3       15  61985342  61985900      peaks 1</span></span></code></pre></div>
+<p>Plotting the peaks track:</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="basic-visualization.html#cb88-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb88-2"><a href="basic-visualization.html#cb88-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb88-3"><a href="basic-visualization.html#cb88-3" tabindex="-1"></a>               <span class="at">Input_bed =</span> bed_df,</span>
+<span id="cb88-4"><a href="basic-visualization.html#cb88-4" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t51.png" style="width:100.0%" /></p>
+<p><strong>peak_width</strong> controls the peaks rectangle height:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="basic-visualization.html#cb89-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb89-2"><a href="basic-visualization.html#cb89-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb89-3"><a href="basic-visualization.html#cb89-3" tabindex="-1"></a>               <span class="at">Input_bed =</span> bed_df,</span>
+<span id="cb89-4"><a href="basic-visualization.html#cb89-4" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>),</span>
+<span id="cb89-5"><a href="basic-visualization.html#cb89-5" tabindex="-1"></a>               <span class="at">peak_width =</span> <span class="fl">0.9</span>)</span></code></pre></div>
+<p><img src="local_images/t52.png" style="width:100.0%" /></p>
+<p><strong>peak_fill_col</strong> controls the peaks rectangle colors:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="basic-visualization.html#cb90-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb90-2"><a href="basic-visualization.html#cb90-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb90-3"><a href="basic-visualization.html#cb90-3" tabindex="-1"></a>               <span class="at">Input_bed =</span> bed_df,</span>
+<span id="cb90-4"><a href="basic-visualization.html#cb90-4" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>),</span>
+<span id="cb90-5"><a href="basic-visualization.html#cb90-5" tabindex="-1"></a>               <span class="at">peak_width =</span> <span class="fl">0.9</span>,</span>
+<span id="cb90-6"><a href="basic-visualization.html#cb90-6" tabindex="-1"></a>               <span class="at">peak_fill_col =</span> <span class="fu">c</span>(<span class="at">peaks =</span> <span class="st">&quot;orange&quot;</span>,<span class="at">peaks2 =</span> <span class="st">&quot;purple&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t53.png" style="width:100.0%" /></p>
+<p>Adding chromosomes:</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="basic-visualization.html#cb91-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb91-2"><a href="basic-visualization.html#cb91-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb91-3"><a href="basic-visualization.html#cb91-3" tabindex="-1"></a>               <span class="at">Input_bed =</span> bed_df,</span>
+<span id="cb91-4"><a href="basic-visualization.html#cb91-4" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Actb&quot;</span>,<span class="st">&quot;Myc&quot;</span>),</span>
+<span id="cb91-5"><a href="basic-visualization.html#cb91-5" tabindex="-1"></a>               <span class="at">peak_width =</span> <span class="fl">0.9</span>,</span>
+<span id="cb91-6"><a href="basic-visualization.html#cb91-6" tabindex="-1"></a>               <span class="at">peak_fill_col =</span> <span class="fu">c</span>(<span class="at">peaks =</span> <span class="st">&quot;orange&quot;</span>,<span class="at">peaks2 =</span> <span class="st">&quot;purple&quot;</span>),</span>
+<span id="cb91-7"><a href="basic-visualization.html#cb91-7" tabindex="-1"></a>               <span class="at">draw_chromosome =</span> T,</span>
+<span id="cb91-8"><a href="basic-visualization.html#cb91-8" tabindex="-1"></a>               <span class="at">draw_chromosome_params =</span> <span class="fu">list</span>(<span class="at">ideogram_obj =</span> mm10_obj))</span></code></pre></div>
+<p><img src="local_images/t54.png" style="width:100.0%" /></p>
+</div>
+<div id="extending-bases-upstream-and-downstream" class="section level2 hasAnchor" number="5.13">
+<h2><span class="header-section-number">5.13</span> Extending bases upstream and downstream<a href="basic-visualization.html#extending-bases-upstream-and-downstream" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Drawing specific genes and observe the signals sometimes are not enough. Finding the
+transcription factor binding signals for gene upstream is what we want. It is
+not simple to supply exact genomic coordinates to draw. <strong>upstream_extend</strong> and
+<strong>downstream_extend</strong> allow you to extend bases upstream or downstream for your genes,
+here we show some examples:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="basic-visualization.html#cb92-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb92-2"><a href="basic-visualization.html#cb92-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb92-3"><a href="basic-visualization.html#cb92-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Utp3&quot;</span>,<span class="st">&quot;Chpf2&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/ud_1.png" style="width:100.0%" /></p>
+<p>Extending upstream:</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="basic-visualization.html#cb93-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb93-2"><a href="basic-visualization.html#cb93-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb93-3"><a href="basic-visualization.html#cb93-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Utp3&quot;</span>,<span class="st">&quot;Chpf2&quot;</span>),</span>
+<span id="cb93-4"><a href="basic-visualization.html#cb93-4" tabindex="-1"></a>               <span class="at">upstream_extend =</span> <span class="dv">2000</span>)</span></code></pre></div>
+<p><img src="local_images/ud_2.png" style="width:100.0%" /></p>
+<p>Extending upstream and downstream:</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="basic-visualization.html#cb94-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb94-2"><a href="basic-visualization.html#cb94-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb94-3"><a href="basic-visualization.html#cb94-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Utp3&quot;</span>,<span class="st">&quot;Chpf2&quot;</span>),</span>
+<span id="cb94-4"><a href="basic-visualization.html#cb94-4" tabindex="-1"></a>               <span class="at">upstream_extend =</span> <span class="dv">2000</span>,</span>
+<span id="cb94-5"><a href="basic-visualization.html#cb94-5" tabindex="-1"></a>               <span class="at">downstream_extend =</span> <span class="dv">2000</span>)</span></code></pre></div>
+<p><img src="local_images/ud_3.png" style="width:100.0%" /></p>
+<p>You can extend for multiple genes with different values:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="basic-visualization.html#cb95-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb95-2"><a href="basic-visualization.html#cb95-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb95-3"><a href="basic-visualization.html#cb95-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Utp3&quot;</span>,<span class="st">&quot;Chpf2&quot;</span>),</span>
+<span id="cb95-4"><a href="basic-visualization.html#cb95-4" tabindex="-1"></a>               <span class="at">upstream_extend =</span> <span class="fu">c</span>(<span class="dv">2000</span>,<span class="dv">1000</span>),</span>
+<span id="cb95-5"><a href="basic-visualization.html#cb95-5" tabindex="-1"></a>               <span class="at">downstream_extend =</span> <span class="fu">c</span>(<span class="dv">1000</span>,<span class="dv">2000</span>)</span>
+<span id="cb95-6"><a href="basic-visualization.html#cb95-6" tabindex="-1"></a>               )</span></code></pre></div>
+<p><img src="local_images/ud_4.png" style="width:100.0%" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="track-data-input.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="loops-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-Basic_visualization.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

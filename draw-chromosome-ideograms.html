@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Draw chromosome ideograms | BioSeqUtils Reference</title>
+  <meta name="description" content="This is a detailed documentation of BioSeqUtils package." />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Draw chromosome ideograms | BioSeqUtils Reference" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a detailed documentation of BioSeqUtils package." />
+  <meta name="github-repo" content="rstudio/bookdown-BioSeqUtils" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Draw chromosome ideograms | BioSeqUtils Reference" />
+  
+  <meta name="twitter:description" content="This is a detailed documentation of BioSeqUtils package." />
+  
+
+<meta name="author" content="Jun Zhang" />
+
+
+<meta name="date" content="2024-11-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="extract-sequence.html"/>
+<link rel="next" href="track-data-input.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">BioSeqUtils manual documentation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#related-blogs"><i class="fa fa-check"></i><b>1.1</b> Related blogs</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="extract-sequence.html"><a href="extract-sequence.html"><i class="fa fa-check"></i><b>2</b> Extract sequence</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="extract-sequence.html"><a href="extract-sequence.html#data-loading"><i class="fa fa-check"></i><b>2.1</b> Data loading</a></li>
+<li class="chapter" data-level="2.2" data-path="extract-sequence.html"><a href="extract-sequence.html#get-features-information"><i class="fa fa-check"></i><b>2.2</b> Get features information</a></li>
+<li class="chapter" data-level="2.3" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-sequnence"><i class="fa fa-check"></i><b>2.3</b> Extract sequnence</a></li>
+<li class="chapter" data-level="2.4" data-path="extract-sequence.html"><a href="extract-sequence.html#get-inrton-information"><i class="fa fa-check"></i><b>2.4</b> Get inrton information</a></li>
+<li class="chapter" data-level="2.5" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-promoters"><i class="fa fa-check"></i><b>2.5</b> Extract promoters</a></li>
+<li class="chapter" data-level="2.6" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-non-redundant-transcript-length"><i class="fa fa-check"></i><b>2.6</b> Extract non-redundant transcript length</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html"><i class="fa fa-check"></i><b>3</b> Draw chromosome ideograms</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#downloading-related-data"><i class="fa fa-check"></i><b>3.1</b> Downloading related data</a></li>
+<li class="chapter" data-level="3.2" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#making-plot"><i class="fa fa-check"></i><b>3.2</b> Making plot</a></li>
+<li class="chapter" data-level="3.3" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#drawing-gene-density-manually"><i class="fa fa-check"></i><b>3.3</b> Drawing gene density manually</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="track-data-input.html"><a href="track-data-input.html"><i class="fa fa-check"></i><b>4</b> Track data input</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="track-data-input.html"><a href="track-data-input.html#load-signal-data"><i class="fa fa-check"></i><b>4.1</b> Load signal data</a></li>
+<li class="chapter" data-level="4.2" data-path="track-data-input.html"><a href="track-data-input.html#load-peaks-data"><i class="fa fa-check"></i><b>4.2</b> Load peaks data</a></li>
+<li class="chapter" data-level="4.3" data-path="track-data-input.html"><a href="track-data-input.html#load-links-data"><i class="fa fa-check"></i><b>4.3</b> Load links data</a></li>
+<li class="chapter" data-level="4.4" data-path="track-data-input.html"><a href="track-data-input.html#load-hic-related-data"><i class="fa fa-check"></i><b>4.4</b> Load Hic related data</a></li>
+<li class="chapter" data-level="4.5" data-path="track-data-input.html"><a href="track-data-input.html#extract-junction-data"><i class="fa fa-check"></i><b>4.5</b> Extract junction data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="basic-visualization.html"><a href="basic-visualization.html"><i class="fa fa-check"></i><b>5</b> Basic visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="basic-visualization.html"><a href="basic-visualization.html#basic-plot"><i class="fa fa-check"></i><b>5.1</b> Basic plot</a></li>
+<li class="chapter" data-level="5.2" data-path="basic-visualization.html"><a href="basic-visualization.html#signal-range-settings"><i class="fa fa-check"></i><b>5.2</b> Signal range settings</a></li>
+<li class="chapter" data-level="5.3" data-path="basic-visualization.html"><a href="basic-visualization.html#transcript-track-settings"><i class="fa fa-check"></i><b>5.3</b> Transcript track settings</a></li>
+<li class="chapter" data-level="5.4" data-path="basic-visualization.html"><a href="basic-visualization.html#intron-line-type"><i class="fa fa-check"></i><b>5.4</b> Intron line type</a></li>
+<li class="chapter" data-level="5.5" data-path="basic-visualization.html"><a href="basic-visualization.html#x-axis-limitation"><i class="fa fa-check"></i><b>5.5</b> X axis limitation</a></li>
+<li class="chapter" data-level="5.6" data-path="basic-visualization.html"><a href="basic-visualization.html#background-and-highlight-region-settings"><i class="fa fa-check"></i><b>5.6</b> Background and highlight region settings</a></li>
+<li class="chapter" data-level="5.7" data-path="basic-visualization.html"><a href="basic-visualization.html#order-for-genes-and-samples"><i class="fa fa-check"></i><b>5.7</b> Order for genes and samples</a></li>
+<li class="chapter" data-level="5.8" data-path="basic-visualization.html"><a href="basic-visualization.html#adding-group-information-for-genes-and-samples"><i class="fa fa-check"></i><b>5.8</b> Adding group information for genes and samples</a></li>
+<li class="chapter" data-level="5.9" data-path="basic-visualization.html"><a href="basic-visualization.html#strip-settings"><i class="fa fa-check"></i><b>5.9</b> Strip settings</a></li>
+<li class="chapter" data-level="5.10" data-path="basic-visualization.html"><a href="basic-visualization.html#draw-chromosome-annotation"><i class="fa fa-check"></i><b>5.10</b> Draw chromosome annotation</a></li>
+<li class="chapter" data-level="5.11" data-path="basic-visualization.html"><a href="basic-visualization.html#plot-with-specified-genomic-region"><i class="fa fa-check"></i><b>5.11</b> Plot with specified genomic region</a></li>
+<li class="chapter" data-level="5.12" data-path="basic-visualization.html"><a href="basic-visualization.html#adding-peaks-track"><i class="fa fa-check"></i><b>5.12</b> Adding peaks track</a></li>
+<li class="chapter" data-level="5.13" data-path="basic-visualization.html"><a href="basic-visualization.html#extending-bases-upstream-and-downstream"><i class="fa fa-check"></i><b>5.13</b> Extending bases upstream and downstream</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="loops-visualization.html"><a href="loops-visualization.html"><i class="fa fa-check"></i><b>6</b> Loops visualization</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="loops-visualization.html"><a href="loops-visualization.html#input-data-prepration"><i class="fa fa-check"></i><b>6.1</b> Input data prepration</a></li>
+<li class="chapter" data-level="6.2" data-path="loops-visualization.html"><a href="loops-visualization.html#basic-loops-visualization"><i class="fa fa-check"></i><b>6.2</b> Basic loops visualization</a></li>
+<li class="chapter" data-level="6.3" data-path="loops-visualization.html"><a href="loops-visualization.html#reverse-y-axis"><i class="fa fa-check"></i><b>6.3</b> Reverse Y axis</a></li>
+<li class="chapter" data-level="6.4" data-path="loops-visualization.html"><a href="loops-visualization.html#combing-with-chromosome-track"><i class="fa fa-check"></i><b>6.4</b> Combing with chromosome track</a></li>
+<li class="chapter" data-level="6.5" data-path="loops-visualization.html"><a href="loops-visualization.html#higlight-regions"><i class="fa fa-check"></i><b>6.5</b> Higlight regions</a></li>
+<li class="chapter" data-level="6.6" data-path="loops-visualization.html"><a href="loops-visualization.html#drawing-only-loop-tracks"><i class="fa fa-check"></i><b>6.6</b> Drawing only loop tracks</a></li>
+<li class="chapter" data-level="6.7" data-path="loops-visualization.html"><a href="loops-visualization.html#curve-geoms-choosing"><i class="fa fa-check"></i><b>6.7</b> Curve geoms choosing</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html"><i class="fa fa-check"></i><b>7</b> Hic heatmap visualization</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#data-preperation"><i class="fa fa-check"></i><b>7.1</b> Data preperation</a></li>
+<li class="chapter" data-level="7.2" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#basic-plot-1"><i class="fa fa-check"></i><b>7.2</b> Basic plot</a></li>
+<li class="chapter" data-level="7.3" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#real-data-practice"><i class="fa fa-check"></i><b>7.3</b> Real data practice</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html"><i class="fa fa-check"></i><b>8</b> Splice junction visualization</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html#data-pareparation"><i class="fa fa-check"></i><b>8.1</b> Data pareparation</a></li>
+<li class="chapter" data-level="8.2" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html#visualization"><i class="fa fa-check"></i><b>8.2</b> Visualization</a></li>
+<li class="chapter" data-level="8.3" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html#section"><i class="fa fa-check"></i><b>8.3</b> <img src="local_images/t81.png" style="width:100.0%" /></a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="other-funs.html"><a href="other-funs.html"><i class="fa fa-check"></i><b>9</b> Other funs</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="other-funs.html"><a href="other-funs.html#transcript-coordinate-transformation"><i class="fa fa-check"></i><b>9.1</b> Transcript coordinate transformation</a></li>
+<li class="chapter" data-level="9.2" data-path="other-funs.html"><a href="other-funs.html#track-overlap"><i class="fa fa-check"></i><b>9.2</b> Track overlap</a></li>
+<li class="chapter" data-level="9.3" data-path="other-funs.html"><a href="other-funs.html#extend-coordinate-for-gene"><i class="fa fa-check"></i><b>9.3</b> Extend coordinate for gene</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="frequntlly-asked-questions.html"><a href="frequntlly-asked-questions.html"><i class="fa fa-check"></i><b>10</b> Frequntlly asked questions</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BioSeqUtils Reference</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="draw-chromosome-ideograms" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Draw chromosome ideograms<a href="draw-chromosome-ideograms.html#draw-chromosome-ideograms" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A chromosomal ideogram is an idealized graphic representation of chromosomes. The
+common different shades of color positions on chromosome represent densities of
+gene. Here is a simple illustration:</p>
+<blockquote>
+<ul>
+<li><strong>“gneg”</strong> refers to a chromosomal band that stains lightly with Giemsa stain.</li>
+<li><strong>“gpos25”</strong>, <strong>“gpos50”</strong>, <strong>“gpos75”</strong>, and <strong>“gpos100”</strong> refer to chromosomal bands that stain progressively darker with Giemsa stain. These terms represent increasing proportions of GC-rich DNA in the band.</li>
+<li><strong>“acen”</strong> refers to the centromere or the specialized region of a chromosome that plays a role in cell division.</li>
+<li><strong>“gvar”</strong> refers to a chromosomal band that has structural variation compared to the reference genome.</li>
+<li><strong>“stalk”</strong> can have different meanings depending on the context, but in cytogenetics, it refers to a short arm protrusion that extends from the centromere.</li>
+</ul>
+</blockquote>
+<div id="downloading-related-data" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Downloading related data<a href="draw-chromosome-ideograms.html#downloading-related-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>mm10</strong>, <strong>hg38</strong> and <strong>hg19</strong> related ideogram data have been downloaded and
+saved in <strong>BioSeqUtils</strong>. You can use <strong>catchIdeoData</strong> function to download
+other species data. Here is the data strcuture of “hg38_obj” object:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="draw-chromosome-ideograms.html#cb9-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;hg38_obj&quot;</span>)</span>
+<span id="cb9-2"><a href="draw-chromosome-ideograms.html#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="draw-chromosome-ideograms.html#cb9-3" tabindex="-1"></a><span class="fu">str</span>(hg38_obj)</span>
+<span id="cb9-4"><a href="draw-chromosome-ideograms.html#cb9-4" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="draw-chromosome-ideograms.html#cb9-5" tabindex="-1"></a><span class="co"># List of 3</span></span>
+<span id="cb9-6"><a href="draw-chromosome-ideograms.html#cb9-6" tabindex="-1"></a><span class="co">#  $ plot_df     :&#39;data.frame&#39;: 814 obs. of  6 variables:</span></span>
+<span id="cb9-7"><a href="draw-chromosome-ideograms.html#cb9-7" tabindex="-1"></a><span class="co">#   ..$ chr        : chr [1:814] &quot;chr1&quot; &quot;chr1&quot; &quot;chr1&quot; &quot;chr1&quot; ...</span></span>
+<span id="cb9-8"><a href="draw-chromosome-ideograms.html#cb9-8" tabindex="-1"></a><span class="co">#   ..$ chromStart : num [1:814] 0 2300000 5300000 7100000 9100000 12500000 15900000 20100000 23600000 27600000 ...</span></span>
+<span id="cb9-9"><a href="draw-chromosome-ideograms.html#cb9-9" tabindex="-1"></a><span class="co">#   ..$ chromEnd   : num [1:814] 2300000 5300000 7100000 9100000 12500000 15900000 20100000 23600000 27600000 29900000 ...</span></span>
+<span id="cb9-10"><a href="draw-chromosome-ideograms.html#cb9-10" tabindex="-1"></a><span class="co">#   ..$ name       : chr [1:814] &quot;p36.33&quot; &quot;p36.32&quot; &quot;p36.31&quot; &quot;p36.23&quot; ...</span></span>
+<span id="cb9-11"><a href="draw-chromosome-ideograms.html#cb9-11" tabindex="-1"></a><span class="co">#   ..$ gieStain   : chr [1:814] &quot;gneg&quot; &quot;gpos25&quot; &quot;gneg&quot; &quot;gpos25&quot; ...</span></span>
+<span id="cb9-12"><a href="draw-chromosome-ideograms.html#cb9-12" tabindex="-1"></a><span class="co">#   ..$ gieStainCol: chr [1:814] &quot;white&quot; &quot;gray75&quot; &quot;white&quot; &quot;gray75&quot; ...</span></span>
+<span id="cb9-13"><a href="draw-chromosome-ideograms.html#cb9-13" tabindex="-1"></a><span class="co">#  $ border_df   : gropd_df [48 × 4] (S3: grouped_df/tbl_df/tbl/data.frame)</span></span>
+<span id="cb9-14"><a href="draw-chromosome-ideograms.html#cb9-14" tabindex="-1"></a><span class="co">#   ..$ chr : chr [1:48] &quot;chr1&quot; &quot;chr1&quot; &quot;chr10&quot; &quot;chr10&quot; ...</span></span>
+<span id="cb9-15"><a href="draw-chromosome-ideograms.html#cb9-15" tabindex="-1"></a><span class="co">#   ..$ pos : chr [1:48] &quot;left&quot; &quot;right&quot; &quot;left&quot; &quot;right&quot; ...</span></span>
+<span id="cb9-16"><a href="draw-chromosome-ideograms.html#cb9-16" tabindex="-1"></a><span class="co">#   ..$ xmin: num [1:48] 0.00 1.25e+08 0.00 4.16e+07 0.00 ...</span></span>
+<span id="cb9-17"><a href="draw-chromosome-ideograms.html#cb9-17" tabindex="-1"></a><span class="co">#   ..$ xmax: num [1:48] 1.22e+08 2.49e+08 3.80e+07 1.34e+08 5.10e+07 ...</span></span>
+<span id="cb9-18"><a href="draw-chromosome-ideograms.html#cb9-18" tabindex="-1"></a><span class="co">#   ..- attr(*, &quot;groups&quot;)= tibble [24 × 2] (S3: tbl_df/tbl/data.frame)</span></span>
+<span id="cb9-19"><a href="draw-chromosome-ideograms.html#cb9-19" tabindex="-1"></a><span class="co">#   .. ..$ chr  : chr [1:24] &quot;chr1&quot; &quot;chr10&quot; &quot;chr11&quot; &quot;chr12&quot; ...</span></span>
+<span id="cb9-20"><a href="draw-chromosome-ideograms.html#cb9-20" tabindex="-1"></a><span class="co">#   .. ..$ .rows: list&lt;int&gt; [1:24]</span></span>
+<span id="cb9-21"><a href="draw-chromosome-ideograms.html#cb9-21" tabindex="-1"></a><span class="co">#   .. .. ..$ : int [1:2] 1 2</span></span>
+<span id="cb9-22"><a href="draw-chromosome-ideograms.html#cb9-22" tabindex="-1"></a><span class="co">#   .. .. ..$ : int [1:2] 3 4</span></span>
+<span id="cb9-23"><a href="draw-chromosome-ideograms.html#cb9-23" tabindex="-1"></a><span class="co">#   ...</span></span>
+<span id="cb9-24"><a href="draw-chromosome-ideograms.html#cb9-24" tabindex="-1"></a><span class="co">#   .. .. ..@ ptype: int(0)</span></span>
+<span id="cb9-25"><a href="draw-chromosome-ideograms.html#cb9-25" tabindex="-1"></a><span class="co">#   .. ..- attr(*, &quot;.drop&quot;)= logi TRUE</span></span>
+<span id="cb9-26"><a href="draw-chromosome-ideograms.html#cb9-26" tabindex="-1"></a><span class="co">#  $ acen_plot_df:&#39;data.frame&#39;: 96000 obs. of  4 variables:</span></span>
+<span id="cb9-27"><a href="draw-chromosome-ideograms.html#cb9-27" tabindex="-1"></a><span class="co">#   ..$ xpos: num [1:96000] 1.25e+08 1.25e+08 1.25e+08 1.25e+08 1.25e+08 ...</span></span>
+<span id="cb9-28"><a href="draw-chromosome-ideograms.html#cb9-28" tabindex="-1"></a><span class="co">#   ..$ ypos: num [1:96000] 0 0.00025 0.000501 0.000751 0.001002 ...</span></span>
+<span id="cb9-29"><a href="draw-chromosome-ideograms.html#cb9-29" tabindex="-1"></a><span class="co">#   ..$ type: num [1:96000] 1 1 1 1 1 1 1 1 1 1 ...</span></span>
+<span id="cb9-30"><a href="draw-chromosome-ideograms.html#cb9-30" tabindex="-1"></a><span class="co">#   ..$ chr : chr [1:96000] &quot;chr1&quot; &quot;chr1&quot; &quot;chr1&quot; &quot;chr1&quot; ...</span></span></code></pre></div>
+<p>If we download “mm10” related ideogram data online:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="draw-chromosome-ideograms.html#cb10-1" tabindex="-1"></a>mm10_obj <span class="ot">&lt;-</span> <span class="fu">catchIdeoData</span>(<span class="at">genome =</span> <span class="st">&quot;mm10&quot;</span>)</span></code></pre></div>
+</div>
+<div id="making-plot" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Making plot<a href="draw-chromosome-ideograms.html#making-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>drawChromosome</strong> function allows you to plot chromosome ideogram structure:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="draw-chromosome-ideograms.html#cb11-1" tabindex="-1"></a><span class="fu">drawChromosome</span>(<span class="at">ideogram_obj =</span> hg38_obj,</span>
+<span id="cb11-2"><a href="draw-chromosome-ideograms.html#cb11-2" tabindex="-1"></a>               <span class="at">chromosomes =</span> <span class="fu">unique</span>(hg38_obj<span class="sc">$</span>plot_df<span class="sc">$</span>chr),</span>
+<span id="cb11-3"><a href="draw-chromosome-ideograms.html#cb11-3" tabindex="-1"></a>               <span class="at">facet_params =</span> <span class="fu">list</span>(<span class="at">scales =</span> <span class="st">&quot;fixed&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/chr1.png" style="width:100.0%" /></p>
+<p>Selecting some chromosomes:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="draw-chromosome-ideograms.html#cb12-1" tabindex="-1"></a><span class="fu">drawChromosome</span>(<span class="at">ideogram_obj =</span> hg38_obj,</span>
+<span id="cb12-2"><a href="draw-chromosome-ideograms.html#cb12-2" tabindex="-1"></a>               <span class="at">chromosomes =</span> <span class="fu">c</span>(<span class="st">&quot;chr1&quot;</span>,<span class="st">&quot;chr2&quot;</span>,<span class="st">&quot;chr3&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/chr2.png" style="width:100.0%" /></p>
+<p>Zooming a region on chromosomes with a genomic position:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="draw-chromosome-ideograms.html#cb13-1" tabindex="-1"></a><span class="fu">drawChromosome</span>(<span class="at">ideogram_obj =</span> hg38_obj,</span>
+<span id="cb13-2"><a href="draw-chromosome-ideograms.html#cb13-2" tabindex="-1"></a>               <span class="at">chromosomes =</span> <span class="fu">c</span>(<span class="st">&quot;chr1&quot;</span>,<span class="st">&quot;chr2&quot;</span>,<span class="st">&quot;chr3&quot;</span>),</span>
+<span id="cb13-3"><a href="draw-chromosome-ideograms.html#cb13-3" tabindex="-1"></a>               <span class="at">zoom_region =</span> <span class="fu">c</span>(<span class="dv">10</span><span class="sc">^</span><span class="dv">8</span>,<span class="dv">10</span><span class="sc">^</span><span class="dv">8</span><span class="sc">+</span><span class="dv">300000</span>))</span></code></pre></div>
+<p><img src="local_images/chr3.png" style="width:100.0%" /></p>
+<p>Multiple regions are also accepted:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="draw-chromosome-ideograms.html#cb14-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;mm10_obj&quot;</span>)</span>
+<span id="cb14-2"><a href="draw-chromosome-ideograms.html#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="draw-chromosome-ideograms.html#cb14-3" tabindex="-1"></a><span class="fu">drawChromosome</span>(<span class="at">ideogram_obj =</span> mm10_obj,</span>
+<span id="cb14-4"><a href="draw-chromosome-ideograms.html#cb14-4" tabindex="-1"></a>               <span class="at">chromosomes =</span> <span class="fu">c</span>(<span class="st">&quot;chr1&quot;</span>,<span class="st">&quot;chr2&quot;</span>,<span class="st">&quot;chr3&quot;</span>),</span>
+<span id="cb14-5"><a href="draw-chromosome-ideograms.html#cb14-5" tabindex="-1"></a>               <span class="at">zoom_region =</span> <span class="fu">list</span>(<span class="at">chr1 =</span> <span class="fu">c</span>(<span class="dv">10</span><span class="sc">^</span><span class="dv">8</span>,<span class="dv">10</span><span class="sc">^</span><span class="dv">8</span><span class="sc">+</span><span class="dv">300000</span>),</span>
+<span id="cb14-6"><a href="draw-chromosome-ideograms.html#cb14-6" tabindex="-1"></a>                                  <span class="at">chr2 =</span> <span class="fu">c</span>(<span class="fl">0.6</span><span class="sc">*</span><span class="dv">10</span><span class="sc">^</span><span class="dv">8</span> <span class="sc">+</span> <span class="dv">300000</span>,<span class="fl">0.6</span><span class="sc">*</span><span class="dv">10</span><span class="sc">^</span><span class="dv">8</span><span class="sc">+</span><span class="dv">900000</span>),</span>
+<span id="cb14-7"><a href="draw-chromosome-ideograms.html#cb14-7" tabindex="-1"></a>                                  <span class="at">chr3 =</span> <span class="fu">c</span>(<span class="fl">0.1</span><span class="sc">*</span><span class="dv">10</span><span class="sc">^</span><span class="dv">8</span>,<span class="fl">0.1</span><span class="sc">*</span><span class="dv">10</span><span class="sc">^</span><span class="dv">8</span><span class="sc">+</span><span class="dv">450000</span>)),</span>
+<span id="cb14-8"><a href="draw-chromosome-ideograms.html#cb14-8" tabindex="-1"></a>               <span class="at">facet_params =</span> <span class="fu">list</span>(<span class="at">strip.position =</span> <span class="st">&quot;bottom&quot;</span>),</span>
+<span id="cb14-9"><a href="draw-chromosome-ideograms.html#cb14-9" tabindex="-1"></a>               <span class="at">zoom_col =</span> <span class="fu">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;#82CD47&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/chr4.png" style="width:100.0%" /></p>
+</div>
+<div id="drawing-gene-density-manually" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Drawing gene density manually<a href="draw-chromosome-ideograms.html#drawing-gene-density-manually" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If you want to calculate and plot gene densities by manual, please refer to
+<a href="https://mp.weixin.qq.com/s?__biz=MzkyMTI1MTYxNA==&amp;mid=2247508733&amp;idx=1&amp;sn=4dc7927ac4b1c065f230a6bf934ed8f3&amp;chksm=c184988cf6f3119aaaabcca868ddbe6dd33bf3040917b9aac6919020590ecd032130371319f5&amp;token=1698519075&amp;lang=zh_CN#rd"><strong>手把手教你绘制染色体结构图</strong></a>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="extract-sequence.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="track-data-input.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02_Draw_chromosomes.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
