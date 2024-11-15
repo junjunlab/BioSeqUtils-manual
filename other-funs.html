@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Other funs | BioSeqUtils Reference</title>
+  <meta name="description" content="This is a detailed documentation of BioSeqUtils package." />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Other funs | BioSeqUtils Reference" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a detailed documentation of BioSeqUtils package." />
+  <meta name="github-repo" content="rstudio/bookdown-BioSeqUtils" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Other funs | BioSeqUtils Reference" />
+  
+  <meta name="twitter:description" content="This is a detailed documentation of BioSeqUtils package." />
+  
+
+<meta name="author" content="Jun Zhang" />
+
+
+<meta name="date" content="2024-11-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="splice-junction-visualization.html"/>
+<link rel="next" href="frequntlly-asked-questions.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">BioSeqUtils manual documentation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#related-blogs"><i class="fa fa-check"></i><b>1.1</b> Related blogs</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="extract-sequence.html"><a href="extract-sequence.html"><i class="fa fa-check"></i><b>2</b> Extract sequence</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="extract-sequence.html"><a href="extract-sequence.html#data-loading"><i class="fa fa-check"></i><b>2.1</b> Data loading</a></li>
+<li class="chapter" data-level="2.2" data-path="extract-sequence.html"><a href="extract-sequence.html#get-features-information"><i class="fa fa-check"></i><b>2.2</b> Get features information</a></li>
+<li class="chapter" data-level="2.3" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-sequnence"><i class="fa fa-check"></i><b>2.3</b> Extract sequnence</a></li>
+<li class="chapter" data-level="2.4" data-path="extract-sequence.html"><a href="extract-sequence.html#get-inrton-information"><i class="fa fa-check"></i><b>2.4</b> Get inrton information</a></li>
+<li class="chapter" data-level="2.5" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-promoters"><i class="fa fa-check"></i><b>2.5</b> Extract promoters</a></li>
+<li class="chapter" data-level="2.6" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-non-redundant-transcript-length"><i class="fa fa-check"></i><b>2.6</b> Extract non-redundant transcript length</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html"><i class="fa fa-check"></i><b>3</b> Draw chromosome ideograms</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#downloading-related-data"><i class="fa fa-check"></i><b>3.1</b> Downloading related data</a></li>
+<li class="chapter" data-level="3.2" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#making-plot"><i class="fa fa-check"></i><b>3.2</b> Making plot</a></li>
+<li class="chapter" data-level="3.3" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#drawing-gene-density-manually"><i class="fa fa-check"></i><b>3.3</b> Drawing gene density manually</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="track-data-input.html"><a href="track-data-input.html"><i class="fa fa-check"></i><b>4</b> Track data input</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="track-data-input.html"><a href="track-data-input.html#load-signal-data"><i class="fa fa-check"></i><b>4.1</b> Load signal data</a></li>
+<li class="chapter" data-level="4.2" data-path="track-data-input.html"><a href="track-data-input.html#load-peaks-data"><i class="fa fa-check"></i><b>4.2</b> Load peaks data</a></li>
+<li class="chapter" data-level="4.3" data-path="track-data-input.html"><a href="track-data-input.html#load-links-data"><i class="fa fa-check"></i><b>4.3</b> Load links data</a></li>
+<li class="chapter" data-level="4.4" data-path="track-data-input.html"><a href="track-data-input.html#load-hic-related-data"><i class="fa fa-check"></i><b>4.4</b> Load Hic related data</a></li>
+<li class="chapter" data-level="4.5" data-path="track-data-input.html"><a href="track-data-input.html#extract-junction-data"><i class="fa fa-check"></i><b>4.5</b> Extract junction data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="basic-visualization.html"><a href="basic-visualization.html"><i class="fa fa-check"></i><b>5</b> Basic visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="basic-visualization.html"><a href="basic-visualization.html#basic-plot"><i class="fa fa-check"></i><b>5.1</b> Basic plot</a></li>
+<li class="chapter" data-level="5.2" data-path="basic-visualization.html"><a href="basic-visualization.html#signal-range-settings"><i class="fa fa-check"></i><b>5.2</b> Signal range settings</a></li>
+<li class="chapter" data-level="5.3" data-path="basic-visualization.html"><a href="basic-visualization.html#transcript-track-settings"><i class="fa fa-check"></i><b>5.3</b> Transcript track settings</a></li>
+<li class="chapter" data-level="5.4" data-path="basic-visualization.html"><a href="basic-visualization.html#intron-line-type"><i class="fa fa-check"></i><b>5.4</b> Intron line type</a></li>
+<li class="chapter" data-level="5.5" data-path="basic-visualization.html"><a href="basic-visualization.html#x-axis-limitation"><i class="fa fa-check"></i><b>5.5</b> X axis limitation</a></li>
+<li class="chapter" data-level="5.6" data-path="basic-visualization.html"><a href="basic-visualization.html#background-and-highlight-region-settings"><i class="fa fa-check"></i><b>5.6</b> Background and highlight region settings</a></li>
+<li class="chapter" data-level="5.7" data-path="basic-visualization.html"><a href="basic-visualization.html#order-for-genes-and-samples"><i class="fa fa-check"></i><b>5.7</b> Order for genes and samples</a></li>
+<li class="chapter" data-level="5.8" data-path="basic-visualization.html"><a href="basic-visualization.html#adding-group-information-for-genes-and-samples"><i class="fa fa-check"></i><b>5.8</b> Adding group information for genes and samples</a></li>
+<li class="chapter" data-level="5.9" data-path="basic-visualization.html"><a href="basic-visualization.html#strip-settings"><i class="fa fa-check"></i><b>5.9</b> Strip settings</a></li>
+<li class="chapter" data-level="5.10" data-path="basic-visualization.html"><a href="basic-visualization.html#draw-chromosome-annotation"><i class="fa fa-check"></i><b>5.10</b> Draw chromosome annotation</a></li>
+<li class="chapter" data-level="5.11" data-path="basic-visualization.html"><a href="basic-visualization.html#plot-with-specified-genomic-region"><i class="fa fa-check"></i><b>5.11</b> Plot with specified genomic region</a></li>
+<li class="chapter" data-level="5.12" data-path="basic-visualization.html"><a href="basic-visualization.html#adding-peaks-track"><i class="fa fa-check"></i><b>5.12</b> Adding peaks track</a></li>
+<li class="chapter" data-level="5.13" data-path="basic-visualization.html"><a href="basic-visualization.html#extending-bases-upstream-and-downstream"><i class="fa fa-check"></i><b>5.13</b> Extending bases upstream and downstream</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="loops-visualization.html"><a href="loops-visualization.html"><i class="fa fa-check"></i><b>6</b> Loops visualization</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="loops-visualization.html"><a href="loops-visualization.html#input-data-prepration"><i class="fa fa-check"></i><b>6.1</b> Input data prepration</a></li>
+<li class="chapter" data-level="6.2" data-path="loops-visualization.html"><a href="loops-visualization.html#basic-loops-visualization"><i class="fa fa-check"></i><b>6.2</b> Basic loops visualization</a></li>
+<li class="chapter" data-level="6.3" data-path="loops-visualization.html"><a href="loops-visualization.html#reverse-y-axis"><i class="fa fa-check"></i><b>6.3</b> Reverse Y axis</a></li>
+<li class="chapter" data-level="6.4" data-path="loops-visualization.html"><a href="loops-visualization.html#combing-with-chromosome-track"><i class="fa fa-check"></i><b>6.4</b> Combing with chromosome track</a></li>
+<li class="chapter" data-level="6.5" data-path="loops-visualization.html"><a href="loops-visualization.html#higlight-regions"><i class="fa fa-check"></i><b>6.5</b> Higlight regions</a></li>
+<li class="chapter" data-level="6.6" data-path="loops-visualization.html"><a href="loops-visualization.html#drawing-only-loop-tracks"><i class="fa fa-check"></i><b>6.6</b> Drawing only loop tracks</a></li>
+<li class="chapter" data-level="6.7" data-path="loops-visualization.html"><a href="loops-visualization.html#curve-geoms-choosing"><i class="fa fa-check"></i><b>6.7</b> Curve geoms choosing</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html"><i class="fa fa-check"></i><b>7</b> Hic heatmap visualization</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#data-preperation"><i class="fa fa-check"></i><b>7.1</b> Data preperation</a></li>
+<li class="chapter" data-level="7.2" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#basic-plot-1"><i class="fa fa-check"></i><b>7.2</b> Basic plot</a></li>
+<li class="chapter" data-level="7.3" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#real-data-practice"><i class="fa fa-check"></i><b>7.3</b> Real data practice</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html"><i class="fa fa-check"></i><b>8</b> Splice junction visualization</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html#data-pareparation"><i class="fa fa-check"></i><b>8.1</b> Data pareparation</a></li>
+<li class="chapter" data-level="8.2" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html#visualization"><i class="fa fa-check"></i><b>8.2</b> Visualization</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="other-funs.html"><a href="other-funs.html"><i class="fa fa-check"></i><b>9</b> Other funs</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="other-funs.html"><a href="other-funs.html#transcript-coordinate-transformation"><i class="fa fa-check"></i><b>9.1</b> Transcript coordinate transformation</a></li>
+<li class="chapter" data-level="9.2" data-path="other-funs.html"><a href="other-funs.html#track-overlap"><i class="fa fa-check"></i><b>9.2</b> Track overlap</a></li>
+<li class="chapter" data-level="9.3" data-path="other-funs.html"><a href="other-funs.html#extend-coordinate-for-gene"><i class="fa fa-check"></i><b>9.3</b> Extend coordinate for gene</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="frequntlly-asked-questions.html"><a href="frequntlly-asked-questions.html"><i class="fa fa-check"></i><b>10</b> Frequntlly asked questions</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BioSeqUtils Reference</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="other-funs" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Other funs<a href="other-funs.html#other-funs" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="transcript-coordinate-transformation" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Transcript coordinate transformation<a href="other-funs.html#transcript-coordinate-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Mostly we draw transcript structures on genomic coordinates which contain intron
+sequence. Sometimes you just want to compare multiple transcripts for a gene with
+removing introns. <strong>transCoordTransform</strong> allows you to transform the genomic coordinate
+into absolute coordinate from gtf file.</p>
+<p>Here are the examples:</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="other-funs.html#cb133-1" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb133-2"><a href="other-funs.html#cb133-2" tabindex="-1"></a></span>
+<span id="cb133-3"><a href="other-funs.html#cb133-3" tabindex="-1"></a><span class="co"># gtf</span></span>
+<span id="cb133-4"><a href="other-funs.html#cb133-4" tabindex="-1"></a>raw_gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import.gff</span>(<span class="st">&quot;test-bw2/hg19.ncbiRefSeq.gtf.gz&quot;</span>,<span class="at">format =</span> <span class="st">&quot;gtf&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb133-5"><a href="other-funs.html#cb133-5" tabindex="-1"></a>  <span class="fu">data.frame</span>() </span>
+<span id="cb133-6"><a href="other-funs.html#cb133-6" tabindex="-1"></a></span>
+<span id="cb133-7"><a href="other-funs.html#cb133-7" tabindex="-1"></a>p1 <span class="ot">&lt;-</span></span>
+<span id="cb133-8"><a href="other-funs.html#cb133-8" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> raw_gtf,</span>
+<span id="cb133-9"><a href="other-funs.html#cb133-9" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;MYC&quot;</span>,<span class="st">&quot;NANOG&quot;</span>))</span>
+<span id="cb133-10"><a href="other-funs.html#cb133-10" tabindex="-1"></a></span>
+<span id="cb133-11"><a href="other-funs.html#cb133-11" tabindex="-1"></a>p1</span></code></pre></div>
+<p><img src="local_images/tf1.png" style="width:100.0%" /></p>
+<p>Transforming coordinate:</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="other-funs.html#cb134-1" tabindex="-1"></a>tgene <span class="ot">&lt;-</span> raw_gtf <span class="sc">%&gt;%</span> <span class="fu">filter</span>(gene_name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;MYC&quot;</span>,<span class="st">&quot;NANOG&quot;</span>))</span>
+<span id="cb134-2"><a href="other-funs.html#cb134-2" tabindex="-1"></a></span>
+<span id="cb134-3"><a href="other-funs.html#cb134-3" tabindex="-1"></a>trans_gtf <span class="ot">&lt;-</span> <span class="fu">transCoordTransform</span>(<span class="at">gtf_file =</span> tgene)</span>
+<span id="cb134-4"><a href="other-funs.html#cb134-4" tabindex="-1"></a></span>
+<span id="cb134-5"><a href="other-funs.html#cb134-5" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb134-6"><a href="other-funs.html#cb134-6" tabindex="-1"></a><span class="fu">head</span>(trans_gtf[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>])</span>
+<span id="cb134-7"><a href="other-funs.html#cb134-7" tabindex="-1"></a><span class="co">#   seqnames start  end width strand                source       type score</span></span>
+<span id="cb134-8"><a href="other-funs.html#cb134-8" tabindex="-1"></a><span class="co"># 1    chr12     1 2049  6660      + ncbiRefSeq.2021-05-17 transcript    NA</span></span>
+<span id="cb134-9"><a href="other-funs.html#cb134-9" tabindex="-1"></a><span class="co"># 2    chr12     1  364   364      + ncbiRefSeq.2021-05-17       exon    NA</span></span>
+<span id="cb134-10"><a href="other-funs.html#cb134-10" tabindex="-1"></a><span class="co"># 3    chr12   365  627   263      + ncbiRefSeq.2021-05-17       exon    NA</span></span>
+<span id="cb134-11"><a href="other-funs.html#cb134-11" tabindex="-1"></a></span>
+<span id="cb134-12"><a href="other-funs.html#cb134-12" tabindex="-1"></a>p2 <span class="ot">&lt;-</span></span>
+<span id="cb134-13"><a href="other-funs.html#cb134-13" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> trans_gtf,</span>
+<span id="cb134-14"><a href="other-funs.html#cb134-14" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;MYC&quot;</span>,<span class="st">&quot;NANOG&quot;</span>))</span>
+<span id="cb134-15"><a href="other-funs.html#cb134-15" tabindex="-1"></a></span>
+<span id="cb134-16"><a href="other-funs.html#cb134-16" tabindex="-1"></a>p2</span></code></pre></div>
+<p><img src="local_images/tf2.png" style="width:100.0%" /></p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="other-funs.html#cb135-1" tabindex="-1"></a>p1<span class="sc">/</span>p2</span></code></pre></div>
+<p><img src="local_images/tf3.png" style="width:100.0%" /></p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="other-funs.html#cb136-1" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> </span>
+<span id="cb136-2"><a href="other-funs.html#cb136-2" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> trans_gtf,</span>
+<span id="cb136-3"><a href="other-funs.html#cb136-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;MYC&quot;</span>,<span class="st">&quot;NANOG&quot;</span>),</span>
+<span id="cb136-4"><a href="other-funs.html#cb136-4" tabindex="-1"></a>               <span class="at">trans_exon_col_params =</span> <span class="fu">list</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> type)))</span>
+<span id="cb136-5"><a href="other-funs.html#cb136-5" tabindex="-1"></a></span>
+<span id="cb136-6"><a href="other-funs.html#cb136-6" tabindex="-1"></a>p1<span class="sc">/</span>p2<span class="sc">/</span>p3</span></code></pre></div>
+<p><img src="local_images/tf4.png" style="width:100.0%" /></p>
+</div>
+<div id="track-overlap" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Track overlap<a href="other-funs.html#track-overlap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For some experiments, you got IP(immunoprecipitation) and Input group, maybe you
+need to put them together to compare difference of signals. One way we can assign
+a new <strong>fileName</strong> column and set fill colors with your experiment groups. Examples
+showed here:</p>
+<hr />
+<p>First we assign new columns for bigwig data:</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="other-funs.html#cb137-1" tabindex="-1"></a><span class="fu">library</span>(BioSeqUtils)</span>
+<span id="cb137-2"><a href="other-funs.html#cb137-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb137-3"><a href="other-funs.html#cb137-3" tabindex="-1"></a></span>
+<span id="cb137-4"><a href="other-funs.html#cb137-4" tabindex="-1"></a><span class="co"># load bigwig files</span></span>
+<span id="cb137-5"><a href="other-funs.html#cb137-5" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">&quot;test-bw/&quot;</span>,<span class="at">pattern =</span> <span class="st">&#39;.bw&#39;</span>,<span class="at">full.names =</span> T)</span>
+<span id="cb137-6"><a href="other-funs.html#cb137-6" tabindex="-1"></a>file</span>
+<span id="cb137-7"><a href="other-funs.html#cb137-7" tabindex="-1"></a><span class="co"># [1] &quot;test-bw/1cell-m6A-1.bw&quot; &quot;test-bw/1cell-m6A-2.bw&quot; &quot;test-bw/1cell-RNA-1.bw&quot;</span></span>
+<span id="cb137-8"><a href="other-funs.html#cb137-8" tabindex="-1"></a><span class="co"># [4] &quot;test-bw/1cell-RNA-2.bw&quot; &quot;test-bw/2cell-m6A-1.bw&quot; &quot;test-bw/2cell-m6A-2.bw&quot;</span></span>
+<span id="cb137-9"><a href="other-funs.html#cb137-9" tabindex="-1"></a><span class="co"># [7] &quot;test-bw/2cell-RNA-1.bw&quot; &quot;test-bw/2cell-RNA-2.bw&quot;</span></span>
+<span id="cb137-10"><a href="other-funs.html#cb137-10" tabindex="-1"></a></span>
+<span id="cb137-11"><a href="other-funs.html#cb137-11" tabindex="-1"></a><span class="co"># select some chromosomes for test</span></span>
+<span id="cb137-12"><a href="other-funs.html#cb137-12" tabindex="-1"></a>bw <span class="ot">&lt;-</span> <span class="fu">loadBigWig</span>(file,<span class="at">chrom =</span> <span class="fu">c</span>(<span class="st">&quot;5&quot;</span>,<span class="st">&quot;15&quot;</span>))</span>
+<span id="cb137-13"><a href="other-funs.html#cb137-13" tabindex="-1"></a></span>
+<span id="cb137-14"><a href="other-funs.html#cb137-14" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb137-15"><a href="other-funs.html#cb137-15" tabindex="-1"></a><span class="fu">head</span>(bw,<span class="dv">3</span>)</span>
+<span id="cb137-16"><a href="other-funs.html#cb137-16" tabindex="-1"></a><span class="co">#   seqnames   start     end   score    fileName</span></span>
+<span id="cb137-17"><a href="other-funs.html#cb137-17" tabindex="-1"></a><span class="co"># 1       15       1 3054635 0.00000 1cell-m6A-1</span></span>
+<span id="cb137-18"><a href="other-funs.html#cb137-18" tabindex="-1"></a><span class="co"># 2       15 3054636 3054640 1.34079 1cell-m6A-1</span></span>
+<span id="cb137-19"><a href="other-funs.html#cb137-19" tabindex="-1"></a><span class="co"># 3       15 3054641 3054715 2.68159 1cell-m6A-1</span></span>
+<span id="cb137-20"><a href="other-funs.html#cb137-20" tabindex="-1"></a></span>
+<span id="cb137-21"><a href="other-funs.html#cb137-21" tabindex="-1"></a>bw_new <span class="ot">&lt;-</span> bw</span>
+<span id="cb137-22"><a href="other-funs.html#cb137-22" tabindex="-1"></a>bw_new<span class="sc">$</span>new_name <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">sapply</span>(<span class="fu">strsplit</span>(bw_new<span class="sc">$</span>fileName,<span class="at">split =</span> <span class="st">&quot;-&quot;</span>),<span class="st">&quot;[&quot;</span>,<span class="dv">1</span>),</span>
+<span id="cb137-23"><a href="other-funs.html#cb137-23" tabindex="-1"></a>                         <span class="fu">sapply</span>(<span class="fu">strsplit</span>(bw_new<span class="sc">$</span>fileName,<span class="at">split =</span> <span class="st">&quot;-&quot;</span>),<span class="st">&quot;[&quot;</span>,<span class="dv">3</span>),<span class="at">sep =</span> <span class="st">&quot;-&quot;</span>)</span>
+<span id="cb137-24"><a href="other-funs.html#cb137-24" tabindex="-1"></a></span>
+<span id="cb137-25"><a href="other-funs.html#cb137-25" tabindex="-1"></a>bw_new<span class="sc">$</span>exptype <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">strsplit</span>(bw_new<span class="sc">$</span>fileName,<span class="at">split =</span> <span class="st">&quot;-&quot;</span>),<span class="st">&quot;[&quot;</span>,<span class="dv">2</span>)</span>
+<span id="cb137-26"><a href="other-funs.html#cb137-26" tabindex="-1"></a></span>
+<span id="cb137-27"><a href="other-funs.html#cb137-27" tabindex="-1"></a>bw_new<span class="sc">$</span>fileName <span class="ot">&lt;-</span> bw_new<span class="sc">$</span>new_name</span>
+<span id="cb137-28"><a href="other-funs.html#cb137-28" tabindex="-1"></a></span>
+<span id="cb137-29"><a href="other-funs.html#cb137-29" tabindex="-1"></a><span class="co"># order</span></span>
+<span id="cb137-30"><a href="other-funs.html#cb137-30" tabindex="-1"></a>bw<span class="sc">$</span>exptype <span class="ot">&lt;-</span> <span class="fu">factor</span>(bw<span class="sc">$</span>exptype,<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;m6A&quot;</span>,<span class="st">&quot;RNA&quot;</span>))</span>
+<span id="cb137-31"><a href="other-funs.html#cb137-31" tabindex="-1"></a></span>
+<span id="cb137-32"><a href="other-funs.html#cb137-32" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb137-33"><a href="other-funs.html#cb137-33" tabindex="-1"></a><span class="fu">head</span>(bw_new)</span>
+<span id="cb137-34"><a href="other-funs.html#cb137-34" tabindex="-1"></a><span class="co">#   seqnames   start     end   score fileName new_name exptype</span></span>
+<span id="cb137-35"><a href="other-funs.html#cb137-35" tabindex="-1"></a><span class="co"># 1       15       1 3054635 0.00000  1cell-1  1cell-1     m6A</span></span>
+<span id="cb137-36"><a href="other-funs.html#cb137-36" tabindex="-1"></a><span class="co"># 2       15 3054636 3054640 1.34079  1cell-1  1cell-1     m6A</span></span>
+<span id="cb137-37"><a href="other-funs.html#cb137-37" tabindex="-1"></a><span class="co"># 3       15 3054641 3054715 2.68159  1cell-1  1cell-1     m6A</span></span>
+<span id="cb137-38"><a href="other-funs.html#cb137-38" tabindex="-1"></a><span class="co"># 4       15 3054716 3054720 1.34079  1cell-1  1cell-1     m6A</span></span>
+<span id="cb137-39"><a href="other-funs.html#cb137-39" tabindex="-1"></a><span class="co"># 5       15 3054721 3060760 0.00000  1cell-1  1cell-1     m6A</span></span>
+<span id="cb137-40"><a href="other-funs.html#cb137-40" tabindex="-1"></a><span class="co"># 6       15 3060761 3060765 1.34079  1cell-1  1cell-1     m6A</span></span>
+<span id="cb137-41"><a href="other-funs.html#cb137-41" tabindex="-1"></a></span>
+<span id="cb137-42"><a href="other-funs.html#cb137-42" tabindex="-1"></a></span>
+<span id="cb137-43"><a href="other-funs.html#cb137-43" tabindex="-1"></a><span class="co"># gtf</span></span>
+<span id="cb137-44"><a href="other-funs.html#cb137-44" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import.gff</span>(<span class="st">&quot;Mus_musculus.GRCm38.102.gtf&quot;</span>,<span class="at">format =</span> <span class="st">&quot;gtf&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb137-45"><a href="other-funs.html#cb137-45" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span></code></pre></div>
+<p>Plot for all samples:</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="other-funs.html#cb138-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb138-2"><a href="other-funs.html#cb138-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb138-3"><a href="other-funs.html#cb138-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Utp3&quot;</span>,<span class="st">&quot;Chpf2&quot;</span>,<span class="st">&quot;Dmp1&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/ol1.png" style="width:100.0%" /></p>
+<p>Plot for overlap tracks, we can see the difference of ip(m6A) and input(RNA) better:</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="other-funs.html#cb139-1" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb139-2"><a href="other-funs.html#cb139-2" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb139-3"><a href="other-funs.html#cb139-3" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw_new,</span>
+<span id="cb139-4"><a href="other-funs.html#cb139-4" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Utp3&quot;</span>,<span class="st">&quot;Chpf2&quot;</span>,<span class="st">&quot;Dmp1&quot;</span>),</span>
+<span id="cb139-5"><a href="other-funs.html#cb139-5" tabindex="-1"></a>               <span class="at">signal_layer_bw_params =</span> <span class="fu">list</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> exptype,<span class="at">color =</span> exptype),</span>
+<span id="cb139-6"><a href="other-funs.html#cb139-6" tabindex="-1"></a>                                             <span class="at">show.legend =</span> T))</span></code></pre></div>
+<p><img src="local_images/ol2.png" style="width:100.0%" /></p>
+</div>
+<div id="extend-coordinate-for-gene" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Extend coordinate for gene<a href="other-funs.html#extend-coordinate-for-gene" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You may want to extend to a specific coordinate when you plot track for a gene, such as focus on near
+the <strong>TSS(transcript start site)</strong>. <strong>xlimit_range</strong> can be defined with exact genomic coordinate for
+each gene.</p>
+<p>Let’s show whole the gene structures:</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="other-funs.html#cb140-1" tabindex="-1"></a><span class="co"># load bigwig files</span></span>
+<span id="cb140-2"><a href="other-funs.html#cb140-2" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">&quot;../bw/&quot;</span>,<span class="at">pattern =</span> <span class="st">&#39;.bw&#39;</span>,<span class="at">full.names =</span> T)</span>
+<span id="cb140-3"><a href="other-funs.html#cb140-3" tabindex="-1"></a>file</span>
+<span id="cb140-4"><a href="other-funs.html#cb140-4" tabindex="-1"></a></span>
+<span id="cb140-5"><a href="other-funs.html#cb140-5" tabindex="-1"></a><span class="co"># select some chromosomes for test</span></span>
+<span id="cb140-6"><a href="other-funs.html#cb140-6" tabindex="-1"></a>bw <span class="ot">&lt;-</span> <span class="fu">loadBigWig</span>(<span class="at">bw_file =</span> file[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],<span class="at">chrom =</span> <span class="fu">c</span>(<span class="st">&quot;chr15&quot;</span>),<span class="at">format =</span> <span class="st">&quot;bw&quot;</span>,<span class="at">file_name =</span> <span class="fu">c</span>(<span class="st">&quot;test1&quot;</span>,<span class="st">&quot;test2&quot;</span>))</span>
+<span id="cb140-7"><a href="other-funs.html#cb140-7" tabindex="-1"></a></span>
+<span id="cb140-8"><a href="other-funs.html#cb140-8" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb140-9"><a href="other-funs.html#cb140-9" tabindex="-1"></a><span class="fu">head</span>(bw,<span class="dv">3</span>)</span>
+<span id="cb140-10"><a href="other-funs.html#cb140-10" tabindex="-1"></a></span>
+<span id="cb140-11"><a href="other-funs.html#cb140-11" tabindex="-1"></a><span class="co"># gtf</span></span>
+<span id="cb140-12"><a href="other-funs.html#cb140-12" tabindex="-1"></a>my_gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import.gff</span>(<span class="st">&quot;../Mus_musculus.GRCm38.102.gtf.gz&quot;</span>,<span class="at">format =</span> <span class="st">&quot;gtf&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb140-13"><a href="other-funs.html#cb140-13" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
+<span id="cb140-14"><a href="other-funs.html#cb140-14" tabindex="-1"></a>my_gtf<span class="sc">$</span>seqnames <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;chr&quot;</span>,my_gtf<span class="sc">$</span>seqnames,<span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb140-15"><a href="other-funs.html#cb140-15" tabindex="-1"></a></span>
+<span id="cb140-16"><a href="other-funs.html#cb140-16" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb140-17"><a href="other-funs.html#cb140-17" tabindex="-1"></a><span class="co"># Il7r</span></span>
+<span id="cb140-18"><a href="other-funs.html#cb140-18" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> my_gtf,</span>
+<span id="cb140-19"><a href="other-funs.html#cb140-19" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb140-20"><a href="other-funs.html#cb140-20" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Il7r&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/x1.png" style="width:100.0%" /></p>
+<p>Given a specific genomic coordinate:</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="other-funs.html#cb141-1" tabindex="-1"></a><span class="co"># 9515784-9550038</span></span>
+<span id="cb141-2"><a href="other-funs.html#cb141-2" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> my_gtf,</span>
+<span id="cb141-3"><a href="other-funs.html#cb141-3" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb141-4"><a href="other-funs.html#cb141-4" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Il7r&quot;</span>),</span>
+<span id="cb141-5"><a href="other-funs.html#cb141-5" tabindex="-1"></a>               <span class="at">xlimit_range =</span> <span class="fu">c</span>(<span class="dv">9515784</span>,<span class="dv">9555038</span>))</span></code></pre></div>
+<p><img src="local_images/x2.png" style="width:100.0%" /></p>
+<p>The gene structures will be shown if the genomic coordinate is out of the target gene:</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="other-funs.html#cb142-1" tabindex="-1"></a><span class="co"># 9268339-9542382</span></span>
+<span id="cb142-2"><a href="other-funs.html#cb142-2" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> my_gtf,</span>
+<span id="cb142-3"><a href="other-funs.html#cb142-3" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb142-4"><a href="other-funs.html#cb142-4" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Il7r&quot;</span>),</span>
+<span id="cb142-5"><a href="other-funs.html#cb142-5" tabindex="-1"></a>               <span class="at">xlimit_range =</span> <span class="fu">c</span>(<span class="dv">9268339</span>,<span class="dv">9542382</span>))</span></code></pre></div>
+<p><img src="local_images/x3.png" style="width:100.0%" /></p>
+<p>Multiple target genes with <strong>xlimit_range</strong> list:</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="other-funs.html#cb143-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> my_gtf,</span>
+<span id="cb143-2"><a href="other-funs.html#cb143-2" tabindex="-1"></a>               <span class="at">Input_bw =</span> bw,</span>
+<span id="cb143-3"><a href="other-funs.html#cb143-3" tabindex="-1"></a>               <span class="at">Input_gene =</span> <span class="fu">c</span>(<span class="st">&quot;Il7r&quot;</span>,<span class="st">&quot;Capsl&quot;</span>),</span>
+<span id="cb143-4"><a href="other-funs.html#cb143-4" tabindex="-1"></a>               <span class="at">add_gene_label_layer =</span> T,</span>
+<span id="cb143-5"><a href="other-funs.html#cb143-5" tabindex="-1"></a>               <span class="at">xlimit_range =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">9521626</span>,<span class="dv">9590136</span>),<span class="fu">c</span>(<span class="dv">9459212</span>,<span class="dv">9476339</span>))</span>
+<span id="cb143-6"><a href="other-funs.html#cb143-6" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="local_images/x4.png" style="width:100.0%" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="splice-junction-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="frequntlly-asked-questions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/08-Other_funs.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

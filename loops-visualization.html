@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Loops visualization | BioSeqUtils Reference</title>
+  <meta name="description" content="This is a detailed documentation of BioSeqUtils package." />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Loops visualization | BioSeqUtils Reference" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a detailed documentation of BioSeqUtils package." />
+  <meta name="github-repo" content="rstudio/bookdown-BioSeqUtils" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Loops visualization | BioSeqUtils Reference" />
+  
+  <meta name="twitter:description" content="This is a detailed documentation of BioSeqUtils package." />
+  
+
+<meta name="author" content="Jun Zhang" />
+
+
+<meta name="date" content="2024-11-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="basic-visualization.html"/>
+<link rel="next" href="hic-heatmap-visualization.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">BioSeqUtils manual documentation</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#related-blogs"><i class="fa fa-check"></i><b>1.1</b> Related blogs</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="extract-sequence.html"><a href="extract-sequence.html"><i class="fa fa-check"></i><b>2</b> Extract sequence</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="extract-sequence.html"><a href="extract-sequence.html#data-loading"><i class="fa fa-check"></i><b>2.1</b> Data loading</a></li>
+<li class="chapter" data-level="2.2" data-path="extract-sequence.html"><a href="extract-sequence.html#get-features-information"><i class="fa fa-check"></i><b>2.2</b> Get features information</a></li>
+<li class="chapter" data-level="2.3" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-sequnence"><i class="fa fa-check"></i><b>2.3</b> Extract sequnence</a></li>
+<li class="chapter" data-level="2.4" data-path="extract-sequence.html"><a href="extract-sequence.html#get-inrton-information"><i class="fa fa-check"></i><b>2.4</b> Get inrton information</a></li>
+<li class="chapter" data-level="2.5" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-promoters"><i class="fa fa-check"></i><b>2.5</b> Extract promoters</a></li>
+<li class="chapter" data-level="2.6" data-path="extract-sequence.html"><a href="extract-sequence.html#extract-non-redundant-transcript-length"><i class="fa fa-check"></i><b>2.6</b> Extract non-redundant transcript length</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html"><i class="fa fa-check"></i><b>3</b> Draw chromosome ideograms</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#downloading-related-data"><i class="fa fa-check"></i><b>3.1</b> Downloading related data</a></li>
+<li class="chapter" data-level="3.2" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#making-plot"><i class="fa fa-check"></i><b>3.2</b> Making plot</a></li>
+<li class="chapter" data-level="3.3" data-path="draw-chromosome-ideograms.html"><a href="draw-chromosome-ideograms.html#drawing-gene-density-manually"><i class="fa fa-check"></i><b>3.3</b> Drawing gene density manually</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="track-data-input.html"><a href="track-data-input.html"><i class="fa fa-check"></i><b>4</b> Track data input</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="track-data-input.html"><a href="track-data-input.html#load-signal-data"><i class="fa fa-check"></i><b>4.1</b> Load signal data</a></li>
+<li class="chapter" data-level="4.2" data-path="track-data-input.html"><a href="track-data-input.html#load-peaks-data"><i class="fa fa-check"></i><b>4.2</b> Load peaks data</a></li>
+<li class="chapter" data-level="4.3" data-path="track-data-input.html"><a href="track-data-input.html#load-links-data"><i class="fa fa-check"></i><b>4.3</b> Load links data</a></li>
+<li class="chapter" data-level="4.4" data-path="track-data-input.html"><a href="track-data-input.html#load-hic-related-data"><i class="fa fa-check"></i><b>4.4</b> Load Hic related data</a></li>
+<li class="chapter" data-level="4.5" data-path="track-data-input.html"><a href="track-data-input.html#extract-junction-data"><i class="fa fa-check"></i><b>4.5</b> Extract junction data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="basic-visualization.html"><a href="basic-visualization.html"><i class="fa fa-check"></i><b>5</b> Basic visualization</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="basic-visualization.html"><a href="basic-visualization.html#basic-plot"><i class="fa fa-check"></i><b>5.1</b> Basic plot</a></li>
+<li class="chapter" data-level="5.2" data-path="basic-visualization.html"><a href="basic-visualization.html#signal-range-settings"><i class="fa fa-check"></i><b>5.2</b> Signal range settings</a></li>
+<li class="chapter" data-level="5.3" data-path="basic-visualization.html"><a href="basic-visualization.html#transcript-track-settings"><i class="fa fa-check"></i><b>5.3</b> Transcript track settings</a></li>
+<li class="chapter" data-level="5.4" data-path="basic-visualization.html"><a href="basic-visualization.html#intron-line-type"><i class="fa fa-check"></i><b>5.4</b> Intron line type</a></li>
+<li class="chapter" data-level="5.5" data-path="basic-visualization.html"><a href="basic-visualization.html#x-axis-limitation"><i class="fa fa-check"></i><b>5.5</b> X axis limitation</a></li>
+<li class="chapter" data-level="5.6" data-path="basic-visualization.html"><a href="basic-visualization.html#background-and-highlight-region-settings"><i class="fa fa-check"></i><b>5.6</b> Background and highlight region settings</a></li>
+<li class="chapter" data-level="5.7" data-path="basic-visualization.html"><a href="basic-visualization.html#order-for-genes-and-samples"><i class="fa fa-check"></i><b>5.7</b> Order for genes and samples</a></li>
+<li class="chapter" data-level="5.8" data-path="basic-visualization.html"><a href="basic-visualization.html#adding-group-information-for-genes-and-samples"><i class="fa fa-check"></i><b>5.8</b> Adding group information for genes and samples</a></li>
+<li class="chapter" data-level="5.9" data-path="basic-visualization.html"><a href="basic-visualization.html#strip-settings"><i class="fa fa-check"></i><b>5.9</b> Strip settings</a></li>
+<li class="chapter" data-level="5.10" data-path="basic-visualization.html"><a href="basic-visualization.html#draw-chromosome-annotation"><i class="fa fa-check"></i><b>5.10</b> Draw chromosome annotation</a></li>
+<li class="chapter" data-level="5.11" data-path="basic-visualization.html"><a href="basic-visualization.html#plot-with-specified-genomic-region"><i class="fa fa-check"></i><b>5.11</b> Plot with specified genomic region</a></li>
+<li class="chapter" data-level="5.12" data-path="basic-visualization.html"><a href="basic-visualization.html#adding-peaks-track"><i class="fa fa-check"></i><b>5.12</b> Adding peaks track</a></li>
+<li class="chapter" data-level="5.13" data-path="basic-visualization.html"><a href="basic-visualization.html#extending-bases-upstream-and-downstream"><i class="fa fa-check"></i><b>5.13</b> Extending bases upstream and downstream</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="loops-visualization.html"><a href="loops-visualization.html"><i class="fa fa-check"></i><b>6</b> Loops visualization</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="loops-visualization.html"><a href="loops-visualization.html#input-data-prepration"><i class="fa fa-check"></i><b>6.1</b> Input data prepration</a></li>
+<li class="chapter" data-level="6.2" data-path="loops-visualization.html"><a href="loops-visualization.html#basic-loops-visualization"><i class="fa fa-check"></i><b>6.2</b> Basic loops visualization</a></li>
+<li class="chapter" data-level="6.3" data-path="loops-visualization.html"><a href="loops-visualization.html#reverse-y-axis"><i class="fa fa-check"></i><b>6.3</b> Reverse Y axis</a></li>
+<li class="chapter" data-level="6.4" data-path="loops-visualization.html"><a href="loops-visualization.html#combing-with-chromosome-track"><i class="fa fa-check"></i><b>6.4</b> Combing with chromosome track</a></li>
+<li class="chapter" data-level="6.5" data-path="loops-visualization.html"><a href="loops-visualization.html#higlight-regions"><i class="fa fa-check"></i><b>6.5</b> Higlight regions</a></li>
+<li class="chapter" data-level="6.6" data-path="loops-visualization.html"><a href="loops-visualization.html#drawing-only-loop-tracks"><i class="fa fa-check"></i><b>6.6</b> Drawing only loop tracks</a></li>
+<li class="chapter" data-level="6.7" data-path="loops-visualization.html"><a href="loops-visualization.html#curve-geoms-choosing"><i class="fa fa-check"></i><b>6.7</b> Curve geoms choosing</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html"><i class="fa fa-check"></i><b>7</b> Hic heatmap visualization</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#data-preperation"><i class="fa fa-check"></i><b>7.1</b> Data preperation</a></li>
+<li class="chapter" data-level="7.2" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#basic-plot-1"><i class="fa fa-check"></i><b>7.2</b> Basic plot</a></li>
+<li class="chapter" data-level="7.3" data-path="hic-heatmap-visualization.html"><a href="hic-heatmap-visualization.html#real-data-practice"><i class="fa fa-check"></i><b>7.3</b> Real data practice</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html"><i class="fa fa-check"></i><b>8</b> Splice junction visualization</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html#data-pareparation"><i class="fa fa-check"></i><b>8.1</b> Data pareparation</a></li>
+<li class="chapter" data-level="8.2" data-path="splice-junction-visualization.html"><a href="splice-junction-visualization.html#visualization"><i class="fa fa-check"></i><b>8.2</b> Visualization</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="other-funs.html"><a href="other-funs.html"><i class="fa fa-check"></i><b>9</b> Other funs</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="other-funs.html"><a href="other-funs.html#transcript-coordinate-transformation"><i class="fa fa-check"></i><b>9.1</b> Transcript coordinate transformation</a></li>
+<li class="chapter" data-level="9.2" data-path="other-funs.html"><a href="other-funs.html#track-overlap"><i class="fa fa-check"></i><b>9.2</b> Track overlap</a></li>
+<li class="chapter" data-level="9.3" data-path="other-funs.html"><a href="other-funs.html#extend-coordinate-for-gene"><i class="fa fa-check"></i><b>9.3</b> Extend coordinate for gene</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="frequntlly-asked-questions.html"><a href="frequntlly-asked-questions.html"><i class="fa fa-check"></i><b>10</b> Frequntlly asked questions</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BioSeqUtils Reference</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="loops-visualization" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Loops visualization<a href="loops-visualization.html#loops-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>For <strong>Hi-C</strong>, <strong>HiChIP</strong> and <strong>ChIA-PET</strong> sequencing technologies, them aim to
+catch the three dimension interaction of chromosomes. Finding interaction sites
+and visualize them which are on demand. Usually we use arch links to represent the
+interaction information.</p>
+<div id="input-data-prepration" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Input data prepration<a href="loops-visualization.html#input-data-prepration" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>Test data can be fetched on <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE200165"><strong>GSE200165</strong></a>.</p>
+</blockquote>
+<p>We can use <strong>loadloops</strong> function to load the interaction sites data:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="loops-visualization.html#cb96-1" tabindex="-1"></a>loop_file <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">&quot;test-bw2/&quot;</span>,<span class="at">pattern =</span> <span class="st">&quot;.bedpe$&quot;</span>,<span class="at">full.names =</span> T)</span>
+<span id="cb96-2"><a href="loops-visualization.html#cb96-2" tabindex="-1"></a>loop_file</span>
+<span id="cb96-3"><a href="loops-visualization.html#cb96-3" tabindex="-1"></a><span class="co"># [1] &quot;test-bw2/C1-CTCF.bedpe&quot;    &quot;test-bw2/C1-H3K27ac.bedpe&quot; &quot;test-bw2/M1-CTCF.bedpe&quot;   </span></span>
+<span id="cb96-4"><a href="loops-visualization.html#cb96-4" tabindex="-1"></a><span class="co"># [4] &quot;test-bw2/M1-H3K27ac.bedpe&quot;</span></span>
+<span id="cb96-5"><a href="loops-visualization.html#cb96-5" tabindex="-1"></a></span>
+<span id="cb96-6"><a href="loops-visualization.html#cb96-6" tabindex="-1"></a>file_name <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;C1-CTCF&quot;</span>,<span class="st">&quot;C1-H3K27ac&quot;</span>,<span class="st">&quot;M1-CTCF&quot;</span>,<span class="st">&quot;M1-H3K27ac&quot;</span>)</span>
+<span id="cb96-7"><a href="loops-visualization.html#cb96-7" tabindex="-1"></a></span>
+<span id="cb96-8"><a href="loops-visualization.html#cb96-8" tabindex="-1"></a><span class="co"># test code</span></span>
+<span id="cb96-9"><a href="loops-visualization.html#cb96-9" tabindex="-1"></a>loop_data <span class="ot">&lt;-</span> <span class="fu">loadloops</span>(<span class="at">loop_file =</span> loop_file,<span class="at">file_name =</span> file_name,</span>
+<span id="cb96-10"><a href="loops-visualization.html#cb96-10" tabindex="-1"></a>                       <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)</span>
+<span id="cb96-11"><a href="loops-visualization.html#cb96-11" tabindex="-1"></a></span>
+<span id="cb96-12"><a href="loops-visualization.html#cb96-12" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb96-13"><a href="loops-visualization.html#cb96-13" tabindex="-1"></a><span class="fu">head</span>(loop_data,<span class="dv">3</span>)</span>
+<span id="cb96-14"><a href="loops-visualization.html#cb96-14" tabindex="-1"></a></span>
+<span id="cb96-15"><a href="loops-visualization.html#cb96-15" tabindex="-1"></a><span class="co">#   seqnames     start       end    score fileName</span></span>
+<span id="cb96-16"><a href="loops-visualization.html#cb96-16" tabindex="-1"></a><span class="co"># 1    chr10 100002774 100022436 0.021354  C1-CTCF</span></span>
+<span id="cb96-17"><a href="loops-visualization.html#cb96-17" tabindex="-1"></a><span class="co"># 2    chr10 100002774 100069170 0.068404  C1-CTCF</span></span>
+<span id="cb96-18"><a href="loops-visualization.html#cb96-18" tabindex="-1"></a><span class="co"># 3    chr10 100002774 100185646 0.184670  C1-CTCF</span></span></code></pre></div>
+<hr />
+<blockquote>
+<p>Test data can be fetched on <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE200160"><strong>GSE200160</strong></a>.</p>
+</blockquote>
+<p>Here we also load bigwig data:</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="loops-visualization.html#cb97-1" tabindex="-1"></a><span class="co"># bigwig</span></span>
+<span id="cb97-2"><a href="loops-visualization.html#cb97-2" tabindex="-1"></a>file <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">&quot;test-bw2/&quot;</span>,<span class="at">pattern =</span> <span class="st">&#39;.bw&#39;</span>,<span class="at">full.names =</span> T)</span>
+<span id="cb97-3"><a href="loops-visualization.html#cb97-3" tabindex="-1"></a><span class="co"># [1] &quot;test-bw2/ChIP-CTCF-MYC1.bw&quot;    &quot;test-bw2/ChIP-H3K27ac-MYC1.bw&quot; &quot;test-bw2/ChIP-Input-MYC1.bw&quot;  </span></span>
+<span id="cb97-4"><a href="loops-visualization.html#cb97-4" tabindex="-1"></a><span class="co"># [4] &quot;test-bw2/ChIP-MYC-MYC1.bw&quot;</span></span>
+<span id="cb97-5"><a href="loops-visualization.html#cb97-5" tabindex="-1"></a></span>
+<span id="cb97-6"><a href="loops-visualization.html#cb97-6" tabindex="-1"></a>bw <span class="ot">&lt;-</span> <span class="fu">loadBigWig</span>(<span class="at">bw_file =</span> file,<span class="at">chrom =</span> <span class="st">&quot;8&quot;</span>)</span>
+<span id="cb97-7"><a href="loops-visualization.html#cb97-7" tabindex="-1"></a>bw<span class="sc">$</span>seqnames <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;chr&quot;</span>,bw<span class="sc">$</span>seqnames,<span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb97-8"><a href="loops-visualization.html#cb97-8" tabindex="-1"></a></span>
+<span id="cb97-9"><a href="loops-visualization.html#cb97-9" tabindex="-1"></a><span class="co"># gtf</span></span>
+<span id="cb97-10"><a href="loops-visualization.html#cb97-10" tabindex="-1"></a>gtf <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import.gff</span>(<span class="st">&quot;test-bw2/hg19.ncbiRefSeq.gtf.gz&quot;</span>,<span class="at">format =</span> <span class="st">&quot;gtf&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb97-11"><a href="loops-visualization.html#cb97-11" tabindex="-1"></a>  <span class="fu">data.frame</span>() </span></code></pre></div>
+</div>
+<div id="basic-loops-visualization" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Basic loops visualization<a href="loops-visualization.html#basic-loops-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The legend <strong>score</strong> means the distance across two interaction sites. The higher score,
+the longer distance:</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="loops-visualization.html#cb98-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_bw =</span> bw,</span>
+<span id="cb98-2"><a href="loops-visualization.html#cb98-2" tabindex="-1"></a>               <span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb98-3"><a href="loops-visualization.html#cb98-3" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="st">&quot;chr8&quot;</span>,</span>
+<span id="cb98-4"><a href="loops-visualization.html#cb98-4" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="dv">100010290</span>,</span>
+<span id="cb98-5"><a href="loops-visualization.html#cb98-5" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="dv">101157229</span>),</span>
+<span id="cb98-6"><a href="loops-visualization.html#cb98-6" tabindex="-1"></a>               <span class="at">Input_loop =</span> loop_data,</span>
+<span id="cb98-7"><a href="loops-visualization.html#cb98-7" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F)</span></code></pre></div>
+<p><img src="local_images/t55.png" style="width:100.0%" /></p>
+<p><strong>loops_col</strong> controls the color or links:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="loops-visualization.html#cb99-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_bw =</span> bw,</span>
+<span id="cb99-2"><a href="loops-visualization.html#cb99-2" tabindex="-1"></a>               <span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb99-3"><a href="loops-visualization.html#cb99-3" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="st">&quot;chr8&quot;</span>,</span>
+<span id="cb99-4"><a href="loops-visualization.html#cb99-4" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="dv">100010290</span>,</span>
+<span id="cb99-5"><a href="loops-visualization.html#cb99-5" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="dv">101157229</span>),</span>
+<span id="cb99-6"><a href="loops-visualization.html#cb99-6" tabindex="-1"></a>               <span class="at">Input_loop =</span> loop_data,</span>
+<span id="cb99-7"><a href="loops-visualization.html#cb99-7" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb99-8"><a href="loops-visualization.html#cb99-8" tabindex="-1"></a>               <span class="at">loops_col =</span> <span class="fu">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;blue&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t56.png" style="width:100.0%" /></p>
+<p><strong>signal_layer_loop_params</strong> accepts a named list to control the links layer,
+For more details, please check <strong>ggbio::geom_arch</strong>. Here we turn off the legend:</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="loops-visualization.html#cb100-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_bw =</span> bw,</span>
+<span id="cb100-2"><a href="loops-visualization.html#cb100-2" tabindex="-1"></a>               <span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb100-3"><a href="loops-visualization.html#cb100-3" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="st">&quot;chr8&quot;</span>,</span>
+<span id="cb100-4"><a href="loops-visualization.html#cb100-4" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="dv">100010290</span>,</span>
+<span id="cb100-5"><a href="loops-visualization.html#cb100-5" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="dv">101157229</span>),</span>
+<span id="cb100-6"><a href="loops-visualization.html#cb100-6" tabindex="-1"></a>               <span class="at">Input_loop =</span> loop_data,</span>
+<span id="cb100-7"><a href="loops-visualization.html#cb100-7" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb100-8"><a href="loops-visualization.html#cb100-8" tabindex="-1"></a>               <span class="at">loops_col =</span> <span class="fu">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb100-9"><a href="loops-visualization.html#cb100-9" tabindex="-1"></a>               <span class="at">signal_layer_loop_params =</span> <span class="fu">list</span>(<span class="at">show.legend =</span> F))</span></code></pre></div>
+<p><img src="local_images/t57.png" style="width:100.0%" /></p>
+<p><strong>max.height</strong> can make the links panel height to be same:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="loops-visualization.html#cb101-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_bw =</span> bw,</span>
+<span id="cb101-2"><a href="loops-visualization.html#cb101-2" tabindex="-1"></a>               <span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb101-3"><a href="loops-visualization.html#cb101-3" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="st">&quot;chr8&quot;</span>,</span>
+<span id="cb101-4"><a href="loops-visualization.html#cb101-4" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="dv">100010290</span>,</span>
+<span id="cb101-5"><a href="loops-visualization.html#cb101-5" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="dv">101157229</span>),</span>
+<span id="cb101-6"><a href="loops-visualization.html#cb101-6" tabindex="-1"></a>               <span class="at">Input_loop =</span> loop_data,</span>
+<span id="cb101-7"><a href="loops-visualization.html#cb101-7" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb101-8"><a href="loops-visualization.html#cb101-8" tabindex="-1"></a>               <span class="at">signal_layer_loop_params =</span> <span class="fu">list</span>(<span class="at">max.height =</span> <span class="dv">12</span>))</span></code></pre></div>
+<p><img src="local_images/t58.png" style="width:100.0%" /></p>
+<p><strong>linewidth</strong> changes the links linewidth:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="loops-visualization.html#cb102-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_bw =</span> bw,</span>
+<span id="cb102-2"><a href="loops-visualization.html#cb102-2" tabindex="-1"></a>               <span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb102-3"><a href="loops-visualization.html#cb102-3" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="st">&quot;chr8&quot;</span>,</span>
+<span id="cb102-4"><a href="loops-visualization.html#cb102-4" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="dv">100010290</span>,</span>
+<span id="cb102-5"><a href="loops-visualization.html#cb102-5" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="dv">101157229</span>),</span>
+<span id="cb102-6"><a href="loops-visualization.html#cb102-6" tabindex="-1"></a>               <span class="at">Input_loop =</span> loop_data,</span>
+<span id="cb102-7"><a href="loops-visualization.html#cb102-7" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb102-8"><a href="loops-visualization.html#cb102-8" tabindex="-1"></a>               <span class="at">signal_layer_loop_params =</span> <span class="fu">list</span>(<span class="at">linewidth =</span> <span class="dv">1</span>))</span></code></pre></div>
+<p><img src="local_images/t59.png" style="width:100.0%" /></p>
+<p>We can arrange the sample order:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="loops-visualization.html#cb103-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_bw =</span> bw,</span>
+<span id="cb103-2"><a href="loops-visualization.html#cb103-2" tabindex="-1"></a>               <span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb103-3"><a href="loops-visualization.html#cb103-3" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="st">&quot;chr8&quot;</span>,</span>
+<span id="cb103-4"><a href="loops-visualization.html#cb103-4" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="dv">100010290</span>,</span>
+<span id="cb103-5"><a href="loops-visualization.html#cb103-5" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="dv">101157229</span>),</span>
+<span id="cb103-6"><a href="loops-visualization.html#cb103-6" tabindex="-1"></a>               <span class="at">Input_loop =</span> loop_data,</span>
+<span id="cb103-7"><a href="loops-visualization.html#cb103-7" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb103-8"><a href="loops-visualization.html#cb103-8" tabindex="-1"></a>               <span class="at">sample_order =</span> <span class="fu">c</span>(<span class="st">&quot;M1-CTCF&quot;</span>,<span class="st">&quot;ChIP-CTCF-MYC1&quot;</span>,</span>
+<span id="cb103-9"><a href="loops-visualization.html#cb103-9" tabindex="-1"></a>                                <span class="st">&quot;C1-CTCF&quot;</span>,<span class="st">&quot;ChIP-MYC-MYC1&quot;</span>,</span>
+<span id="cb103-10"><a href="loops-visualization.html#cb103-10" tabindex="-1"></a>                                <span class="st">&quot;M1-H3K27ac&quot;</span>,<span class="st">&quot;ChIP-H3K27ac-MYC1&quot;</span>,</span>
+<span id="cb103-11"><a href="loops-visualization.html#cb103-11" tabindex="-1"></a>                                <span class="st">&quot;C1-H3K27ac&quot;</span>,<span class="st">&quot;ChIP-Input-MYC1&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t60.png" style="width:100.0%" /></p>
+</div>
+<div id="reverse-y-axis" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Reverse Y axis<a href="loops-visualization.html#reverse-y-axis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>reverse_y_vars</strong> allows you to reverse the Y axis for any signal track,
+you only need to give a track character name:</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="loops-visualization.html#cb104-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_bw =</span> bw,</span>
+<span id="cb104-2"><a href="loops-visualization.html#cb104-2" tabindex="-1"></a>               <span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb104-3"><a href="loops-visualization.html#cb104-3" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="st">&quot;chr8&quot;</span>,</span>
+<span id="cb104-4"><a href="loops-visualization.html#cb104-4" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="dv">100010290</span>,</span>
+<span id="cb104-5"><a href="loops-visualization.html#cb104-5" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="dv">101157229</span>),</span>
+<span id="cb104-6"><a href="loops-visualization.html#cb104-6" tabindex="-1"></a>               <span class="at">Input_loop =</span> loop_data,</span>
+<span id="cb104-7"><a href="loops-visualization.html#cb104-7" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb104-8"><a href="loops-visualization.html#cb104-8" tabindex="-1"></a>               <span class="at">sample_order =</span> <span class="fu">c</span>(<span class="st">&quot;ChIP-CTCF-MYC1&quot;</span>,<span class="st">&quot;M1-CTCF&quot;</span>,</span>
+<span id="cb104-9"><a href="loops-visualization.html#cb104-9" tabindex="-1"></a>                                <span class="st">&quot;ChIP-MYC-MYC1&quot;</span>,<span class="st">&quot;C1-CTCF&quot;</span>,</span>
+<span id="cb104-10"><a href="loops-visualization.html#cb104-10" tabindex="-1"></a>                                <span class="st">&quot;ChIP-H3K27ac-MYC1&quot;</span>,<span class="st">&quot;M1-H3K27ac&quot;</span>,</span>
+<span id="cb104-11"><a href="loops-visualization.html#cb104-11" tabindex="-1"></a>                                <span class="st">&quot;ChIP-Input-MYC1&quot;</span>,<span class="st">&quot;C1-H3K27ac&quot;</span>),</span>
+<span id="cb104-12"><a href="loops-visualization.html#cb104-12" tabindex="-1"></a>               <span class="at">reverse_y_vars =</span> <span class="fu">c</span>(<span class="st">&quot;M1-CTCF&quot;</span>,<span class="st">&quot;C1-CTCF&quot;</span>,</span>
+<span id="cb104-13"><a href="loops-visualization.html#cb104-13" tabindex="-1"></a>                                  <span class="st">&quot;M1-H3K27ac&quot;</span>,<span class="st">&quot;C1-H3K27ac&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t61.png" style="width:100.0%" /></p>
+<p>Or you can reverse the bigwig track Y axis:</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="loops-visualization.html#cb105-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_bw =</span> bw,</span>
+<span id="cb105-2"><a href="loops-visualization.html#cb105-2" tabindex="-1"></a>               <span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb105-3"><a href="loops-visualization.html#cb105-3" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="st">&quot;chr8&quot;</span>,</span>
+<span id="cb105-4"><a href="loops-visualization.html#cb105-4" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="dv">100010290</span>,</span>
+<span id="cb105-5"><a href="loops-visualization.html#cb105-5" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="dv">101157229</span>),</span>
+<span id="cb105-6"><a href="loops-visualization.html#cb105-6" tabindex="-1"></a>               <span class="at">Input_loop =</span> loop_data,</span>
+<span id="cb105-7"><a href="loops-visualization.html#cb105-7" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb105-8"><a href="loops-visualization.html#cb105-8" tabindex="-1"></a>               <span class="at">sample_order =</span> <span class="fu">c</span>(<span class="st">&quot;M1-CTCF&quot;</span>,<span class="st">&quot;ChIP-CTCF-MYC1&quot;</span>,</span>
+<span id="cb105-9"><a href="loops-visualization.html#cb105-9" tabindex="-1"></a>                                <span class="st">&quot;C1-CTCF&quot;</span>,<span class="st">&quot;ChIP-MYC-MYC1&quot;</span>,</span>
+<span id="cb105-10"><a href="loops-visualization.html#cb105-10" tabindex="-1"></a>                                <span class="st">&quot;M1-H3K27ac&quot;</span>,<span class="st">&quot;ChIP-H3K27ac-MYC1&quot;</span>,</span>
+<span id="cb105-11"><a href="loops-visualization.html#cb105-11" tabindex="-1"></a>                                <span class="st">&quot;C1-H3K27ac&quot;</span>,<span class="st">&quot;ChIP-Input-MYC1&quot;</span>),</span>
+<span id="cb105-12"><a href="loops-visualization.html#cb105-12" tabindex="-1"></a>               <span class="at">reverse_y_vars =</span> <span class="fu">c</span>(<span class="st">&quot;ChIP-CTCF-MYC1&quot;</span>,<span class="st">&quot;ChIP-MYC-MYC1&quot;</span>,</span>
+<span id="cb105-13"><a href="loops-visualization.html#cb105-13" tabindex="-1"></a>                                  <span class="st">&quot;ChIP-H3K27ac-MYC1&quot;</span>,<span class="st">&quot;ChIP-Input-MYC1&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t62.png" style="width:100.0%" /></p>
+<p>Let’s draw multiple genomic regions:</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="loops-visualization.html#cb106-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_bw =</span> bw,</span>
+<span id="cb106-2"><a href="loops-visualization.html#cb106-2" tabindex="-1"></a>               <span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb106-3"><a href="loops-visualization.html#cb106-3" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="fu">c</span>(<span class="st">&quot;chr8&quot;</span>,<span class="st">&quot;chr8&quot;</span>),</span>
+<span id="cb106-4"><a href="loops-visualization.html#cb106-4" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="fu">c</span>(<span class="dv">100010290</span>,<span class="dv">65831189</span>),</span>
+<span id="cb106-5"><a href="loops-visualization.html#cb106-5" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="fu">c</span>(<span class="dv">101157229</span>,<span class="dv">67351272</span>)),</span>
+<span id="cb106-6"><a href="loops-visualization.html#cb106-6" tabindex="-1"></a>               <span class="at">Input_loop =</span> loop_data,</span>
+<span id="cb106-7"><a href="loops-visualization.html#cb106-7" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb106-8"><a href="loops-visualization.html#cb106-8" tabindex="-1"></a>               <span class="at">sample_order =</span> <span class="fu">c</span>(<span class="st">&quot;ChIP-CTCF-MYC1&quot;</span>,<span class="st">&quot;M1-CTCF&quot;</span>,</span>
+<span id="cb106-9"><a href="loops-visualization.html#cb106-9" tabindex="-1"></a>                                <span class="st">&quot;ChIP-MYC-MYC1&quot;</span>,<span class="st">&quot;C1-CTCF&quot;</span>,</span>
+<span id="cb106-10"><a href="loops-visualization.html#cb106-10" tabindex="-1"></a>                                <span class="st">&quot;ChIP-H3K27ac-MYC1&quot;</span>,<span class="st">&quot;M1-H3K27ac&quot;</span>,</span>
+<span id="cb106-11"><a href="loops-visualization.html#cb106-11" tabindex="-1"></a>                                <span class="st">&quot;ChIP-Input-MYC1&quot;</span>,<span class="st">&quot;C1-H3K27ac&quot;</span>),</span>
+<span id="cb106-12"><a href="loops-visualization.html#cb106-12" tabindex="-1"></a>               <span class="at">reverse_y_vars =</span> <span class="fu">c</span>(<span class="st">&quot;M1-CTCF&quot;</span>,<span class="st">&quot;C1-CTCF&quot;</span>,</span>
+<span id="cb106-13"><a href="loops-visualization.html#cb106-13" tabindex="-1"></a>                                  <span class="st">&quot;M1-H3K27ac&quot;</span>,<span class="st">&quot;C1-H3K27ac&quot;</span>))</span></code></pre></div>
+<p><img src="local_images/t63.png" style="width:100.0%" /></p>
+</div>
+<div id="combing-with-chromosome-track" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Combing with chromosome track<a href="loops-visualization.html#combing-with-chromosome-track" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Adding chromosome tracks:</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="loops-visualization.html#cb107-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;hg19_obj&quot;</span>)</span>
+<span id="cb107-2"><a href="loops-visualization.html#cb107-2" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_bw =</span> bw,</span>
+<span id="cb107-3"><a href="loops-visualization.html#cb107-3" tabindex="-1"></a>               <span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb107-4"><a href="loops-visualization.html#cb107-4" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="fu">c</span>(<span class="st">&quot;chr8&quot;</span>,<span class="st">&quot;chr8&quot;</span>),</span>
+<span id="cb107-5"><a href="loops-visualization.html#cb107-5" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="fu">c</span>(<span class="dv">100010290</span>,<span class="dv">65831189</span>),</span>
+<span id="cb107-6"><a href="loops-visualization.html#cb107-6" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="fu">c</span>(<span class="dv">101157229</span>,<span class="dv">67351272</span>)),</span>
+<span id="cb107-7"><a href="loops-visualization.html#cb107-7" tabindex="-1"></a>               <span class="at">Input_loop =</span> loop_data,</span>
+<span id="cb107-8"><a href="loops-visualization.html#cb107-8" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb107-9"><a href="loops-visualization.html#cb107-9" tabindex="-1"></a>               <span class="at">sample_order =</span> <span class="fu">c</span>(<span class="st">&quot;ChIP-CTCF-MYC1&quot;</span>,<span class="st">&quot;M1-CTCF&quot;</span>,</span>
+<span id="cb107-10"><a href="loops-visualization.html#cb107-10" tabindex="-1"></a>                                <span class="st">&quot;ChIP-MYC-MYC1&quot;</span>,<span class="st">&quot;C1-CTCF&quot;</span>,</span>
+<span id="cb107-11"><a href="loops-visualization.html#cb107-11" tabindex="-1"></a>                                <span class="st">&quot;ChIP-H3K27ac-MYC1&quot;</span>,<span class="st">&quot;M1-H3K27ac&quot;</span>,</span>
+<span id="cb107-12"><a href="loops-visualization.html#cb107-12" tabindex="-1"></a>                                <span class="st">&quot;ChIP-Input-MYC1&quot;</span>,<span class="st">&quot;C1-H3K27ac&quot;</span>),</span>
+<span id="cb107-13"><a href="loops-visualization.html#cb107-13" tabindex="-1"></a>               <span class="at">reverse_y_vars =</span> <span class="fu">c</span>(<span class="st">&quot;M1-CTCF&quot;</span>,<span class="st">&quot;C1-CTCF&quot;</span>,</span>
+<span id="cb107-14"><a href="loops-visualization.html#cb107-14" tabindex="-1"></a>                                  <span class="st">&quot;M1-H3K27ac&quot;</span>,<span class="st">&quot;C1-H3K27ac&quot;</span>),</span>
+<span id="cb107-15"><a href="loops-visualization.html#cb107-15" tabindex="-1"></a>               <span class="at">draw_chromosome =</span> T,</span>
+<span id="cb107-16"><a href="loops-visualization.html#cb107-16" tabindex="-1"></a>               <span class="at">draw_chromosome_params =</span> <span class="fu">list</span>(<span class="at">ideogram_obj =</span> hg19_obj))</span></code></pre></div>
+<p><img src="local_images/t64.png" style="width:100.0%" /></p>
+<p>Adding group information:</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="loops-visualization.html#cb108-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_bw =</span> bw,</span>
+<span id="cb108-2"><a href="loops-visualization.html#cb108-2" tabindex="-1"></a>               <span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb108-3"><a href="loops-visualization.html#cb108-3" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="fu">c</span>(<span class="st">&quot;chr8&quot;</span>,<span class="st">&quot;chr8&quot;</span>),</span>
+<span id="cb108-4"><a href="loops-visualization.html#cb108-4" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="fu">c</span>(<span class="dv">100010290</span>,<span class="dv">65831189</span>),</span>
+<span id="cb108-5"><a href="loops-visualization.html#cb108-5" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="fu">c</span>(<span class="dv">101157229</span>,<span class="dv">67351272</span>)),</span>
+<span id="cb108-6"><a href="loops-visualization.html#cb108-6" tabindex="-1"></a>               <span class="at">Input_loop =</span> loop_data,</span>
+<span id="cb108-7"><a href="loops-visualization.html#cb108-7" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb108-8"><a href="loops-visualization.html#cb108-8" tabindex="-1"></a>               <span class="at">sample_order =</span> <span class="fu">c</span>(<span class="st">&quot;ChIP-CTCF-MYC1&quot;</span>,<span class="st">&quot;M1-CTCF&quot;</span>,</span>
+<span id="cb108-9"><a href="loops-visualization.html#cb108-9" tabindex="-1"></a>                                <span class="st">&quot;ChIP-MYC-MYC1&quot;</span>,<span class="st">&quot;C1-CTCF&quot;</span>,</span>
+<span id="cb108-10"><a href="loops-visualization.html#cb108-10" tabindex="-1"></a>                                <span class="st">&quot;ChIP-H3K27ac-MYC1&quot;</span>,<span class="st">&quot;M1-H3K27ac&quot;</span>,</span>
+<span id="cb108-11"><a href="loops-visualization.html#cb108-11" tabindex="-1"></a>                                <span class="st">&quot;ChIP-Input-MYC1&quot;</span>,<span class="st">&quot;C1-H3K27ac&quot;</span>),</span>
+<span id="cb108-12"><a href="loops-visualization.html#cb108-12" tabindex="-1"></a>               <span class="at">reverse_y_vars =</span> <span class="fu">c</span>(<span class="st">&quot;M1-CTCF&quot;</span>,<span class="st">&quot;C1-CTCF&quot;</span>,</span>
+<span id="cb108-13"><a href="loops-visualization.html#cb108-13" tabindex="-1"></a>                                  <span class="st">&quot;M1-H3K27ac&quot;</span>,<span class="st">&quot;C1-H3K27ac&quot;</span>),</span>
+<span id="cb108-14"><a href="loops-visualization.html#cb108-14" tabindex="-1"></a>               <span class="at">draw_chromosome =</span> T,</span>
+<span id="cb108-15"><a href="loops-visualization.html#cb108-15" tabindex="-1"></a>               <span class="at">draw_chromosome_params =</span> <span class="fu">list</span>(<span class="at">ideogram_obj =</span> hg19_obj),</span>
+<span id="cb108-16"><a href="loops-visualization.html#cb108-16" tabindex="-1"></a>               <span class="at">sample_group_info =</span> <span class="fu">list</span>(<span class="at">state1 =</span> <span class="fu">c</span>(<span class="st">&quot;ChIP-CTCF-MYC1&quot;</span>,<span class="st">&quot;M1-CTCF&quot;</span>),</span>
+<span id="cb108-17"><a href="loops-visualization.html#cb108-17" tabindex="-1"></a>                                        <span class="at">state2 =</span> <span class="fu">c</span>(<span class="st">&quot;ChIP-MYC-MYC1&quot;</span>,<span class="st">&quot;C1-CTCF&quot;</span>),</span>
+<span id="cb108-18"><a href="loops-visualization.html#cb108-18" tabindex="-1"></a>                                        <span class="at">histoneMarker =</span> <span class="fu">c</span>(<span class="st">&quot;ChIP-H3K27ac-MYC1&quot;</span>,<span class="st">&quot;M1-H3K27ac&quot;</span>),</span>
+<span id="cb108-19"><a href="loops-visualization.html#cb108-19" tabindex="-1"></a>                                        <span class="at">inputControl =</span> <span class="fu">c</span>(<span class="st">&quot;ChIP-Input-MYC1&quot;</span>,<span class="st">&quot;C1-H3K27ac&quot;</span>)),</span>
+<span id="cb108-20"><a href="loops-visualization.html#cb108-20" tabindex="-1"></a>               <span class="at">panel.spacing =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.2</span>))</span></code></pre></div>
+<p><img src="local_images/t65.png" style="width:100.0%" /></p>
+</div>
+<div id="higlight-regions" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Higlight regions<a href="loops-visualization.html#higlight-regions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Adding highlight regions:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="loops-visualization.html#cb109-1" tabindex="-1"></a>higlight_region <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;chr8:100010290-101157229&quot;</span> <span class="ot">=</span> <span class="fu">list</span>(<span class="at">start =</span> <span class="fu">c</span>(<span class="dv">100310290</span>),</span>
+<span id="cb109-2"><a href="loops-visualization.html#cb109-2" tabindex="-1"></a>                                                          <span class="at">end =</span> <span class="fu">c</span>(<span class="dv">100457229</span>)),</span>
+<span id="cb109-3"><a href="loops-visualization.html#cb109-3" tabindex="-1"></a>                        <span class="st">&quot;chr8:65831189-67351272&quot;</span> <span class="ot">=</span> <span class="fu">list</span>(<span class="at">start =</span> <span class="fu">c</span>(<span class="dv">65931189</span>,<span class="dv">66231189</span>),</span>
+<span id="cb109-4"><a href="loops-visualization.html#cb109-4" tabindex="-1"></a>                                                        <span class="at">end =</span> <span class="fu">c</span>(<span class="dv">66051272</span>,<span class="dv">66351272</span>)))</span>
+<span id="cb109-5"><a href="loops-visualization.html#cb109-5" tabindex="-1"></a></span>
+<span id="cb109-6"><a href="loops-visualization.html#cb109-6" tabindex="-1"></a>higlight_col <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">Actb =</span> <span class="fu">c</span>(<span class="st">&quot;purple&quot;</span>),</span>
+<span id="cb109-7"><a href="loops-visualization.html#cb109-7" tabindex="-1"></a>                     <span class="at">Myc =</span> <span class="fu">c</span>(<span class="st">&quot;yellow&quot;</span>,<span class="st">&quot;green&quot;</span>))</span>
+<span id="cb109-8"><a href="loops-visualization.html#cb109-8" tabindex="-1"></a></span>
+<span id="cb109-9"><a href="loops-visualization.html#cb109-9" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_bw =</span> bw,</span>
+<span id="cb109-10"><a href="loops-visualization.html#cb109-10" tabindex="-1"></a>               <span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb109-11"><a href="loops-visualization.html#cb109-11" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="fu">c</span>(<span class="st">&quot;chr8&quot;</span>,<span class="st">&quot;chr8&quot;</span>),</span>
+<span id="cb109-12"><a href="loops-visualization.html#cb109-12" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="fu">c</span>(<span class="dv">100010290</span>,<span class="dv">65831189</span>),</span>
+<span id="cb109-13"><a href="loops-visualization.html#cb109-13" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="fu">c</span>(<span class="dv">101157229</span>,<span class="dv">67351272</span>)),</span>
+<span id="cb109-14"><a href="loops-visualization.html#cb109-14" tabindex="-1"></a>               <span class="at">Input_loop =</span> loop_data,</span>
+<span id="cb109-15"><a href="loops-visualization.html#cb109-15" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb109-16"><a href="loops-visualization.html#cb109-16" tabindex="-1"></a>               <span class="at">sample_order =</span> <span class="fu">c</span>(<span class="st">&quot;ChIP-CTCF-MYC1&quot;</span>,<span class="st">&quot;M1-CTCF&quot;</span>,</span>
+<span id="cb109-17"><a href="loops-visualization.html#cb109-17" tabindex="-1"></a>                                <span class="st">&quot;ChIP-MYC-MYC1&quot;</span>,<span class="st">&quot;C1-CTCF&quot;</span>,</span>
+<span id="cb109-18"><a href="loops-visualization.html#cb109-18" tabindex="-1"></a>                                <span class="st">&quot;ChIP-H3K27ac-MYC1&quot;</span>,<span class="st">&quot;M1-H3K27ac&quot;</span>,</span>
+<span id="cb109-19"><a href="loops-visualization.html#cb109-19" tabindex="-1"></a>                                <span class="st">&quot;ChIP-Input-MYC1&quot;</span>,<span class="st">&quot;C1-H3K27ac&quot;</span>),</span>
+<span id="cb109-20"><a href="loops-visualization.html#cb109-20" tabindex="-1"></a>               <span class="at">reverse_y_vars =</span> <span class="fu">c</span>(<span class="st">&quot;M1-CTCF&quot;</span>,<span class="st">&quot;C1-CTCF&quot;</span>,</span>
+<span id="cb109-21"><a href="loops-visualization.html#cb109-21" tabindex="-1"></a>                                  <span class="st">&quot;M1-H3K27ac&quot;</span>,<span class="st">&quot;C1-H3K27ac&quot;</span>),</span>
+<span id="cb109-22"><a href="loops-visualization.html#cb109-22" tabindex="-1"></a>               <span class="at">draw_chromosome =</span> T,</span>
+<span id="cb109-23"><a href="loops-visualization.html#cb109-23" tabindex="-1"></a>               <span class="at">draw_chromosome_params =</span> <span class="fu">list</span>(<span class="at">ideogram_obj =</span> hg19_obj),</span>
+<span id="cb109-24"><a href="loops-visualization.html#cb109-24" tabindex="-1"></a>               <span class="at">sample_group_info =</span> <span class="fu">list</span>(<span class="at">state1 =</span> <span class="fu">c</span>(<span class="st">&quot;ChIP-CTCF-MYC1&quot;</span>,<span class="st">&quot;M1-CTCF&quot;</span>),</span>
+<span id="cb109-25"><a href="loops-visualization.html#cb109-25" tabindex="-1"></a>                                        <span class="at">state2 =</span> <span class="fu">c</span>(<span class="st">&quot;ChIP-MYC-MYC1&quot;</span>,<span class="st">&quot;C1-CTCF&quot;</span>),</span>
+<span id="cb109-26"><a href="loops-visualization.html#cb109-26" tabindex="-1"></a>                                        <span class="at">histoneMarker =</span> <span class="fu">c</span>(<span class="st">&quot;ChIP-H3K27ac-MYC1&quot;</span>,<span class="st">&quot;M1-H3K27ac&quot;</span>),</span>
+<span id="cb109-27"><a href="loops-visualization.html#cb109-27" tabindex="-1"></a>                                        <span class="at">inputControl =</span> <span class="fu">c</span>(<span class="st">&quot;ChIP-Input-MYC1&quot;</span>,<span class="st">&quot;C1-H3K27ac&quot;</span>)),</span>
+<span id="cb109-28"><a href="loops-visualization.html#cb109-28" tabindex="-1"></a>               <span class="at">panel.spacing =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.2</span>),</span>
+<span id="cb109-29"><a href="loops-visualization.html#cb109-29" tabindex="-1"></a>               <span class="at">higlight_region =</span> higlight_region,</span>
+<span id="cb109-30"><a href="loops-visualization.html#cb109-30" tabindex="-1"></a>               <span class="at">higlight_col =</span> higlight_col)</span></code></pre></div>
+<p><img src="local_images/t66.png" style="width:100.0%" /></p>
+</div>
+<div id="drawing-only-loop-tracks" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> Drawing only loop tracks<a href="loops-visualization.html#drawing-only-loop-tracks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can only plot loops graph without bigwig track:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="loops-visualization.html#cb110-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb110-2"><a href="loops-visualization.html#cb110-2" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="fu">c</span>(<span class="st">&quot;chr8&quot;</span>,<span class="st">&quot;chr8&quot;</span>),</span>
+<span id="cb110-3"><a href="loops-visualization.html#cb110-3" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="fu">c</span>(<span class="dv">100010290</span>,<span class="dv">65831189</span>),</span>
+<span id="cb110-4"><a href="loops-visualization.html#cb110-4" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="fu">c</span>(<span class="dv">101157229</span>,<span class="dv">67351272</span>)),</span>
+<span id="cb110-5"><a href="loops-visualization.html#cb110-5" tabindex="-1"></a>               <span class="at">Input_loop =</span> loop_data,</span>
+<span id="cb110-6"><a href="loops-visualization.html#cb110-6" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb110-7"><a href="loops-visualization.html#cb110-7" tabindex="-1"></a>               <span class="at">draw_chromosome =</span> T,</span>
+<span id="cb110-8"><a href="loops-visualization.html#cb110-8" tabindex="-1"></a>               <span class="at">draw_chromosome_params =</span> <span class="fu">list</span>(<span class="at">ideogram_obj =</span> hg19_obj),</span>
+<span id="cb110-9"><a href="loops-visualization.html#cb110-9" tabindex="-1"></a>               <span class="at">sample_group_info =</span> <span class="fu">list</span>(<span class="at">state1 =</span> <span class="fu">c</span>(<span class="st">&quot;C1-CTCF&quot;</span>,<span class="st">&quot;M1-CTCF&quot;</span>),</span>
+<span id="cb110-10"><a href="loops-visualization.html#cb110-10" tabindex="-1"></a>                                        <span class="at">state2 =</span> <span class="fu">c</span>(<span class="st">&quot;M1-H3K27ac&quot;</span>,<span class="st">&quot;C1-H3K27ac&quot;</span>)),</span>
+<span id="cb110-11"><a href="loops-visualization.html#cb110-11" tabindex="-1"></a>               <span class="at">panel.spacing =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.2</span>))</span></code></pre></div>
+<p><img src="local_images/t67.png" style="width:100.0%" /></p>
+</div>
+<div id="curve-geoms-choosing" class="section level2 hasAnchor" number="6.7">
+<h2><span class="header-section-number">6.7</span> Curve geoms choosing<a href="loops-visualization.html#curve-geoms-choosing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The curves are generated based on <strong>ggbio::geom_arch</strong> function. The curves are
+a little strange which means the arcs are much oblate. Here we can choose another
+geom layer <strong>jjPlot::geom_arch2</strong> for better visualization. Setting
+<strong>Loop_curve_geom = “geom_arch2”</strong>:</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="loops-visualization.html#cb111-1" tabindex="-1"></a><span class="fu">trackVisProMax</span>(<span class="at">Input_gtf =</span> gtf,</span>
+<span id="cb111-2"><a href="loops-visualization.html#cb111-2" tabindex="-1"></a>               <span class="at">query_region =</span> <span class="fu">list</span>(<span class="at">query_chr =</span> <span class="fu">c</span>(<span class="st">&quot;chr8&quot;</span>,<span class="st">&quot;chr8&quot;</span>),</span>
+<span id="cb111-3"><a href="loops-visualization.html#cb111-3" tabindex="-1"></a>                                   <span class="at">query_start =</span> <span class="fu">c</span>(<span class="dv">100010290</span>,<span class="dv">65831189</span>),</span>
+<span id="cb111-4"><a href="loops-visualization.html#cb111-4" tabindex="-1"></a>                                   <span class="at">query_end =</span> <span class="fu">c</span>(<span class="dv">101157229</span>,<span class="dv">67351272</span>)),</span>
+<span id="cb111-5"><a href="loops-visualization.html#cb111-5" tabindex="-1"></a>               <span class="at">Input_loop =</span> loop_data,</span>
+<span id="cb111-6"><a href="loops-visualization.html#cb111-6" tabindex="-1"></a>               <span class="at">fixed_column_range =</span> F,</span>
+<span id="cb111-7"><a href="loops-visualization.html#cb111-7" tabindex="-1"></a>               <span class="at">draw_chromosome =</span> T,<span class="at">Loop_curve_geom =</span> <span class="st">&quot;geom_arch2&quot;</span>,</span>
+<span id="cb111-8"><a href="loops-visualization.html#cb111-8" tabindex="-1"></a>               <span class="at">draw_chromosome_params =</span> <span class="fu">list</span>(<span class="at">ideogram_obj =</span> hg19_obj),</span>
+<span id="cb111-9"><a href="loops-visualization.html#cb111-9" tabindex="-1"></a>               <span class="at">sample_group_info =</span> <span class="fu">list</span>(<span class="at">state1 =</span> <span class="fu">c</span>(<span class="st">&quot;C1-CTCF&quot;</span>,<span class="st">&quot;M1-CTCF&quot;</span>),</span>
+<span id="cb111-10"><a href="loops-visualization.html#cb111-10" tabindex="-1"></a>                                        <span class="at">state2 =</span> <span class="fu">c</span>(<span class="st">&quot;M1-H3K27ac&quot;</span>,<span class="st">&quot;C1-H3K27ac&quot;</span>)),</span>
+<span id="cb111-11"><a href="loops-visualization.html#cb111-11" tabindex="-1"></a>               <span class="at">panel.spacing =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.2</span>))</span></code></pre></div>
+<p><img src="local_images/t67_1.png" style="width:100.0%" /></p>
+<p>You can just choose suitable style what you like.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="basic-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hic-heatmap-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-Loops_visualization.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
